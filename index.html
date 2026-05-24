@@ -1,0 +1,3550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinVault — Mon Patrimoine</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231a2a4a'/%3E%3Crect width='64' height='64' rx='12' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231e3a6e'/%3E%3Cstop offset='1' stop-color='%230f1e3a'/%3E%3C/LinearGradient%3E%3C/defs%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='26' fill='%234a8cf0' letter-spacing='1'%3EFV%3C/text%3E%3Crect x='10' y='52' width='44' height='2' rx='1' fill='%234a8cf0' opacity='0.5'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAJE0lEQVR4nO3dy3NUaRnH8ae7k05CIDdyEZDLhEsyolNTg46KyMwwVWpZs5y1iylXlqUb95b/gms3unDj3tISUIaBGbUYcRCSkIQZQiCkuxO6c08n3e2CCRUISfo5fU6f857n+9lxec77VvH8+n37vCeHhNRR+5GzlXqOB3cVJq4n6jFOoIPQ8PBLUIHw/aI0PYLmZxh8uxCNj3rzIwg1X4DGR9hqCUKyloFpfkRBLX3oKTk0PqJKuxqoVwCaH1Gm7U9VAGh+uEDTp1UHgOaHS6rt16oCQPPDRdX07a4BoPnhst36d8cA0PyIg536eNsA0PyIk+36uaaDMMB1Lw0An/6Io5f19ZYA0PyIsxf7my0QTHsuAHz6w4LNfc4KANOeBYBPf1iy0e+sADCNAMC0hAjbH9jFCgDTCABMIwAwLcn+H5axAsA0AgDTCABMIwAwjQDANAIA0wgATCMAMI0AwDQCANMIAEwjADCNAMA0AgDTCABMIwAwjQDANAIA0wgATCMAMI0AwDQCANMIAEwjADCNAMA0AgDTCABMIwAwjQDANAIA0wgATCMAMI0AwDQCANMawp6AH/pO/1BOvPvLsKfxnBt/+Kms5B9t+f1Db7wvx859oL/e7z+QlcJjP6a2qwOvvSf9b/9MXXfzjz+Xxdy9AGYUHFaAOssOX5JKpayu6xm4EMBsthlrUD/WYu6ec80vQgDqrrj0RPL3b6jrej00pRfNHQdl31cG1XWZOxcDmE3wCEAIMkP6ZvHamFq9A++oayrlkmRH/h7AbIJHAEIwe+8TWV9dUNd52ZrUY4wnX/xb1pYLAcwmeAQgBOXSmuTuXlHX9Zw6L4lkcPct9h14VZrbD6jrvKxoUUEAQjLtYc/c0Nwmnce+GcBsnvLyPWN9ZU5mP/9XALOpDwIQkoXpEVmefaCu6x18N4DZiCRSDdJ98ry6LjvyD6mU1wOYUX0QgBB52Tp0vvKmNDS1+j6XrmPfkobmfeo6l7c/IgQgVJnhy+ozgWSqUfaf/L7vc/FyzrA084UsZMZ8n0s9xeIk2KvtTmvrpbg4I4WJ/0jH0TOqut7BCzL9v7/4No+GplbpfOVNdZ3rn/4irAChm/bQRG0HT0tTW59vc+g+eV6SqUZVTaVckszwZd/mEBYCELLZ8Y9lfXVRWZWQXh8fjegZ1B9+Pbl/Q9aW8r7NISwEIGTlUlFyox+q63pe9ScATW190nbwtLouM/Q3X8YPGwGIAC976ZaOQ7K3b6DmsZ+uJAlVzfrKvMx+/s+ax44CAhAB81NDsvxkUl3nxwNyXrY/2btXpFJy997/ZgQgIrysAt2nzksimfI85t6+U9LS+VV1XeZOPLY/IgQgMjLDl0UqFVVNY0u7dCpvoW7mZQVZmrkvC5lRz2NGDQGIiOJCTvIPbqrrejw+GpFIpqT7lP7Rh8zQJU/jRRUBiBAvd1a6+r8tqbT+0YiOI2eksaVDVVOplCU74v69/81MnwSf+cnvfL/m3NQdufWnX3mqnRm/LqXikqTSe6quSabS0n3ynEzf/qtqLC/bn/zEp1JcnFXXRRkrQISU14uSG72qrtP+EEsq3SJd/d9RjxOnL78bCEDEeGmy9kNfl6Z9vVX//f0nzkmyIa0aY311UWbvfaKdWuQRgIiZm7ojy+oH9BKq+/lefqYgd/eKlEtr6rqoIwARlPVwp6XaZ4PSe7ul/dA31NePy6MPLyIAEZQZvigiujOBlq7Dsrf3xK5/r3fgHZGE7tGH5ScPZP7xiKrGFQQgglbns1KY/ExdV82ZgJe3Prj6zp9qEICI8vJluGfgrR0fjWjt6Zc9+4/qLlqpSCZm9/43IwARlRu7JqXisqqmsaVDOo68se2fe/nym5/4VIoLM+o6VxCAiCqvr0puTH8msN0BVyKRlO5Tb6mv5+Un1lxi+iQ47J8J3k1m6KL0fe0Hqpqu/u9KKt2yZfVoP/y6pFu7VNcqFRdldvxjVY1rWAEibO7hbVkpTKlqkg1p2X/i3Jbf9/LoQ/buh1IuFdV1LiEAkVbx9PTli82eamyWruNn1deJw1sfdkMAIi4zfEm0ZwLth16T9N7uZ7/uOn5WUo3Nqmss5x/K/NSQqsZFBCDiVuempTB5S1eUSDz3mnMv2x8Ln/4iBMAJXppx48ArvadT2g+/riuuVCQbg3f+VIMAOGBm7CMprenOBPbsPyqtPcele+BtSSR0/8z5yZuyOp9V1biKADigtLYiM2PX1HW9gxc8HX7F+dGHFxEAR3jZBvWd/pG09vSrakrFJZkZ14fNVQTAEYXJW7I6N62qSaVb1OPkRq9KeT3e9/43IwDOqHx5SzRYVu7+bCAADnnanLozAY2V/COZe3Q7sOtHEQFwyErhscw9DK5B4/bOn2oQAMcEt0WpzxYragiAY3KjV6W0tuL7dQuTn8nqfMb360YdAXBMaW1ZZsav+37dOL7zpxoEwEFZn7dBQYXKBQTAQfkH//X1UYWZ0Y8C2Va5gAA4qfLlq1P8MR3Td/5UgwA4yq9blkHfWo06AuColfwjmZu6U/N1vPzATZwQAIfVfuem4uk1jHGSaD9y1m78YR4rAEwjADCNAMA0AgDTCABMIwAwjQDANAIA0wgATCMAMI0AwDQCANMIAEwjADCNAMA0AgDTCABMIwAwjQDANAIA0wgATCMAMI0AwDQCANMIAEwjADCNAMA0AgDTCABMIwAwjQDANAIA0wgATGsIa+Dv/eLPvwlrbETTtd/++Nf1HpMVAKYRAJhGAGAaAYBpBACmEQCYxn+UDdNYAWAaAYBpBACmEQCYRgBgGgGAaQQAphEAmEYAYBoBgGnJwsT1RNiTAMLCCgDTCABMIwAwLSkiwvcAWFSYuJ5gBYBpBACmPQsA2yBYstHvrAAw7bkAsArAgs19zgoA07YEgFUAcfZif790BSAEiKOX9TVbIJi2bQBYBRAn2/XzjisAIUAc7NTHu26BCAFctlv/VvUdgBDARdX0bdVfggkBXFJtv6ruAhECuEDTp+rboIQAUabtz5qamf9bAFHh9YO5poMwVgNEQS196FsDsxqg3vz4APb9E5wgIGh+7jwC3cIQBvglqO32/wFjnJxEmRSHWAAAAABJRU5ErkJggg==">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="FinVault">
+<meta name="theme-color" content="#1a2a4a">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0a0c0f;
+    --surface: #111318;
+    --surface2: #181b22;
+    --border: #1e2230;
+    --accent: #c8f04a;
+    --accent2: #4af0c8;
+    --accent3: #f04a7a;
+    --text: #e8ecf0;
+    --muted: #5a6070;
+    --muted2: #8892a0;
+    --positive: #4af0a0;
+    --negative: #f04a7a;
+    --warning: #f0c84a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── LOGIN ── */
+  #login-screen {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .login-card {
+    width: 380px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 48px 40px;
+    position: relative;
+  }
+  .login-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .login-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 28px;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .login-logo span { color: var(--accent); }
+  .login-sub { color: var(--muted2); font-size: 13px; margin-bottom: 40px; }
+  .login-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted2); margin-bottom: 8px; display: block;
+  }
+  .login-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-input:focus { border-color: var(--accent); }
+  #login-error {
+    color: var(--negative); font-size: 12px; margin-top: 8px;
+    min-height: 16px;
+  }
+  .login-btn {
+    width: 100%; margin-top: 24px;
+    background: var(--accent);
+    color: #0a0c0f;
+    border: none; cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 14px;
+    transition: opacity 0.2s;
+  }
+  .login-btn:hover { opacity: 0.85; }
+
+  /* ── APP SHELL ── */
+  #app { display: none; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0;
+    width: 220px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    z-index: 100;
+  }
+  .sidebar-logo {
+    padding: 28px 24px 24px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo span { color: var(--accent); }
+  .nav { padding: 20px 0; flex: 1; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 24px;
+    font-size: 13px; font-weight: 500;
+    color: var(--muted2);
+    cursor: pointer;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .nav-item:hover { color: var(--text); background: var(--surface2); }
+  .nav-item.active {
+    color: var(--accent); border-left-color: var(--accent);
+    background: rgba(200,240,74,0.05);
+  }
+  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+  .sidebar-bottom {
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .last-update {
+    font-size: 11px; color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+  .refresh-btn {
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+    font-size: 11px; font-family: 'Syne', sans-serif;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 7px 12px; cursor: pointer;
+    transition: all 0.15s; width: 100%;
+  }
+  .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .logout-btn {
+    margin-top: 8px;
+    background: transparent; border: none;
+    color: var(--muted); font-size: 11px;
+    cursor: pointer; text-align: left; padding: 4px 0;
+    text-decoration: underline;
+  }
+  .logout-btn:hover { color: var(--negative); }
+
+  /* Main */
+  .main {
+    margin-left: 220px;
+    padding: 40px 48px;
+    min-height: 100vh;
+  }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* Page header */
+  .page-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  .page-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 32px;
+    letter-spacing: -0.5px;
+  }
+  .page-subtitle { color: var(--muted2); font-size: 13px; margin-top: 4px; }
+
+  /* KPI Cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative; overflow: hidden;
+  }
+  .kpi-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent2), transparent);
+    opacity: 0.3;
+  }
+  .kpi-label {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted2); margin-bottom: 12px;
+  }
+  .kpi-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 26px; font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+  .kpi-change {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; margin-top: 6px;
+  }
+  .pos { color: var(--positive); }
+  .neg { color: var(--negative); }
+
+  /* Section */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted2);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-title::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  /* Table */
+  .data-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table th {
+    text-align: left; padding: 10px 16px;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+  .data-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid rgba(30,34,48,0.6);
+  }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .data-table .mono { font-family: 'DM Mono', monospace; font-size: 13px; }
+  .data-table .right { text-align: right; }
+
+  /* Account badge */
+  .account-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  /* Add form row */
+  .add-row {
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    padding: 16px 20px;
+    margin-top: 12px;
+    display: none;
+  }
+  .add-row.open { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-group label {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted2);
+  }
+  .field-input, .field-select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    padding: 8px 12px;
+    outline: none;
+    min-width: 130px;
+  }
+  .field-input:focus, .field-select:focus { border-color: var(--accent); }
+  .field-select option { background: var(--surface); }
+  .btn-add {
+    background: var(--accent); color: #0a0c0f;
+    border: none; cursor: pointer;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 9px 18px; white-space: nowrap;
+  }
+  .btn-add:hover { opacity: 0.85; }
+  .btn-cancel {
+    background: transparent; color: var(--muted2);
+    border: 1px solid var(--border); cursor: pointer;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 9px 14px;
+  }
+  .btn-cancel:hover { color: var(--text); border-color: var(--muted2); }
+  .btn-open {
+    background: transparent; color: var(--accent2);
+    border: 1px solid rgba(74,240,200,0.3); cursor: pointer;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 8px 16px; margin-top: 12px;
+    transition: all 0.15s;
+  }
+  .btn-open:hover { background: rgba(74,240,200,0.05); border-color: var(--accent2); }
+  .btn-delete {
+    background: transparent; border: none;
+    color: var(--muted); cursor: pointer; font-size: 14px;
+    padding: 4px 8px; transition: color 0.15s;
+  }
+  .btn-delete:hover { color: var(--negative); }
+
+  /* Chart containers */
+  .chart-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; margin-bottom: 32px;
+  }
+  .chart-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .chart-label {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted2); margin-bottom: 20px;
+    font-family: 'Syne', sans-serif; font-weight: 600;
+  }
+  .chart-container { position: relative; height: 220px; }
+
+  /* TRI table */
+  .tri-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+    margin-bottom: 32px;
+  }
+  .tri-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 20px 24px;
+  }
+  .tri-horizon {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted2); margin-bottom: 10px;
+  }
+  .tri-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 32px; font-weight: 300;
+  }
+  .tri-desc { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  /* Allocation bar */
+  .alloc-bar {
+    height: 8px; background: var(--surface2);
+    border-radius: 0; overflow: hidden; margin-top: 4px;
+  }
+  .alloc-fill {
+    height: 100%; border-radius: 0;
+    transition: width 0.6s ease;
+  }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+  .tab {
+    padding: 10px 20px; font-size: 12px;
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--muted2); cursor: pointer;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* Price badge */
+  .price-tag {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    padding: 2px 8px; background: rgba(74,240,200,0.08);
+    border: 1px solid rgba(74,240,200,0.2);
+    color: var(--accent2);
+  }
+  .loading-dot {
+    display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--accent);
+    animation: pulse 1s ease-in-out infinite;
+    margin-left: 6px;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); }
+
+  /* Notification */
+  .notif {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 12px 20px; font-size: 13px;
+    animation: slideIn 0.3s ease;
+    z-index: 999;
+  }
+  @keyframes slideIn { from { transform: translateX(60px); opacity:0; } to { transform: none; opacity:1; } }
+
+  /* Groupe headers */
+  .groupe-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0 10px; margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .groupe-label {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text);
+  }
+  .groupe-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .groupe-totaux {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--muted2); display: flex; gap: 20px;
+  }
+  .groupe-totaux span { color: var(--text); }
+
+  /* Save reminder banner */
+  .save-banner {
+    position: fixed; top: 0; left: 220px; right: 0; z-index: 200;
+    background: linear-gradient(90deg, rgba(240,200,74,0.15), rgba(240,200,74,0.05));
+    border-bottom: 1px solid rgba(240,200,74,0.4);
+    padding: 10px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--warning);
+    animation: slideDown 0.3s ease;
+  }
+  @keyframes slideDown { from { transform: translateY(-40px); opacity:0; } to { transform: none; opacity:1; } }
+  .save-banner-msg { display: flex; align-items: center; gap: 10px; }
+  .save-banner-btn {
+    background: var(--warning); color: #0a0c0f;
+    border: none; cursor: pointer;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 6px 14px;
+  }
+  .save-banner-close {
+    background: transparent; border: none; color: var(--warning);
+    cursor: pointer; font-size: 16px; padding: 0 0 0 12px; opacity: 0.6;
+  }
+  .save-banner-close:hover { opacity: 1; }
+
+  /* Alert cards */
+  .alert-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 16px 20px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .alert-card.urgent { border-left: 3px solid var(--accent3); }
+  .alert-card.soon   { border-left: 3px solid var(--warning); }
+  .alert-card.ok     { border-left: 3px solid var(--positive); }
+  .alert-card.done   { border-left: 3px solid var(--muted); opacity: 0.6; }
+  .alert-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink:0; }
+  .alert-body { flex: 1; }
+  .alert-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .alert-meta  { font-size: 11px; color: var(--muted2); font-family: 'DM Mono', monospace; }
+  .alert-days  {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    padding: 3px 10px; border-radius: 2px; white-space: nowrap;
+  }
+  .alert-days.urgent { background: rgba(240,74,122,0.12); color: var(--accent3); border: 1px solid rgba(240,74,122,0.3); }
+  .alert-days.soon   { background: rgba(240,200,74,0.12); color: var(--warning);  border: 1px solid rgba(240,200,74,0.3); }
+  .alert-days.ok     { background: rgba(74,240,160,0.10); color: var(--positive); border: 1px solid rgba(74,240,160,0.3); }
+  .alert-days.done   { background: rgba(90,96,112,0.15);  color: var(--muted2);   border: 1px solid rgba(90,96,112,0.3); }
+  .bulletin-window {
+    font-size: 11px; color: var(--muted2);
+    font-family: 'DM Mono', monospace;
+  }
+  .bulletin-active { color: var(--warning); font-weight: 500; }
+
+  /* Source badge on invest table */
+  .source-badge {
+    font-size: 9px; padding: 1px 5px; border-radius: 2px;
+    font-family: 'DM Mono', monospace; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .source-yahoo  { background: rgba(74,240,200,0.1); color: var(--accent2); border: 1px solid rgba(74,240,200,0.25); }
+  .source-figi   { background: rgba(200,240,74,0.1); color: var(--accent);  border: 1px solid rgba(200,240,74,0.25); }
+  .source-manual { background: rgba(90,96,112,0.2);  color: var(--muted2);  border: 1px solid rgba(90,96,112,0.3); }
+  .source-error  { background: rgba(240,74,122,0.1); color: var(--negative);border: 1px solid rgba(240,74,122,0.25); }
+
+  /* Responsive tweak */
+  @media (max-width: 1100px) {
+    .kpi-grid { grid-template-columns: repeat(2,1fr); }
+    .chart-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ LOGIN ══════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">Fin<span>Vault</span></div>
+    <div class="login-sub" id="login-sub-text">Accès sécurisé à votre patrimoine</div>
+
+    <!-- Step 1: Password -->
+    <div id="login-step-pwd">
+      <label class="login-label">Mot de passe</label>
+      <input type="password" class="login-input" id="pwd-input" placeholder="••••••••" autocomplete="current-password">
+      <div id="login-error"></div>
+      <button class="login-btn" onclick="doLoginStep1()" style="margin-top:24px;">Continuer →</button>
+    </div>
+
+    <!-- Step 2: TOTP code -->
+    <div id="login-step-totp" style="display:none;">
+      <label class="login-label">Code Authenticator (6 chiffres)</label>
+      <input type="text" class="login-input" id="totp-input"
+        placeholder="000000" maxlength="6" inputmode="numeric"
+        autocomplete="one-time-code" style="letter-spacing:0.3em; font-size:22px; text-align:center;">
+      <div id="totp-error"></div>
+      <button class="login-btn" onclick="doLoginStep2()" style="margin-top:24px;">Accéder →</button>
+      <button onclick="showLoginStep(1)" style="background:none;border:none;color:var(--muted2);font-size:12px;cursor:pointer;margin-top:12px;display:block;">← Retour</button>
+    </div>
+
+    <!-- Setup: first-time TOTP enrollment -->
+    <div id="login-step-setup" style="display:none;">
+      <div style="font-size:12px;color:var(--muted2);margin-bottom:16px;line-height:1.7;">
+        Première connexion — scanne ce QR code avec<br>
+        <strong style="color:var(--text);">Google Authenticator</strong> ou <strong style="color:var(--text);">Authy</strong>
+      </div>
+      <div id="setup-qr" style="background:#fff;padding:12px;display:inline-block;margin-bottom:16px;"></div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:4px;">Ou entre la clé manuellement :</div>
+      <div id="setup-secret" style="font-family:'DM Mono',monospace;font-size:13px;color:var(--accent2);letter-spacing:0.1em;margin-bottom:20px;"></div>
+      <label class="login-label">Confirme avec un code pour activer</label>
+      <input type="text" class="login-input" id="setup-code"
+        placeholder="000000" maxlength="6" inputmode="numeric"
+        style="letter-spacing:0.3em; font-size:22px; text-align:center;">
+      <div id="setup-error"></div>
+      <button class="login-btn" onclick="confirmTotpSetup()" style="margin-top:16px;">Activer l'authentificateur →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app">
+
+  <!-- SAVE REMINDER BANNER -->
+  <div class="save-banner" id="save-banner" style="display:none;">
+    <div class="save-banner-msg">
+      ⚠ <span id="save-banner-msg">Dernière sauvegarde il y a plus de 24h — pensez à exporter votre JSON.</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="save-banner-btn" onclick="exportDataWithTimestamp()">↓ Sauvegarder maintenant</button>
+      <button class="save-banner-close" onclick="dismissSaveBanner()">×</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">Fin<span>Vault</span></div>
+    <div class="nav">
+      <div class="nav-item active" onclick="showPage('dashboard')">
+        <span class="nav-icon">◈</span> Tableau de bord
+      </div>
+      <div class="nav-item" onclick="showPage('comptes')">
+        <span class="nav-icon">◧</span> Comptes & dépenses
+      </div>
+      <div class="nav-item" onclick="showPage('investissements')">
+        <span class="nav-icon">◈</span> Investissements
+      </div>
+      <div class="nav-item" onclick="showPage('graphiques')">
+        <span class="nav-icon">◱</span> Graphiques
+      </div>
+      <div class="nav-item" onclick="showPage('tri')">
+        <span class="nav-icon">◲</span> TRI & Performance
+      </div>
+      <div class="nav-item" onclick="showPage('alertes')">
+        <span class="nav-icon">◉</span> Alertes <span id="nav-badge" style="display:none; margin-left:auto; background:var(--accent3); color:#fff; font-size:9px; padding:1px 6px; border-radius:8px; font-family:'Syne',sans-serif; font-weight:700;"></span>
+      </div>
+      <div class="nav-item" onclick="showPage('parametres')">
+        <span class="nav-icon">◎</span> Paramètres
+      </div>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="last-update" id="last-update-time">—</div>
+      <div id="last-save-time" style="font-size:10px; color:var(--muted); margin-top:3px; font-family:'DM Mono',monospace;">—</div>
+      <button class="refresh-btn" onclick="refreshPrices()" style="margin-top:10px;">⟳ Actualiser prix</button>
+      <button class="refresh-btn" onclick="exportDataWithTimestamp()" style="margin-top:6px; border-color:rgba(240,200,74,0.4); color:var(--warning);" id="sidebar-save-btn">↓ Sauvegarder JSON</button>
+      <button class="logout-btn" onclick="doLogout()">Déconnexion</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- ── DASHBOARD ── -->
+    <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Tableau de bord</div>
+          <div class="page-subtitle" id="dashboard-date">—</div>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Patrimoine total</div>
+          <div class="kpi-value" id="kpi-total">—</div>
+          <div class="kpi-change" id="kpi-total-change">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Liquidités</div>
+          <div class="kpi-value" id="kpi-liquide">—</div>
+          <div class="kpi-change">Comptes bancaires</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Investissements</div>
+          <div class="kpi-value" id="kpi-invest">—</div>
+          <div class="kpi-change" id="kpi-invest-pnl">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Épargne mensuelle nette</div>
+          <div class="kpi-value" id="kpi-epargne">—</div>
+          <div class="kpi-change">Ce mois-ci</div>
+        </div>
+      </div>
+
+      <div class="section-title">Répartition du patrimoine</div>
+      <div id="allocation-bars" style="margin-bottom:32px;"></div>
+
+      <div class="section-title">Dernières transactions</div>
+      <table class="data-table" id="recent-tx-table">
+        <thead>
+          <tr>
+            <th>Date</th><th>Description</th><th>Compte</th>
+            <th class="right">Montant</th>
+          </tr>
+        </thead>
+        <tbody id="recent-tx-body"></tbody>
+      </table>
+    </div>
+
+    <!-- ── COMPTES ── -->
+    <div class="page" id="page-comptes">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Comptes & Dépenses</div>
+          <div class="page-subtitle">Soldes compte + encours CB par groupe</div>
+        </div>
+      </div>
+
+      <!-- Groupe 1 -->
+      <div class="groupe-header" id="groupe-perso-header">
+        <div class="groupe-label">
+          <span class="groupe-dot" style="background:var(--accent);"></span>
+          Groupe Perso — Fortuneo · BoursoBank · Trade Republic
+        </div>
+        <div class="groupe-totaux" id="groupe-perso-totaux"></div>
+      </div>
+      <table class="data-table" style="margin-bottom:4px;">
+        <thead><tr>
+          <th>Compte</th><th>Banque</th><th>Type</th>
+          <th class="right">Solde compte</th>
+          <th class="right">Encours CB</th>
+          <th class="right">Disponible net</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="comptes-body-perso"></tbody>
+      </table>
+
+      <!-- Groupe 2 -->
+      <div class="groupe-header" style="margin-top:28px;" id="groupe-ccf-header">
+        <div class="groupe-label">
+          <span class="groupe-dot" style="background:var(--accent3);"></span>
+          Groupe CCF
+        </div>
+        <div class="groupe-totaux" id="groupe-ccf-totaux"></div>
+      </div>
+      <table class="data-table" style="margin-bottom:4px;">
+        <thead><tr>
+          <th>Compte</th><th>Banque</th><th>Type</th>
+          <th class="right">Solde compte</th>
+          <th class="right">Encours CB</th>
+          <th class="right">Disponible net</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="comptes-body-ccf"></tbody>
+      </table>
+
+      <!-- Non groupés -->
+      <div id="comptes-autres-wrap" style="margin-top:28px; display:none;">
+        <div class="groupe-header">
+          <div class="groupe-label">
+            <span class="groupe-dot" style="background:var(--muted2);"></span>
+            Autres comptes
+          </div>
+        </div>
+        <table class="data-table" style="margin-bottom:4px;">
+          <thead><tr>
+            <th>Compte</th><th>Banque</th><th>Type</th>
+            <th class="right">Solde compte</th>
+            <th class="right">Encours CB</th>
+            <th class="right">Disponible net</th>
+            <th></th>
+          </tr></thead>
+          <tbody id="comptes-body-autres"></tbody>
+        </table>
+      </div>
+
+      <button class="btn-open" onclick="toggleAddRow('add-compte')">+ Ajouter un compte</button>
+      <div class="add-row" id="add-compte">
+        <div class="field-group">
+          <label>Nom du compte</label>
+          <input type="text" class="field-input" id="nc-nom" placeholder="ex: Compte Courant">
+        </div>
+        <div class="field-group">
+          <label>Banque</label>
+          <select class="field-select" id="nc-banque">
+            <option>Fortuneo</option>
+            <option>BoursoBank</option>
+            <option>Trade Republic</option>
+            <option>CCF</option>
+            <option>Linxea</option>
+            <option>Louve Invest</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Type</label>
+          <select class="field-select" id="nc-type">
+            <option>Courant</option><option>Épargne</option>
+            <option>Livret A</option><option>PEL</option>
+            <option>CTO</option><option>PEA</option>
+            <option>Assurance Vie</option><option>Crypto</option><option>Autre</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Solde compte (€)</label>
+          <input type="number" class="field-input" id="nc-solde" placeholder="0.00" style="width:130px;">
+        </div>
+        <div class="field-group">
+          <label>Encours CB (€)</label>
+          <input type="number" class="field-input" id="nc-encours" placeholder="0.00" style="width:120px;">
+        </div>
+        <button class="btn-add" onclick="addCompte()">Ajouter</button>
+        <button class="btn-cancel" onclick="toggleAddRow('add-compte')">Annuler</button>
+      </div>
+
+      <!-- TRANSACTIONS -->
+      <div class="section-title" style="margin-top:40px;">Transactions</div>
+      <div style="display:flex; gap:0; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+        <div class="tabs" style="margin-bottom:0; border:none; gap:0;">
+          <div class="tab active" onclick="filterTx('all',this)">Tout</div>
+          <div class="tab" onclick="filterTx('revenu',this)">Revenus</div>
+          <div class="tab" onclick="filterTx('depense',this)">Dépenses</div>
+        </div>
+        <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+          <select class="field-select" id="tx-filter-compte" onchange="renderTransactions()" style="font-size:11px; padding:6px 10px;">
+            <option value="">Tous les comptes</option>
+          </select>
+          <select class="field-select" id="tx-filter-cat" onchange="renderTransactions()" style="font-size:11px; padding:6px 10px;">
+            <option value="">Toutes catégories</option>
+          </select>
+          <input type="month" class="field-input" id="tx-filter-month" onchange="renderTransactions()" style="font-size:11px; padding:6px 10px; width:150px;">
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead><tr>
+          <th>Date</th><th>Libellé</th>
+          <th>Catégorie</th><th>Sous-catégorie</th>
+          <th>Compte</th><th>Type</th>
+          <th class="right">Montant</th><th></th>
+        </tr></thead>
+        <tbody id="tx-body"></tbody>
+      </table>
+      <div id="tx-summary" style="display:flex; gap:24px; padding:12px 16px; font-size:12px; font-family:'DM Mono',monospace; border-top:1px solid var(--border); margin-top:0;"></div>
+
+      <button class="btn-open" onclick="toggleAddRow('add-tx')">+ Ajouter une transaction</button>
+      <div class="add-row" id="add-tx" style="flex-wrap:wrap; gap:12px;">
+        <div class="field-group">
+          <label>Date</label>
+          <input type="date" class="field-input" id="tx-date" style="width:145px;">
+        </div>
+        <div class="field-group">
+          <label>Libellé</label>
+          <input type="text" class="field-input" id="tx-desc" placeholder="ex: Courses Carrefour" style="width:200px;">
+        </div>
+        <div class="field-group">
+          <label>Catégorie principale</label>
+          <select class="field-select" id="tx-cat" onchange="updateSousCat()" style="width:170px;">
+            <option>Revenus</option>
+            <option>Logement</option>
+            <option>Alimentation</option>
+            <option>Transport</option>
+            <option>Loisirs & Culture</option>
+            <option>Santé</option>
+            <option>Épargne</option>
+            <option>Investissement</option>
+            <option>Abonnements</option>
+            <option>Voyages</option>
+            <option>Restauration</option>
+            <option>Shopping</option>
+            <option>Impôts & Taxes</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Sous-catégorie</label>
+          <select class="field-select" id="tx-souscat" style="width:170px;"></select>
+        </div>
+        <div class="field-group">
+          <label>Compte</label>
+          <select class="field-select" id="tx-compte" style="width:180px;"></select>
+        </div>
+        <div class="field-group">
+          <label>Type d'opération</label>
+          <select class="field-select" id="tx-type-op" style="width:150px;">
+            <option value="compte">Compte (virement)</option>
+            <option value="cb">Encours CB</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Montant (€) <span style="color:var(--muted); font-size:10px;">(-=dépense)</span></label>
+          <input type="number" class="field-input" id="tx-montant" placeholder="+/-" style="width:120px;" step="0.01">
+        </div>
+        <div style="display:flex; gap:8px; align-items:flex-end;">
+          <button class="btn-add" onclick="addTransaction()">Ajouter</button>
+          <button class="btn-cancel" onclick="toggleAddRow('add-tx')">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── INVESTISSEMENTS ── -->
+    <div class="page" id="page-investissements">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Investissements</div>
+          <div class="page-subtitle">
+            Prix en direct
+            <span class="loading-dot" id="price-dot" style="display:none;"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Portefeuille</div>
+      <table class="data-table">
+        <thead><tr>
+          <th>Actif</th><th>Ticker</th><th>Type</th>
+          <th class="right">Quantité</th>
+          <th class="right">Prix achat</th>
+          <th class="right">Prix actuel</th>
+          <th class="right">Valeur</th>
+          <th class="right">+/- Latente</th>
+          <th></th>
+        </tr></thead>
+        <tbody id="invest-body"></tbody>
+      </table>
+      <button class="btn-open" onclick="toggleAddRow('add-invest')">+ Ajouter une position</button>
+      <div class="add-row" id="add-invest">
+        <div class="field-group">
+          <label>Nom</label>
+          <input type="text" class="field-input" id="inv-nom" placeholder="ex: Primopierre">
+        </div>
+        <div class="field-group">
+          <label>Type</label>
+          <select class="field-select" id="inv-type" onchange="updateInvForm()">
+            <option>Action</option><option>ETF</option><option>Obligation</option>
+            <option>Crypto</option><option>SCPI</option><option>Private Equity</option><option>Autre</option>
+          </select>
+        </div>
+        <div class="field-group" id="inv-ticker-group">
+          <label>Ticker Yahoo Finance</label>
+          <input type="text" class="field-input" id="inv-ticker" placeholder="ex: IWDA.AS" style="width:130px;">
+        </div>
+        <div class="field-group" id="inv-isin-group" style="display:none;">
+          <label>ISIN <span style="color:var(--muted);font-size:10px;">(pour SCPI via Open Figi)</span></label>
+          <input type="text" class="field-input" id="inv-isin" placeholder="ex: FR0010915744" style="width:170px;" maxlength="12">
+        </div>
+        <div class="field-group">
+          <label>Quantité / Parts</label>
+          <input type="number" class="field-input" id="inv-qty" placeholder="0" style="width:100px;" step="0.001">
+        </div>
+        <div class="field-group">
+          <label>Prix achat (€)</label>
+          <input type="number" class="field-input" id="inv-prix" placeholder="0.00" style="width:120px;" step="0.01">
+        </div>
+        <div class="field-group">
+          <label>Devise</label>
+          <select class="field-select" id="inv-devise" style="width:80px;">
+            <option>EUR</option><option>USD</option><option>GBP</option><option>CHF</option>
+          </select>
+        </div>
+        <button class="btn-add" onclick="addInvestissement()">Ajouter</button>
+        <button class="btn-cancel" onclick="toggleAddRow('add-invest')">Annuler</button>
+      </div>
+    </div>
+
+    <!-- ── ALERTES ── -->
+    <div class="page" id="page-alertes">
+      <div class="page-header">
+        <div>
+          <div class="page-title">Alertes</div>
+          <div class="page-subtitle">Bulletins trimestriels SCPI & rappels personnalisés</div>
+        </div>
+        <button class="btn-add" onclick="toggleAddRow('add-alerte')">+ Ajouter une alerte</button>
+      </div>
+
+      <!-- Active alerts -->
+      <div id="alertes-actives-wrap" style="margin-bottom:32px;">
+        <div class="section-title">Alertes en attente</div>
+        <div id="alertes-actives"></div>
+      </div>
+
+      <!-- Bulletin calendar -->
+      <div class="section-title">Calendrier bulletins SCPI</div>
+      <div style="font-size:12px; color:var(--muted2); margin-bottom:16px;">
+        Dates de publication habituelles des bulletins trimestriels. L'alerte se déclenche dans la fenêtre de publication.
+      </div>
+      <table class="data-table" id="bulletin-calendar-table">
+        <thead><tr>
+          <th>SCPI</th><th>Société de gestion</th>
+          <th>T1 (janv–mars)</th><th>T2 (avr–juin)</th>
+          <th>T3 (juil–sept)</th><th>T4 (oct–déc)</th>
+          <th>Prochain bulletin</th><th>Statut</th><th></th>
+        </tr></thead>
+        <tbody id="bulletin-body"></tbody>
+      </table>
+
+      <!-- Add custom alert form -->
+      <div class="add-row" id="add-alerte" style="margin-top:16px;">
+        <div class="field-group">
+          <label>Titre</label>
+          <input type="text" class="field-input" id="al-titre" placeholder="ex: Bulletin Primopierre T2" style="width:240px;">
+        </div>
+        <div class="field-group">
+          <label>Type</label>
+          <select class="field-select" id="al-type">
+            <option value="bulletin">Bulletin SCPI</option>
+            <option value="prix">Mise à jour prix</option>
+            <option value="dividende">Dividende attendu</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Date d'alerte</label>
+          <input type="date" class="field-input" id="al-date" style="width:150px;">
+        </div>
+        <div class="field-group">
+          <label>Note</label>
+          <input type="text" class="field-input" id="al-note" placeholder="Note libre…" style="width:200px;">
+        </div>
+        <button class="btn-add" onclick="addAlerte()">Ajouter</button>
+        <button class="btn-cancel" onclick="toggleAddRow('add-alerte')">Annuler</button>
+      </div>
+
+      <!-- Past alerts -->
+      <div style="margin-top:36px;">
+        <div class="section-title">Historique</div>
+        <div id="alertes-historique"></div>
+      </div>
+    </div>
+
+    <!-- ── GRAPHIQUES ── -->
+    <div class="page" id="page-graphiques">
+      <div class="page-header">
+        <div class="page-title">Graphiques & Évolution</div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-label">Évolution du patrimoine</div>
+          <div class="chart-container"><canvas id="chart-patrimoine"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-label">Répartition des actifs</div>
+          <div class="chart-container"><canvas id="chart-repartition"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-label">Revenus vs Dépenses (6 mois)</div>
+          <div class="chart-container"><canvas id="chart-flux"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-label">Performance du portefeuille</div>
+          <div class="chart-container"><canvas id="chart-perf"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRI ── -->
+    <div class="page" id="page-tri">
+      <div class="page-header">
+        <div>
+          <div class="page-title">TRI & Performance</div>
+          <div class="page-subtitle">Taux de rendement interne à différents horizons</div>
+        </div>
+      </div>
+
+      <div class="tri-grid" id="tri-grid"></div>
+
+      <div class="section-title">Performance par actif</div>
+      <table class="data-table" id="perf-table">
+        <thead><tr>
+          <th>Actif</th><th>Type</th>
+          <th class="right">Investi</th>
+          <th class="right">Valeur actuelle</th>
+          <th class="right">+/- €</th>
+          <th class="right">+/- %</th>
+          <th class="right">TRI ann.</th>
+        </tr></thead>
+        <tbody id="perf-body"></tbody>
+      </table>
+
+      <div class="section-title" style="margin-top:32px;">Ajouter une date d'achat</div>
+      <div style="font-size:12px; color:var(--muted2); margin-bottom:12px;">
+        Pour calculer le TRI par position, renseignez la date d'achat de chaque actif.
+      </div>
+      <table class="data-table">
+        <thead><tr>
+          <th>Actif</th><th>Date d'achat</th><th></th>
+        </tr></thead>
+        <tbody id="date-achat-body"></tbody>
+      </table>
+    </div>
+
+    <!-- ── PARAMÈTRES ── -->
+    <div class="page" id="page-parametres">
+      <div class="page-header">
+        <div class="page-title">Paramètres</div>
+      </div>
+
+      <div class="section-title">Authentification à deux facteurs (TOTP)</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:500px; margin-bottom:32px;">
+        <div id="totp-status-block"></div>
+        <div id="totp-reset-qr" style="display:none; margin-top:16px;">
+          <div style="font-size:12px;color:var(--muted2);margin-bottom:12px;">Scanne ce nouveau QR code puis confirme avec un code :</div>
+          <div id="param-qr" style="background:#fff;padding:10px;display:inline-block;margin-bottom:12px;"></div>
+          <div id="param-secret" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent2);margin-bottom:12px;"></div>
+          <input type="text" class="field-input" id="param-totp-code" placeholder="000000" maxlength="6" inputmode="numeric" style="width:140px;letter-spacing:0.2em;font-size:16px;text-align:center;">
+          <div id="param-totp-error" style="font-size:11px;margin-top:6px;"></div>
+          <div style="display:flex;gap:10px;margin-top:12px;">
+            <button class="btn-add" onclick="confirmParamTotpReset()">Confirmer</button>
+            <button class="btn-cancel" onclick="cancelParamTotpReset()">Annuler</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Sécurité — Mot de passe</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:500px; margin-bottom:32px;">
+        <div style="font-size:13px; color:var(--muted2); margin-bottom:20px;">Changer le mot de passe</div>
+        <div class="field-group" style="margin-bottom:12px;">
+          <label>Mot de passe actuel</label>
+          <input type="password" class="field-input" id="pwd-current" style="width:280px;">
+        </div>
+        <div class="field-group" style="margin-bottom:12px;">
+          <label>Nouveau mot de passe</label>
+          <input type="password" class="field-input" id="pwd-new" style="width:280px;">
+        </div>
+        <div class="field-group" style="margin-bottom:20px;">
+          <label>Confirmer</label>
+          <input type="password" class="field-input" id="pwd-confirm" style="width:280px;">
+        </div>
+        <button class="btn-add" onclick="changePassword()">Enregistrer</button>
+        <div id="pwd-msg" style="font-size:12px; margin-top:10px;"></div>
+      </div>
+
+      <div class="section-title">Import Excel</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:680px; margin-bottom:32px;">
+        <div style="font-size:13px; color:var(--muted2); margin-bottom:6px;">Importe ton fichier Excel directement — traitement 100% local, aucune donnée envoyée sur des serveurs</div>
+        <div style="font-size:11px; color:var(--muted); margin-bottom:20px; line-height:1.8;">
+          FinVault détecte automatiquement les onglets et colonnes de ton fichier. Tu choisis ensuite ce que tu veux importer.
+        </div>
+
+        <!-- Step 1: File pick -->
+        <div id="xl-step1">
+          <button class="btn-add" onclick="document.getElementById('xl-file').click()">
+            📂 Choisir un fichier Excel (.xlsx / .xlsm / .xls)
+          </button>
+          <input type="file" id="xl-file" accept=".xlsx,.xls,.xlsm,.ods" style="display:none" onchange="loadExcelFile(this)">
+          <div id="xl-msg" style="font-size:12px; margin-top:10px;"></div>
+        </div>
+
+        <!-- Step 2: Sheet mapping -->
+        <div id="xl-step2" style="display:none; margin-top:20px;">
+          <div style="font-size:12px; font-family:'Syne',sans-serif; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted2); margin-bottom:12px;">
+            Onglets détectés — assigne chaque onglet à une section FinVault
+          </div>
+          <div id="xl-sheet-mappings"></div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button class="btn-add" onclick="previewExcelImport()">Aperçu de l'import</button>
+            <button class="btn-cancel" onclick="resetExcelImport()">Annuler</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Preview & confirm -->
+        <div id="xl-step3" style="display:none; margin-top:20px;">
+          <div id="xl-preview-content"></div>
+          <div style="margin-top:16px; display:flex; gap:10px;">
+            <button class="btn-add" onclick="confirmExcelImport()">✓ Confirmer l'import</button>
+            <button class="btn-cancel" onclick="showXlStep(2)">← Retour</button>
+            <button class="btn-cancel" onclick="resetExcelImport()">Annuler</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Import CSV bancaire</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:620px; margin-bottom:32px;">
+        <div style="font-size:13px; color:var(--muted2); margin-bottom:6px;">Importe tes relevés bancaires dans l'app</div>
+        <div id="csv-instructions" style="font-size:11px; color:var(--muted); margin-bottom:20px; line-height:1.7;"></div>
+        <div style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; margin-bottom:16px;">
+          <div class="field-group">
+            <label>Compte destination</label>
+            <select class="field-select" id="csv-compte-dest" style="width:200px;">
+              <option value="">— Sélectionner —</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label>Banque / Format</label>
+            <select class="field-select" id="csv-format" style="width:220px;" onchange="updateCSVInstructions()">
+              <option value="fortuneo">Fortuneo</option>
+              <option value="ccf">CCF (HSBC)</option>
+              <option value="boursobank">BoursoBank / Boursorama</option>
+              <option value="trade_republic">Trade Republic (CSV)</option>
+              <option value="linxea">Linxea (relevé PDF→CSV)</option>
+              <option value="louve">Louve Invest (export Excel→CSV)</option>
+              <option value="generic">Générique (date;libellé;montant)</option>
+            </select>
+          </div>
+          <button class="btn-add" onclick="document.getElementById('csv-file').click()">Importer CSV</button>
+          <input type="file" id="csv-file" accept=".csv,.txt" style="display:none" onchange="importCSV(this)">
+        </div>
+        <div id="csv-preview" style="display:none;">
+          <div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted2); margin-bottom:10px;">
+            Aperçu — <span id="csv-count"></span> transactions détectées
+          </div>
+          <div style="max-height:200px; overflow-y:auto; border:1px solid var(--border);">
+            <table class="data-table" style="font-size:11px;">
+              <thead><tr><th>Date</th><th>Description</th><th class="right">Montant</th></tr></thead>
+              <tbody id="csv-preview-body"></tbody>
+            </table>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:12px;">
+            <button class="btn-add" onclick="confirmCSVImport()">Confirmer l'import</button>
+            <button class="btn-cancel" onclick="cancelCSVImport()">Annuler</button>
+          </div>
+        </div>
+        <div id="csv-msg" style="font-size:12px; margin-top:8px;"></div>
+      </div>
+
+      <div class="section-title">Données JSON</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:500px; margin-bottom:32px;">
+        <div style="font-size:13px; color:var(--muted2); margin-bottom:16px;">Sauvegarde complète — à stocker dans Proton Drive</div>
+        <div style="display:flex; gap:12px;">
+          <button class="btn-add" onclick="exportData()">Exporter JSON</button>
+          <button class="btn-open" onclick="document.getElementById('import-file').click()">Importer JSON</button>
+          <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(this)">
+        </div>
+      </div>
+
+      <div class="section-title">Open Figi — Clé API SCPI</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:560px; margin-bottom:32px;">
+        <div style="font-size:13px; color:var(--muted2); margin-bottom:8px;">Clé API gratuite pour récupérer les VL des SCPI via ISIN</div>
+        <div style="font-size:11px; color:var(--muted); margin-bottom:16px; line-height:1.8;">
+          1. Va sur <a href="https://www.openfigi.com/api" target="_blank" style="color:var(--accent2);">openfigi.com/api</a> → "Get an API key" (gratuit, sans CB)<br>
+          2. Copie ta clé ci-dessous et clique Enregistrer<br>
+          3. Les prix des SCPI se mettront à jour automatiquement via leur ISIN
+        </div>
+        <div class="field-group" style="margin-bottom:16px;">
+          <label>Clé API Open Figi</label>
+          <input type="text" class="field-input" id="figi-key" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" style="width:360px; font-family:'DM Mono',monospace; font-size:12px;">
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn-add" onclick="saveFigiKey()">Enregistrer la clé</button>
+          <button class="btn-open" onclick="testFigiKey()">Tester la connexion</button>
+          <span id="figi-status" style="font-size:11px;"></span>
+        </div>
+      </div>
+
+      <div class="section-title">Taux de change (manuel)</div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:28px; max-width:500px;">
+        <div style="font-size:13px; color:var(--muted2); margin-bottom:16px;">
+          Taux utilisés pour convertir vos actifs en devise étrangère
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="field-group">
+            <label>USD/EUR</label>
+            <input type="number" class="field-input" id="rate-usd" step="0.001" style="width:160px;">
+          </div>
+          <div class="field-group">
+            <label>GBP/EUR</label>
+            <input type="number" class="field-input" id="rate-gbp" step="0.001" style="width:160px;">
+          </div>
+          <div class="field-group">
+            <label>CHF/EUR</label>
+            <input type="number" class="field-input" id="rate-chf" step="0.001" style="width:160px;">
+          </div>
+        </div>
+        <button class="btn-add" style="margin-top:16px;" onclick="saveRates()">Enregistrer les taux</button>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════
+const DEFAULT_PWD = 'finvault2024';
+
+let state = {
+  comptes: [],
+  transactions: [],
+  investissements: [],
+  patrimoinHistory: [],
+  rates: { USD: 0.92, GBP: 1.17, CHF: 1.05 }
+};
+
+let charts = {};
+
+// ══════════════════════════════════════════════
+//  STORAGE
+// ══════════════════════════════════════════════
+function saveState() {
+  try { localStorage.setItem('finvault_state', JSON.stringify(state)); } catch(e){}
+}
+function loadState() {
+  try {
+    const s = localStorage.getItem('finvault_state');
+    if (s) state = { ...state, ...JSON.parse(s) };
+  } catch(e){}
+  if (!state.rates) state.rates = { USD: 0.92, GBP: 1.17, CHF: 1.05 };
+  if (!state.patrimoinHistory) state.patrimoinHistory = [];
+}
+function getPassword() {
+  return localStorage.getItem('finvault_pwd') || DEFAULT_PWD;
+}
+
+// ══════════════════════════════════════════════
+//  TOTP ENGINE — RFC 6238 (100% local, no server)
+// ══════════════════════════════════════════════
+
+// Base32 encode/decode
+const B32_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+function base32Encode(bytes) {
+  let bits = 0, value = 0, out = '';
+  for (let i = 0; i < bytes.length; i++) {
+    value = (value << 8) | bytes[i];
+    bits += 8;
+    while (bits >= 5) {
+      out += B32_CHARS[(value >>> (bits - 5)) & 31];
+      bits -= 5;
+    }
+  }
+  if (bits > 0) out += B32_CHARS[(value << (5 - bits)) & 31];
+  return out;
+}
+function base32Decode(s) {
+  s = s.toUpperCase().replace(/=+$/, '');
+  const bytes = [];
+  let bits = 0, value = 0;
+  for (let i = 0; i < s.length; i++) {
+    const idx = B32_CHARS.indexOf(s[i]);
+    if (idx === -1) continue;
+    value = (value << 5) | idx; bits += 5;
+    if (bits >= 8) { bytes.push((value >>> (bits - 8)) & 255); bits -= 8; }
+  }
+  return new Uint8Array(bytes);
+}
+
+// HMAC-SHA1 via SubtleCrypto
+async function hmacSHA1(keyBytes, msgBytes) {
+  const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+  const sig  = await crypto.subtle.sign('HMAC', key, msgBytes);
+  return new Uint8Array(sig);
+}
+
+// TOTP code generation
+async function generateTOTP(secret, window = 0) {
+  const keyBytes = base32Decode(secret);
+  const counter  = Math.floor(Date.now() / 1000 / 30) + window;
+  const msg = new Uint8Array(8);
+  for (let i = 7; i >= 0; i--) { msg[i] = counter & 0xff; counter = Math.floor(counter / 256); }
+  // Fix: use BigInt for counter
+  const ctr = BigInt(Math.floor(Date.now() / 1000 / 30) + window);
+  const msgB = new Uint8Array(8);
+  for (let i = 7; i >= 0; i--) { msgB[i] = Number(ctr >> BigInt(8 * (7 - i)) & 0xffn); }
+  const hash   = await hmacSHA1(keyBytes, msgB);
+  const offset = hash[19] & 0xf;
+  const code   = ((hash[offset] & 0x7f) << 24 | hash[offset+1] << 16 | hash[offset+2] << 8 | hash[offset+3]) % 1000000;
+  return String(code).padStart(6, '0');
+}
+
+// Verify TOTP — check current window ±1 (90s tolerance)
+async function verifyTOTP(secret, userCode) {
+  for (const w of [-1, 0, 1]) {
+    const valid = await generateTOTP(secret, w);
+    if (valid === userCode.replace(/\s/g, '')) return true;
+  }
+  return false;
+}
+
+// Generate a random 20-byte secret
+function generateSecret() {
+  const bytes = crypto.getRandomValues(new Uint8Array(20));
+  return base32Encode(bytes);
+}
+
+// Build otpauth URI
+function buildOtpAuthUri(secret) {
+  return `otpauth://totp/FinVault?secret=${secret}&issuer=FinVault&algorithm=SHA1&digits=6&period=30`;
+}
+
+// Storage
+function getTotpSecret() { return localStorage.getItem('finvault_totp_secret') || ''; }
+function isTotpEnabled() { return !!getTotpSecret(); }
+
+// ── Login flow ──
+let _loginPwdOk = false;
+let _setupSecret = '';
+
+function showLoginStep(n) {
+  document.getElementById('login-step-pwd').style.display   = n === 1 ? 'block' : 'none';
+  document.getElementById('login-step-totp').style.display  = n === 2 ? 'block' : 'none';
+  document.getElementById('login-step-setup').style.display = n === 3 ? 'block' : 'none';
+  if (n === 2) setTimeout(() => document.getElementById('totp-input').focus(), 100);
+  if (n === 3) setTimeout(() => document.getElementById('setup-code').focus(), 100);
+}
+
+function doLoginStep1() {
+  const v = document.getElementById('pwd-input').value;
+  const err = document.getElementById('login-error');
+  if (v !== getPassword()) {
+    err.textContent = 'Mot de passe incorrect.';
+    document.getElementById('pwd-input').value = '';
+    return;
+  }
+  err.textContent = '';
+  _loginPwdOk = true;
+
+  if (isTotpEnabled()) {
+    // Step 2: ask for TOTP
+    showLoginStep(2);
+  } else {
+    // First time: enroll TOTP
+    _setupSecret = generateSecret();
+    renderSetupQR(_setupSecret, 'setup-qr', 'setup-secret');
+    showLoginStep(3);
+  }
+}
+
+async function doLoginStep2() {
+  const code = document.getElementById('totp-input').value.trim();
+  const err  = document.getElementById('totp-error');
+  if (code.length !== 6) { err.style.color='var(--negative)'; err.textContent = 'Entrez 6 chiffres.'; return; }
+  const ok = await verifyTOTP(getTotpSecret(), code);
+  if (ok) {
+    err.textContent = '';
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'flex';
+    document.getElementById('totp-input').value = '';
+    document.getElementById('pwd-input').value  = '';
+    _loginPwdOk = false;
+    initApp();
+  } else {
+    err.style.color = 'var(--negative)';
+    err.textContent = 'Code invalide. Vérifiez l\'heure de votre téléphone.';
+    document.getElementById('totp-input').value = '';
+  }
+}
+
+async function confirmTotpSetup() {
+  const code = document.getElementById('setup-code').value.trim();
+  const err  = document.getElementById('setup-error');
+  const ok   = await verifyTOTP(_setupSecret, code);
+  if (ok) {
+    localStorage.setItem('finvault_totp_secret', _setupSecret);
+    err.style.color = 'var(--positive)'; err.textContent = '✓ Authenticateur activé !';
+    setTimeout(() => {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app').style.display = 'flex';
+      document.getElementById('pwd-input').value  = '';
+      document.getElementById('setup-code').value = '';
+      _loginPwdOk = false; _setupSecret = '';
+      initApp();
+    }, 800);
+  } else {
+    err.style.color = 'var(--negative)';
+    err.textContent = 'Code invalide. Réessayez.';
+    document.getElementById('setup-code').value = '';
+  }
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('pwd-input').addEventListener('keydown',   e => { if(e.key==='Enter') doLoginStep1(); });
+  document.getElementById('totp-input').addEventListener('keydown',  e => { if(e.key==='Enter') doLoginStep2(); });
+  document.getElementById('setup-code').addEventListener('keydown',  e => { if(e.key==='Enter') confirmTotpSetup(); });
+});
+
+// QR code rendering
+function renderSetupQR(secret, qrId, secretId) {
+  const el = document.getElementById(qrId);
+  el.innerHTML = '';
+  const uri = buildOtpAuthUri(secret);
+  try {
+    new QRCode(el, { text: uri, width: 160, height: 160, colorDark:'#000', colorLight:'#fff', correctLevel: QRCode.CorrectLevel.M });
+  } catch(e) {
+    el.innerHTML = `<div style="font-size:10px;color:var(--muted);padding:8px;">QR indisponible — utilisez la clé manuelle</div>`;
+  }
+  const secEl = document.getElementById(secretId);
+  if (secEl) secEl.textContent = secret.match(/.{1,4}/g).join(' ');
+}
+
+// ── Paramètres TOTP block ──
+let _paramSecret = '';
+
+function renderTotpStatusBlock() {
+  const el = document.getElementById('totp-status-block');
+  if (!el) return;
+  if (isTotpEnabled()) {
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <span style="font-size:20px;">🔐</span>
+        <div>
+          <div style="font-size:13px;font-weight:500;color:var(--positive);">Authentificateur actif</div>
+          <div style="font-size:11px;color:var(--muted2);margin-top:2px;">Google Authenticator / Authy configuré</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button class="btn-open" onclick="startParamTotpReset()">Reconfigurer l'authenticateur</button>
+        <button class="btn-cancel" onclick="disableTotp()">Désactiver</button>
+      </div>`;
+  } else {
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <span style="font-size:20px;">⚠️</span>
+        <div>
+          <div style="font-size:13px;font-weight:500;color:var(--warning);">Authentificateur non configuré</div>
+          <div style="font-size:11px;color:var(--muted2);margin-top:2px;">Activez le TOTP pour sécuriser l'accès</div>
+        </div>
+      </div>
+      <button class="btn-add" onclick="startParamTotpReset()">Configurer l'authenticateur</button>`;
+  }
+}
+
+function startParamTotpReset() {
+  _paramSecret = generateSecret();
+  renderSetupQR(_paramSecret, 'param-qr', 'param-secret');
+  document.getElementById('totp-reset-qr').style.display = 'block';
+  document.getElementById('param-totp-code').focus();
+}
+
+async function confirmParamTotpReset() {
+  const code = document.getElementById('param-totp-code').value.trim();
+  const err  = document.getElementById('param-totp-error');
+  const ok   = await verifyTOTP(_paramSecret, code);
+  if (ok) {
+    localStorage.setItem('finvault_totp_secret', _paramSecret);
+    document.getElementById('totp-reset-qr').style.display = 'none';
+    document.getElementById('param-totp-code').value = '';
+    _paramSecret = '';
+    renderTotpStatusBlock();
+    showNotif('✓ Authenticateur reconfiguré.');
+  } else {
+    err.style.color = 'var(--negative)';
+    err.textContent = 'Code invalide. Réessayez.';
+    document.getElementById('param-totp-code').value = '';
+  }
+}
+
+function cancelParamTotpReset() {
+  document.getElementById('totp-reset-qr').style.display = 'none';
+  document.getElementById('param-totp-code').value = '';
+  _paramSecret = '';
+}
+
+function disableTotp() {
+  if (!confirm('Désactiver l\'authentification à deux facteurs ? Votre compte sera moins sécurisé.')) return;
+  localStorage.removeItem('finvault_totp_secret');
+  renderTotpStatusBlock();
+  showNotif('Authentificateur désactivé.');
+}
+
+// ── Update doLogout & showPage for TOTP ──
+function doLogout() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('pwd-input').value  = '';
+  document.getElementById('totp-input').value = '';
+  showLoginStep(1);
+}
+
+
+function changePassword() {
+  const cur = document.getElementById('pwd-current').value;
+  const nw = document.getElementById('pwd-new').value;
+  const cf = document.getElementById('pwd-confirm').value;
+  const msg = document.getElementById('pwd-msg');
+  if (cur !== getPassword()) { msg.style.color='var(--negative)'; msg.textContent='Mot de passe actuel incorrect.'; return; }
+  if (!nw || nw.length < 6) { msg.style.color='var(--negative)'; msg.textContent='Minimum 6 caractères.'; return; }
+  if (nw !== cf) { msg.style.color='var(--negative)'; msg.textContent='Les mots de passe ne correspondent pas.'; return; }
+  localStorage.setItem('finvault_pwd', nw);
+  msg.style.color='var(--positive)'; msg.textContent='Mot de passe mis à jour !';
+  ['pwd-current','pwd-new','pwd-confirm'].forEach(id => document.getElementById(id).value='');
+}
+
+// ══════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (name === 'alertes') renderAlertes();
+  if (name === 'tri') renderTRI();
+  if (name === 'comptes') renderComptes();
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'parametres') {
+    document.getElementById('rate-usd').value = state.rates.USD;
+    document.getElementById('rate-gbp').value = state.rates.GBP;
+    document.getElementById('rate-chf').value = state.rates.CHF;
+    const figiKeyEl = document.getElementById('figi-key');
+    if (figiKeyEl) figiKeyEl.value = getFigiKey();
+    populateCSVCompteSelect();
+    renderTotpStatusBlock();
+  }
+}
+function toggleAddRow(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+  if (id === 'add-tx') populateTxCompteSelect();
+}
+
+// ══════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════
+function fmt(n, decimals=0) {
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  return new Intl.NumberFormat('fr-FR', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(n) + ' €';
+}
+function fmtPct(n) {
+  if (!n && n !== 0) return '—';
+  return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+}
+function toEUR(amount, devise) {
+  if (!devise || devise === 'EUR') return amount;
+  return amount * (state.rates[devise] || 1);
+}
+function showNotif(msg) {
+  const el = document.createElement('div');
+  el.className = 'notif'; el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+
+// ══════════════════════════════════════════════
+//  SOUS-CATÉGORIES
+// ══════════════════════════════════════════════
+const SOUS_CATS = {
+  'Revenus':          ['Salaire','Prime','Freelance','Dividendes','Loyers perçus','Remboursement','Autre revenu'],
+  'Logement':         ['Loyer','Charges copropriété','Assurance habitation','Travaux','Électricité/Gaz','Internet/Téléphone','Autre logement'],
+  'Alimentation':     ['Supermarché','Marché','Épicerie','Drive','Autre alim.'],
+  'Transport':        ['Carburant','Péages','SNCF/TGV','Métro/Bus','Uber/VTC','Entretien voiture','Assurance auto','Autre transport'],
+  'Loisirs & Culture':['Cinéma/Théâtre','Musique','Livres','Sport','Jeux vidéo','Sorties','Autre loisirs'],
+  'Santé':            ['Médecin','Pharmacie','Dentiste','Optique','Mutuelle','Autre santé'],
+  'Épargne':          ['Livret A','PEL','Autre épargne'],
+  'Investissement':   ['PEA','CTO','Assurance Vie','Crypto','SCPI/Immo','Autre invest.'],
+  'Abonnements':      ['Netflix','Spotify','Amazon Prime','Salle de sport','Presse','Autre abo.'],
+  'Voyages':          ['Avion','Hôtel','Location voiture','Activités','Autre voyage'],
+  'Restauration':     ['Restaurant','Fast-food','Café','Livraison','Autre resto'],
+  'Shopping':         ['Vêtements','High-tech','Maison','Cadeaux','Autre shopping'],
+  'Impôts & Taxes':   ['Impôt sur le revenu','Taxe foncière','CFE','TVA','Autre impôt'],
+  'Autre':            ['Virement','Autre']
+};
+
+function updateSousCat() {
+  const cat = document.getElementById('tx-cat')?.value;
+  const sel = document.getElementById('tx-souscat');
+  if (!sel || !cat) return;
+  const opts = SOUS_CATS[cat] || ['Autre'];
+  sel.innerHTML = opts.map(o => `<option>${o}</option>`).join('');
+}
+
+// ══════════════════════════════════════════════
+//  COMPTES
+// ══════════════════════════════════════════════
+const GROUPE_PERSO = ['fortuneo','boursobank','boursorama','trade republic','trade_republic'];
+const GROUPE_CCF   = ['ccf','hsbc'];
+const COMPTE_COLORS = ['#c8f04a','#4af0c8','#4a8cf0','#f0c84a','#c84af0','#f04a7a'];
+
+function getGroupe(banque) {
+  const b = (banque || '').toLowerCase();
+  if (GROUPE_PERSO.some(k => b.includes(k))) return 'perso';
+  if (GROUPE_CCF.some(k => b.includes(k))) return 'ccf';
+  return 'autres';
+}
+
+function addCompte() {
+  const nom     = document.getElementById('nc-nom').value.trim();
+  const banque  = document.getElementById('nc-banque').value;
+  const type    = document.getElementById('nc-type').value;
+  const solde   = parseFloat(document.getElementById('nc-solde').value) || 0;
+  const encours = parseFloat(document.getElementById('nc-encours').value) || 0;
+  if (!nom) return;
+  state.comptes.push({
+    id: uid(), nom, banque, type, solde, encours,
+    color: COMPTE_COLORS[state.comptes.length % COMPTE_COLORS.length]
+  });
+  ['nc-nom','nc-solde','nc-encours'].forEach(id => document.getElementById(id).value='');
+  saveState(); renderComptes(); updateDashboard();
+  showNotif('Compte ajouté.');
+}
+
+function deleteCompte(id) {
+  state.comptes = state.comptes.filter(c => c.id !== id);
+  saveState(); renderComptes(); updateDashboard();
+}
+
+function compteRow(c) {
+  const net = c.solde - (c.encours || 0);
+  const netColor = net < 0 ? 'var(--negative)' : 'var(--text)';
+  return `<tr>
+    <td><span class="account-badge" style="background:${c.color}22;color:${c.color};border:1px solid ${c.color}44">${c.nom}</span></td>
+    <td style="color:var(--muted2)">${c.banque}</td>
+    <td style="color:var(--muted2)">${c.type}</td>
+    <td class="right mono">${fmt(c.solde, 2)}</td>
+    <td class="right mono" style="color:${(c.encours||0)>0?'var(--warning)':'var(--muted)'}">${fmt(c.encours||0, 2)}</td>
+    <td class="right mono" style="color:${netColor};font-weight:500">${fmt(net, 2)}</td>
+    <td>
+      <button class="btn-delete" onclick="editEncours('${c.id}')" style="font-size:11px;color:var(--muted2);" title="Modifier encours CB">CB</button>
+      <button class="btn-delete" onclick="deleteCompte('${c.id}')">×</button>
+    </td>
+  </tr>`;
+}
+
+function groupeTotaux(comptes) {
+  const solde   = comptes.reduce((s,c) => s + c.solde, 0);
+  const encours = comptes.reduce((s,c) => s + (c.encours||0), 0);
+  const net     = solde - encours;
+  return `Solde <span>${fmt(solde,0)}</span> &nbsp;|&nbsp; CB <span style="color:var(--warning)">${fmt(encours,0)}</span> &nbsp;|&nbsp; Net <span style="color:${net<0?'var(--negative)':'var(--positive)'}">${fmt(net,0)}</span>`;
+}
+
+function renderComptes() {
+  const perso  = state.comptes.filter(c => getGroupe(c.banque) === 'perso');
+  const ccf    = state.comptes.filter(c => getGroupe(c.banque) === 'ccf');
+  const autres = state.comptes.filter(c => getGroupe(c.banque) === 'autres');
+
+  const bp = document.getElementById('comptes-body-perso');
+  const bc = document.getElementById('comptes-body-ccf');
+  const ba = document.getElementById('comptes-body-autres');
+  if (bp) bp.innerHTML = perso.map(compteRow).join('');
+  if (bc) bc.innerHTML = ccf.map(compteRow).join('');
+  if (ba) ba.innerHTML = autres.map(compteRow).join('');
+
+  const tp = document.getElementById('groupe-perso-totaux');
+  const tc = document.getElementById('groupe-ccf-totaux');
+  if (tp) tp.innerHTML = groupeTotaux(perso);
+  if (tc) tc.innerHTML = groupeTotaux(ccf);
+
+  const wrap = document.getElementById('comptes-autres-wrap');
+  if (wrap) wrap.style.display = autres.length ? 'block' : 'none';
+
+  // Update filter selects
+  const filterSel = document.getElementById('tx-filter-compte');
+  if (filterSel) {
+    const cur = filterSel.value;
+    filterSel.innerHTML = '<option value="">Tous les comptes</option>' +
+      state.comptes.map(c => `<option value="${c.id}" ${c.id===cur?'selected':''}>${c.nom} (${c.banque})</option>`).join('');
+  }
+}
+
+function editEncours(id) {
+  const c = state.comptes.find(x => x.id === id);
+  if (!c) return;
+  const val = prompt(`Encours CB pour "${c.nom}" (€) :`, c.encours || 0);
+  if (val === null) return;
+  c.encours = parseFloat(val) || 0;
+  saveState(); renderComptes(); updateDashboard();
+  showNotif('Encours CB mis à jour.');
+}
+
+// ══════════════════════════════════════════════
+//  TRANSACTIONS
+// ══════════════════════════════════════════════
+let txFilter = 'all';
+
+function filterTx(f, el) {
+  txFilter = f;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderTransactions();
+}
+
+function populateTxCompteSelect() {
+  const sel = document.getElementById('tx-compte');
+  if (!sel) return;
+  sel.innerHTML = state.comptes.map(c => `<option value="${c.id}">${c.nom} (${c.banque})</option>`).join('');
+  updateSousCat();
+  // Update category filter
+  const catSel = document.getElementById('tx-filter-cat');
+  if (catSel) {
+    catSel.innerHTML = '<option value="">Toutes catégories</option>' +
+      Object.keys(SOUS_CATS).map(k => `<option>${k}</option>`).join('');
+  }
+}
+
+function addTransaction() {
+  const date    = document.getElementById('tx-date').value;
+  const desc    = document.getElementById('tx-desc').value.trim();
+  const cat     = document.getElementById('tx-cat').value;
+  const souscat = document.getElementById('tx-souscat').value;
+  const compteId= document.getElementById('tx-compte').value;
+  const typeOp  = document.getElementById('tx-type-op').value;
+  const montant = parseFloat(document.getElementById('tx-montant').value);
+  if (!desc || isNaN(montant)) return;
+
+  const tx = {
+    id: uid(),
+    date: date || new Date().toISOString().slice(0,10),
+    desc, cat, souscat, compteId, typeOp, montant
+  };
+  state.transactions.unshift(tx);
+
+  // Update compte balance
+  const compte = state.comptes.find(c => c.id === compteId);
+  if (compte) {
+    if (typeOp === 'cb') {
+      compte.encours = (compte.encours || 0) - montant; // CB dépense augmente l'encours
+    } else {
+      compte.solde += montant;
+    }
+  }
+
+  document.getElementById('tx-desc').value = '';
+  document.getElementById('tx-montant').value = '';
+  saveState(); renderTransactions(); renderComptes(); updateDashboard();
+  showNotif('Transaction ajoutée.');
+}
+
+function deleteTransaction(id) {
+  const tx = state.transactions.find(t => t.id === id);
+  if (tx) {
+    const compte = state.comptes.find(c => c.id === tx.compteId);
+    if (compte) {
+      if (tx.typeOp === 'cb') {
+        compte.encours = (compte.encours || 0) + tx.montant;
+      } else {
+        compte.solde -= tx.montant;
+      }
+    }
+  }
+  state.transactions = state.transactions.filter(t => t.id !== id);
+  saveState(); renderTransactions(); renderComptes(); updateDashboard();
+}
+
+function renderTransactions() {
+  const body = document.getElementById('tx-body');
+  if (!body) return;
+
+  const filterCompte = document.getElementById('tx-filter-compte')?.value || '';
+  const filterCat    = document.getElementById('tx-filter-cat')?.value || '';
+  const filterMonth  = document.getElementById('tx-filter-month')?.value || '';
+
+  let txs = [...state.transactions];
+  if (txFilter === 'revenu')  txs = txs.filter(t => t.montant > 0);
+  if (txFilter === 'depense') txs = txs.filter(t => t.montant < 0);
+  if (filterCompte) txs = txs.filter(t => t.compteId === filterCompte);
+  if (filterCat)    txs = txs.filter(t => t.cat === filterCat);
+  if (filterMonth)  txs = txs.filter(t => t.date && t.date.startsWith(filterMonth));
+
+  body.innerHTML = txs.map(tx => {
+    const compte = state.comptes.find(c => c.id === tx.compteId);
+    const color = tx.montant >= 0 ? 'var(--positive)' : 'var(--negative)';
+    const typeBadge = tx.typeOp === 'cb'
+      ? `<span style="font-size:10px;padding:2px 6px;background:rgba(240,200,74,0.12);color:var(--warning);border:1px solid rgba(240,200,74,0.3);">CB</span>`
+      : `<span style="font-size:10px;padding:2px 6px;background:rgba(74,140,240,0.1);color:#4a8cf0;border:1px solid rgba(74,140,240,0.3);">Cpte</span>`;
+    return `<tr>
+      <td class="mono" style="color:var(--muted2);font-size:12px">${tx.date}</td>
+      <td style="max-width:200px;">${tx.desc}</td>
+      <td style="color:var(--muted2);font-size:12px">${tx.cat||''}</td>
+      <td style="color:var(--muted);font-size:11px">${tx.souscat||''}</td>
+      <td>${compte ? `<span class="account-badge" style="background:${compte.color}22;color:${compte.color};border:1px solid ${compte.color}44">${compte.nom}</span>` : '—'}</td>
+      <td>${typeBadge}</td>
+      <td class="right mono" style="color:${color}">${tx.montant >= 0 ? '+' : ''}${fmt(tx.montant, 2)}</td>
+      <td><button class="btn-delete" onclick="deleteTransaction('${tx.id}')">×</button></td>
+    </tr>`;
+  }).join('');
+
+  // Summary bar
+  const sum = document.getElementById('tx-summary');
+  if (sum) {
+    const total   = txs.reduce((s,t) => s+t.montant, 0);
+    const revenus = txs.filter(t=>t.montant>0).reduce((s,t)=>s+t.montant,0);
+    const depenses= txs.filter(t=>t.montant<0).reduce((s,t)=>s+t.montant,0);
+    sum.innerHTML = `
+      <span style="color:var(--muted2)">${txs.length} opérations</span>
+      <span>Revenus : <span style="color:var(--positive)">${fmt(revenus,2)}</span></span>
+      <span>Dépenses : <span style="color:var(--negative)">${fmt(depenses,2)}</span></span>
+      <span>Solde net : <span style="color:${total>=0?'var(--positive)':'var(--negative)'}">${total>=0?'+':''}${fmt(total,2)}</span></span>
+    `;
+  }
+}
+
+
+// ══════════════════════════════════════════════
+//  INVESTISSEMENTS
+// ══════════════════════════════════════════════
+function addInvestissement() {
+  const nom = document.getElementById('inv-nom').value.trim();
+  const ticker = document.getElementById('inv-ticker').value.trim().toUpperCase();
+  const type = document.getElementById('inv-type').value;
+  const qty = parseFloat(document.getElementById('inv-qty').value) || 0;
+  const prixAchat = parseFloat(document.getElementById('inv-prix').value) || 0;
+  const devise = document.getElementById('inv-devise').value;
+  if (!nom || qty <= 0) return;
+  state.investissements.push({
+    id: uid(), nom, ticker, type, qty, prixAchat, devise,
+    prixActuel: prixAchat, dateAchat: null
+  });
+  ['inv-nom','inv-ticker','inv-qty','inv-prix'].forEach(id => document.getElementById(id).value='');
+  saveState(); renderInvestissements(); updateDashboard();
+  showNotif('Position ajoutée.');
+  if (ticker) fetchPrice(state.investissements[state.investissements.length-1]);
+}
+function deleteInvestissement(id) {
+  state.investissements = state.investissements.filter(i => i.id !== id);
+  saveState(); renderInvestissements(); updateDashboard();
+}
+function renderInvestissements() {
+  const body = document.getElementById('invest-body');
+  if (!body) return;
+  body.innerHTML = state.investissements.map(inv => {
+    const valeurAchat = inv.qty * inv.prixAchat;
+    const valeurActuelle = inv.qty * inv.prixActuel * toEUR(1, inv.devise) / toEUR(1, inv.devise);
+    const valEUR = inv.qty * inv.prixActuel * (inv.devise !== 'EUR' ? state.rates[inv.devise] || 1 : 1);
+    const pnl = valEUR - valeurAchat * (inv.devise !== 'EUR' ? 1 : 1);
+    const pnlActual = valEUR - (inv.qty * inv.prixAchat);
+    const pnlPct = inv.prixAchat > 0 ? ((inv.prixActuel - inv.prixAchat) / inv.prixAchat * 100) : 0;
+    const pnlColor = pnlActual >= 0 ? 'var(--positive)' : 'var(--negative)';
+    return `<tr>
+      <td><strong>${inv.nom}</strong></td>
+      <td><span class="price-tag">${inv.ticker || '—'}</span></td>
+      <td style="color:var(--muted2)">${inv.type}</td>
+      <td class="right mono">${inv.qty}</td>
+      <td class="right mono">${fmt(inv.prixAchat, 2)}</td>
+      <td class="right mono" style="color:var(--accent2)">${fmt(inv.prixActuel, 2)}</td>
+      <td class="right mono">${fmt(valEUR, 0)}</td>
+      <td class="right mono" style="color:${pnlColor}">${pnlActual >= 0 ? '+' : ''}${fmt(pnlActual, 0)} (${fmtPct(pnlPct)})</td>
+      <td><button class="btn-delete" onclick="deleteInvestissement('${inv.id}')">×</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+//  INVEST FORM — dynamic ISIN/ticker toggle
+// ══════════════════════════════════════════════
+function updateInvForm() {
+  const type = document.getElementById('inv-type')?.value;
+  const isScpi = type === 'SCPI';
+  const tickerGroup = document.getElementById('inv-ticker-group');
+  const isinGroup   = document.getElementById('inv-isin-group');
+  if (tickerGroup) tickerGroup.style.display = isScpi ? 'none' : '';
+  if (isinGroup)   isinGroup.style.display   = isScpi ? '' : 'none';
+}
+
+function addInvestissement() {
+  const nom      = document.getElementById('inv-nom').value.trim();
+  const type     = document.getElementById('inv-type').value;
+  const ticker   = (document.getElementById('inv-ticker').value || '').trim().toUpperCase();
+  const isin     = (document.getElementById('inv-isin').value || '').trim().toUpperCase();
+  const qty      = parseFloat(document.getElementById('inv-qty').value) || 0;
+  const prixAchat= parseFloat(document.getElementById('inv-prix').value) || 0;
+  const devise   = document.getElementById('inv-devise').value;
+  if (!nom || qty <= 0) return;
+  const inv = {
+    id: uid(), nom, ticker, isin, type, qty, prixAchat, devise,
+    prixActuel: prixAchat, dateAchat: null, priceSource: 'manual', lastPriceUpdate: null
+  };
+  state.investissements.push(inv);
+  ['inv-nom','inv-ticker','inv-isin','inv-qty','inv-prix'].forEach(id => document.getElementById(id).value='');
+  saveState(); renderInvestissements(); updateDashboard();
+  showNotif('Position ajoutée.');
+  fetchPriceForInv(inv);
+}
+
+function deleteInvestissement(id) {
+  state.investissements = state.investissements.filter(i => i.id !== id);
+  saveState(); renderInvestissements(); updateDashboard();
+}
+
+function renderInvestissements() {
+  const body = document.getElementById('invest-body');
+  if (!body) return;
+  body.innerHTML = state.investissements.map(inv => {
+    const rate     = inv.devise !== 'EUR' ? (state.rates[inv.devise] || 1) : 1;
+    const valEUR   = inv.qty * inv.prixActuel * rate;
+    const investi  = inv.qty * inv.prixAchat;
+    const pnl      = valEUR - investi;
+    const pnlPct   = investi > 0 ? (pnl / investi * 100) : 0;
+    const pnlColor = pnl >= 0 ? 'var(--positive)' : 'var(--negative)';
+    const srcClass = { yahoo:'source-yahoo', figi:'source-figi', manual:'source-manual', error:'source-error' }[inv.priceSource] || 'source-manual';
+    const srcLabel = { yahoo:'Yahoo', figi:'OpenFigi', manual:'Manuel', error:'Erreur' }[inv.priceSource] || '—';
+    const idRef    = inv.type === 'SCPI' ? (inv.isin || '—') : (inv.ticker || '—');
+    return `<tr>
+      <td><strong>${inv.nom}</strong></td>
+      <td><span class="price-tag">${idRef}</span></td>
+      <td style="color:var(--muted2)">${inv.type}</td>
+      <td class="right mono">${inv.qty}</td>
+      <td class="right mono">${fmt(inv.prixAchat, 2)}</td>
+      <td class="right mono" style="color:var(--accent2)">
+        ${fmt(inv.prixActuel, 2)}
+        <span class="source-badge ${srcClass}">${srcLabel}</span>
+      </td>
+      <td class="right mono">${fmt(valEUR, 0)}</td>
+      <td class="right mono" style="color:${pnlColor}">${pnl >= 0 ? '+' : ''}${fmt(pnl, 0)} (${fmtPct(pnlPct)})</td>
+      <td>
+        <button class="btn-delete" onclick="manualPriceEdit('${inv.id}')" style="font-size:11px;color:var(--muted2);" title="Saisir prix manuellement">✎</button>
+        <button class="btn-delete" onclick="deleteInvestissement('${inv.id}')">×</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function manualPriceEdit(id) {
+  const inv = state.investissements.find(i => i.id === id);
+  if (!inv) return;
+  const val = prompt(`Prix actuel pour "${inv.nom}" (€) :`, inv.prixActuel);
+  if (val === null) return;
+  inv.prixActuel = parseFloat(val) || inv.prixActuel;
+  inv.priceSource = 'manual';
+  inv.lastPriceUpdate = new Date().toISOString();
+  saveState(); renderInvestissements(); updateDashboard();
+  showNotif('Prix mis à jour manuellement.');
+}
+
+// ══════════════════════════════════════════════
+//  PRIX — MULTI-SOURCE
+// ══════════════════════════════════════════════
+
+// Open Figi key management
+function getFigiKey() { return localStorage.getItem('finvault_figi_key') || ''; }
+function saveFigiKey() {
+  const key = document.getElementById('figi-key').value.trim();
+  localStorage.setItem('finvault_figi_key', key);
+  const st = document.getElementById('figi-status');
+  st.style.color = 'var(--positive)'; st.textContent = '✓ Clé enregistrée';
+  showNotif('Clé Open Figi enregistrée.');
+}
+async function testFigiKey() {
+  const key = document.getElementById('figi-key').value.trim() || getFigiKey();
+  const st = document.getElementById('figi-status');
+  st.style.color = 'var(--muted2)'; st.textContent = 'Test en cours…';
+  try {
+    const res = await fetch('https://api.openfigi.com/v3/mapping', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-OPENFIGI-APIKEY': key },
+      body: JSON.stringify([{ idType: 'ID_ISIN', idValue: 'FR0000131104' }])
+    });
+    if (res.ok) {
+      st.style.color = 'var(--positive)'; st.textContent = '✓ Connexion OK';
+    } else {
+      st.style.color = 'var(--negative)'; st.textContent = '✗ Clé invalide (HTTP ' + res.status + ')';
+    }
+  } catch(e) {
+    st.style.color = 'var(--negative)'; st.textContent = '✗ Erreur réseau';
+  }
+}
+
+// Route each investment to the right price source
+async function fetchPriceForInv(inv) {
+  if (inv.type === 'SCPI') {
+    if (inv.isin) await fetchScpiPrice(inv);
+    // If no ISIN, stays manual
+  } else if (inv.ticker) {
+    await fetchYahooPrice(inv);
+  }
+  // Private Equity / Autre without ticker → stays manual
+}
+
+// Yahoo Finance via allorigins proxy
+async function fetchYahooPrice(inv) {
+  if (!inv.ticker) return;
+  try {
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(inv.ticker)}?interval=1d&range=1d`;
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+    const data = await res.json();
+    const parsed = JSON.parse(data.contents);
+    const price = parsed?.chart?.result?.[0]?.meta?.regularMarketPrice;
+    if (price && price > 0) {
+      inv.prixActuel = price;
+      inv.priceSource = 'yahoo';
+      inv.lastPriceUpdate = new Date().toISOString();
+      saveState(); renderInvestissements(); updateDashboard();
+    } else {
+      inv.priceSource = 'error';
+      saveState(); renderInvestissements();
+    }
+  } catch(e) {
+    inv.priceSource = 'error';
+    saveState(); renderInvestissements();
+  }
+}
+
+// Open Figi — map ISIN → FIGI, then attempt LSEG/Refinitiv for VL
+// Since direct VL APIs require paid subscriptions, we use Open Figi
+// to validate the ISIN and retrieve available metadata, and fall back
+// to a curated list of known SCPI VL sources via allorigins proxy.
+async function fetchScpiPrice(inv) {
+  if (!inv.isin) return;
+  const key = getFigiKey();
+  try {
+    // Step 1: Map ISIN via Open Figi
+    const figiRes = await fetch('https://api.openfigi.com/v3/mapping', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(key ? { 'X-OPENFIGI-APIKEY': key } : {})
+      },
+      body: JSON.stringify([{ idType: 'ID_ISIN', idValue: inv.isin, exchCode: 'FR' }]),
+      signal: AbortSignal.timeout(10000)
+    });
+    if (!figiRes.ok) { inv.priceSource = 'error'; saveState(); renderInvestissements(); return; }
+    const figiData = await figiRes.json();
+    const figiEntry = figiData?.[0]?.data?.[0];
+
+    // Step 2: Try to get price via Yahoo Finance using ISIN (works for some SCPI listed on Euronext)
+    // SCPI ISIN on Yahoo: sometimes available as ISIN.PA or on other exchanges
+    if (figiEntry) {
+      const ticker = figiEntry.ticker || inv.isin;
+      const exchanges = ['PA', 'F', 'BE', 'MI'];
+      for (const exc of exchanges) {
+        const yticker = `${ticker}.${exc}`;
+        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yticker)}?interval=1d&range=1d`;
+        const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+        try {
+          const yres = await fetch(proxy, { signal: AbortSignal.timeout(5000) });
+          const ydata = await yres.json();
+          const parsed = JSON.parse(ydata.contents);
+          const price = parsed?.chart?.result?.[0]?.meta?.regularMarketPrice;
+          if (price && price > 0) {
+            inv.prixActuel = price;
+            inv.priceSource = 'figi';
+            inv.lastPriceUpdate = new Date().toISOString();
+            saveState(); renderInvestissements(); updateDashboard();
+            return;
+          }
+        } catch {}
+      }
+    }
+
+    // Step 3: Fallback — mark as figi-identified but price needs manual update
+    inv.priceSource = figiEntry ? 'manual' : 'error';
+    if (!figiEntry) showNotif(`SCPI ${inv.nom} : ISIN non trouvé sur Open Figi. Vérifiez l'ISIN.`);
+    else showNotif(`SCPI ${inv.nom} : ISIN validé. Prix à mettre à jour manuellement (✎).`);
+    saveState(); renderInvestissements();
+  } catch(e) {
+    inv.priceSource = 'error';
+    saveState(); renderInvestissements();
+  }
+}
+
+async function fetchExchangeRates() {
+  try {
+    const url = 'https://api.exchangerate-api.com/v4/latest/EUR';
+    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const res = await fetch(proxy, { signal: AbortSignal.timeout(8000) });
+    const data = await res.json();
+    const parsed = JSON.parse(data.contents);
+    if (parsed.rates) {
+      state.rates.USD = 1 / parsed.rates.USD;
+      state.rates.GBP = 1 / parsed.rates.GBP;
+      state.rates.CHF = 1 / parsed.rates.CHF;
+      saveState();
+    }
+  } catch(e) { /* silent */ }
+}
+
+async function refreshPrices() {
+  document.getElementById('price-dot').style.display = 'inline-block';
+  showNotif('Mise à jour des prix en cours…');
+  await fetchExchangeRates();
+  // Sequential with small delay to avoid proxy rate limits
+  for (const inv of state.investissements) {
+    await fetchPriceForInv(inv);
+    await new Promise(r => setTimeout(r, 300));
+  }
+  document.getElementById('price-dot').style.display = 'none';
+  const now = new Date().toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+  document.getElementById('last-update-time').textContent = 'Cours : ' + now;
+  localStorage.setItem('finvault_lastupdate', now);
+  renderInvestissements();
+  updateDashboard();
+  showNotif('Prix actualisés.');
+}
+
+// ══════════════════════════════════════════════
+//  SAUVEGARDE — rappel visuel
+// ══════════════════════════════════════════════
+const SAVE_REMINDER_MS = 24 * 60 * 60 * 1000; // 24h
+
+function exportDataWithTimestamp() {
+  const now = new Date();
+  const ts  = now.toISOString().slice(0,10);
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `finvault_backup_${ts}.json`;
+  a.click();
+  // Record save time
+  localStorage.setItem('finvault_last_save', now.getTime().toString());
+  updateSaveBanner();
+  showNotif('✓ Sauvegarde JSON téléchargée.');
+}
+
+function dismissSaveBanner() {
+  document.getElementById('save-banner').style.display = 'none';
+  // Snooze for 2h
+  localStorage.setItem('finvault_banner_snoozed', (Date.now() + 2 * 3600000).toString());
+}
+
+function updateSaveBanner() {
+  const banner    = document.getElementById('save-banner');
+  const saveBtn   = document.getElementById('sidebar-save-btn');
+  const lastSave  = parseInt(localStorage.getItem('finvault_last_save') || '0');
+  const snoozed   = parseInt(localStorage.getItem('finvault_banner_snoozed') || '0');
+  const age       = Date.now() - lastSave;
+  const isSnoozed = Date.now() < snoozed;
+  const lastSaveEl= document.getElementById('last-save-time');
+
+  if (lastSave) {
+    const d = new Date(lastSave);
+    const label = d.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit' })
+                + ' ' + d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+    if (lastSaveEl) lastSaveEl.textContent = 'Sauvegardé ' + label;
+  } else {
+    if (lastSaveEl) lastSaveEl.textContent = 'Pas encore sauvegardé';
+  }
+
+  const needsReminder = age > SAVE_REMINDER_MS || lastSave === 0;
+  if (needsReminder && !isSnoozed) {
+    const hours = lastSave === 0 ? null : Math.floor(age / 3600000);
+    const msg = document.getElementById('save-banner-msg');
+    if (msg) msg.textContent = lastSave === 0
+      ? 'Aucune sauvegarde détectée — exportez votre JSON et placez-le dans Proton Drive.'
+      : `Dernière sauvegarde il y a ${hours}h — pensez à exporter votre JSON vers Proton Drive.`;
+    if (banner) banner.style.display = 'flex';
+    // Shift main content down
+    document.querySelector('.main').style.paddingTop = '84px';
+    if (saveBtn) saveBtn.style.borderColor = 'var(--warning)';
+  } else {
+    if (banner) banner.style.display = 'none';
+    document.querySelector('.main').style.paddingTop = '40px';
+  }
+}
+
+
+
+// ══════════════════════════════════════════════
+//  DASHBOARD
+// ══════════════════════════════════════════════
+function calcTotals() {
+  const liquidites = state.comptes.reduce((s, c) => s + c.solde, 0);
+  const investTotal = state.investissements.reduce((s, inv) => {
+    const rate = inv.devise !== 'EUR' ? (state.rates[inv.devise] || 1) : 1;
+    return s + inv.qty * inv.prixActuel * rate;
+  }, 0);
+  const investCost = state.investissements.reduce((s, inv) => s + inv.qty * inv.prixAchat, 0);
+  const total = liquidites + investTotal;
+  return { liquidites, investTotal, investCost, total };
+}
+function updateDashboard() {
+  const { liquidites, investTotal, investCost, total } = calcTotals();
+  const pnl = investTotal - investCost;
+  const pnlPct = investCost > 0 ? (pnl / investCost * 100) : 0;
+  // Monthly epargne = sum of positive transactions this month
+  const now = new Date();
+  const thisMonth = now.toISOString().slice(0,7);
+  const monthTx = state.transactions.filter(t => t.date && t.date.startsWith(thisMonth));
+  const epargne = monthTx.reduce((s, t) => s + t.montant, 0);
+
+  document.getElementById('kpi-total').textContent = fmt(total, 0);
+  document.getElementById('kpi-total-change').innerHTML = `<span class="${total >= 0 ? 'pos' : 'neg'}">Patrimoine net</span>`;
+  document.getElementById('kpi-liquide').textContent = fmt(liquidites, 0);
+  document.getElementById('kpi-invest').textContent = fmt(investTotal, 0);
+  document.getElementById('kpi-invest-pnl').innerHTML = `<span class="${pnl >= 0 ? 'pos' : 'neg'}">${pnl >= 0 ? '+' : ''}${fmt(pnl, 0)} (${fmtPct(pnlPct)})</span>`;
+  document.getElementById('kpi-epargne').innerHTML = `<span class="${epargne >= 0 ? 'pos' : 'neg'}">${epargne >= 0 ? '+' : ''}${fmt(epargne, 0)}</span>`;
+
+  // Allocation bars
+  const allocEl = document.getElementById('allocation-bars');
+  const categories = [
+    { label: 'Liquidités', value: liquidites, color: '#c8f04a' },
+    ...(() => {
+      const byType = {};
+      state.investissements.forEach(inv => {
+        const rate = inv.devise !== 'EUR' ? (state.rates[inv.devise] || 1) : 1;
+        const val = inv.qty * inv.prixActuel * rate;
+        byType[inv.type] = (byType[inv.type] || 0) + val;
+      });
+      return Object.entries(byType).map(([k,v], i) => ({
+        label: k, value: v, color: COMPTE_COLORS[(i+1) % COMPTE_COLORS.length]
+      }));
+    })()
+  ].filter(c => c.value > 0);
+  const totalAlloc = categories.reduce((s,c) => s+c.value, 0) || 1;
+  allocEl.innerHTML = categories.map(c => {
+    const pct = (c.value / totalAlloc * 100);
+    return `<div style="margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;">
+        <span style="color:var(--muted2)">${c.label}</span>
+        <span class="mono" style="font-size:12px;">${fmt(c.value, 0)} <span style="color:var(--muted)">${pct.toFixed(1)}%</span></span>
+      </div>
+      <div class="alloc-bar"><div class="alloc-fill" style="width:${pct}%;background:${c.color};"></div></div>
+    </div>`;
+  }).join('');
+
+  // Recent transactions
+  const recentBody = document.getElementById('recent-tx-body');
+  if (recentBody) {
+    const recent = state.transactions.slice(0, 8);
+    recentBody.innerHTML = recent.map(tx => {
+      const compte = state.comptes.find(c => c.id === tx.compteId);
+      const color = tx.montant >= 0 ? 'var(--positive)' : 'var(--negative)';
+      return `<tr>
+        <td class="mono" style="color:var(--muted2);font-size:12px">${tx.date}</td>
+        <td>${tx.desc}</td>
+        <td>${compte ? `<span class="account-badge" style="background:${compte.color}22;color:${compte.color};border:1px solid ${compte.color}44">${compte.nom}</span>` : '—'}</td>
+        <td class="right mono" style="color:${color}">${tx.montant >= 0 ? '+' : ''}${fmt(tx.montant, 2)}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // Record patrimoine history
+  const today = new Date().toISOString().slice(0,10);
+  const last = state.patrimoinHistory[state.patrimoinHistory.length-1];
+  if (!last || last.date !== today) {
+    state.patrimoinHistory.push({ date: today, total, liquidites, investTotal });
+    if (state.patrimoinHistory.length > 365) state.patrimoinHistory.shift();
+    saveState();
+  }
+}
+function renderDashboard() {
+  updateDashboard();
+  renderTransactions();
+}
+
+// ══════════════════════════════════════════════
+//  CHARTS
+// ══════════════════════════════════════════════
+function destroyChart(id) {
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+function renderCharts() {
+  const { liquidites, investTotal, total } = calcTotals();
+
+  // 1. Patrimoine history
+  destroyChart('patrimoine');
+  const histCtx = document.getElementById('chart-patrimoine').getContext('2d');
+  const histData = state.patrimoinHistory.length > 1 ? state.patrimoinHistory : [
+    { date: new Date(Date.now()-30*86400000).toISOString().slice(0,10), total: total * 0.95 },
+    { date: new Date().toISOString().slice(0,10), total }
+  ];
+  charts['patrimoine'] = new Chart(histCtx, {
+    type: 'line',
+    data: {
+      labels: histData.map(h => h.date),
+      datasets: [{
+        data: histData.map(h => h.total),
+        borderColor: '#c8f04a', backgroundColor: 'rgba(200,240,74,0.07)',
+        borderWidth: 2, pointRadius: 0, fill: true, tension: 0.4
+      }]
+    },
+    options: chartOptions('€')
+  });
+
+  // 2. Répartition (donut)
+  destroyChart('repartition');
+  const repCtx = document.getElementById('chart-repartition').getContext('2d');
+  const byType = { 'Liquidités': liquidites };
+  state.investissements.forEach(inv => {
+    const rate = inv.devise !== 'EUR' ? (state.rates[inv.devise] || 1) : 1;
+    byType[inv.type] = (byType[inv.type] || 0) + inv.qty * inv.prixActuel * rate;
+  });
+  const repLabels = Object.keys(byType).filter(k => byType[k] > 0);
+  const repValues = repLabels.map(k => byType[k]);
+  charts['repartition'] = new Chart(repCtx, {
+    type: 'doughnut',
+    data: {
+      labels: repLabels,
+      datasets: [{
+        data: repValues,
+        backgroundColor: COMPTE_COLORS.slice(0, repLabels.length),
+        borderColor: '#111318', borderWidth: 2
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'right', labels: { color: '#8892a0', font: { family: 'DM Mono', size: 11 }, boxWidth: 12 } }
+      },
+      responsive: true, maintainAspectRatio: false
+    }
+  });
+
+  // 3. Flux mensuels
+  destroyChart('flux');
+  const fluxCtx = document.getElementById('chart-flux').getContext('2d');
+  const months = [];
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(); d.setMonth(d.getMonth() - i);
+    months.push(d.toISOString().slice(0,7));
+  }
+  const revenus = months.map(m => state.transactions.filter(t => t.date?.startsWith(m) && t.montant > 0).reduce((s,t) => s+t.montant, 0));
+  const depenses = months.map(m => Math.abs(state.transactions.filter(t => t.date?.startsWith(m) && t.montant < 0).reduce((s,t) => s+t.montant, 0)));
+  charts['flux'] = new Chart(fluxCtx, {
+    type: 'bar',
+    data: {
+      labels: months.map(m => { const [y,mo] = m.split('-'); return new Date(y,mo-1).toLocaleString('fr',{month:'short'}); }),
+      datasets: [
+        { label: 'Revenus', data: revenus, backgroundColor: 'rgba(74,240,160,0.6)', borderRadius: 2 },
+        { label: 'Dépenses', data: depenses, backgroundColor: 'rgba(240,74,122,0.5)', borderRadius: 2 }
+      ]
+    },
+    options: {
+      ...chartOptions('€'),
+      plugins: { legend: { labels: { color: '#8892a0', font: { family: 'DM Mono', size: 11 }, boxWidth: 10 } } }
+    }
+  });
+
+  // 4. Performance portefeuille
+  destroyChart('perf');
+  const perfCtx = document.getElementById('chart-perf').getContext('2d');
+  const perfLabels = state.investissements.map(i => i.nom);
+  const perfPct = state.investissements.map(i => i.prixAchat > 0 ? ((i.prixActuel - i.prixAchat) / i.prixAchat * 100) : 0);
+  charts['perf'] = new Chart(perfCtx, {
+    type: 'bar',
+    data: {
+      labels: perfLabels.length ? perfLabels : ['—'],
+      datasets: [{
+        data: perfPct.length ? perfPct : [0],
+        backgroundColor: perfPct.map(p => p >= 0 ? 'rgba(74,240,160,0.7)' : 'rgba(240,74,122,0.6)'),
+        borderRadius: 2
+      }]
+    },
+    options: { ...chartOptions('%'), plugins: { legend: { display: false } } }
+  });
+}
+function chartOptions(unit) {
+  return {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: '#5a6070', font: { family: 'DM Mono', size: 10 } }, grid: { color: '#1e2230' } },
+      y: {
+        ticks: {
+          color: '#5a6070', font: { family: 'DM Mono', size: 10 },
+          callback: v => unit === '€' ? fmt(v,0) : v.toFixed(1)+'%'
+        },
+        grid: { color: '#1e2230' }
+      }
+    }
+  };
+}
+
+// ══════════════════════════════════════════════
+//  TRI
+// ══════════════════════════════════════════════
+function calcTRI(cashflows) {
+  // Newton-Raphson IRR
+  if (!cashflows || cashflows.length < 2) return null;
+  let rate = 0.1;
+  for (let iter = 0; iter < 100; iter++) {
+    let npv = 0, dnpv = 0;
+    cashflows.forEach((cf, t) => {
+      npv += cf / Math.pow(1 + rate, t);
+      dnpv -= t * cf / Math.pow(1 + rate, t + 1);
+    });
+    if (Math.abs(dnpv) < 1e-10) break;
+    const newRate = rate - npv / dnpv;
+    if (Math.abs(newRate - rate) < 1e-7) { rate = newRate; break; }
+    rate = newRate;
+  }
+  return isFinite(rate) ? rate * 100 : null;
+}
+function daysBetween(d1, d2) {
+  return (new Date(d2) - new Date(d1)) / 86400000;
+}
+function renderTRI() {
+  const { liquidites, investTotal, investCost, total } = calcTotals();
+  const today = new Date().toISOString().slice(0,10);
+  const pnl = investTotal - investCost;
+  const pnlPct = investCost > 0 ? (pnl / investCost * 100) : 0;
+
+  // Horizons TRI globaux (basés sur hist patrimoine)
+  const hist = state.patrimoinHistory;
+  function triAtHorizon(days) {
+    if (hist.length < 2) return null;
+    const startDate = new Date(Date.now() - days * 86400000).toISOString().slice(0,10);
+    const startEntry = hist.find(h => h.date >= startDate) || hist[0];
+    const endEntry = hist[hist.length-1];
+    if (!startEntry || startEntry === endEntry) return null;
+    const actualDays = daysBetween(startEntry.date, endEntry.date);
+    if (actualDays < 1) return null;
+    const totalReturn = (endEntry.total - startEntry.total) / startEntry.total;
+    return (Math.pow(1 + totalReturn, 365/actualDays) - 1) * 100;
+  }
+  const horizons = [
+    { label: '1 mois', days: 30 }, { label: '3 mois', days: 90 },
+    { label: '6 mois', days: 180 }, { label: '1 an', days: 365 },
+    { label: '3 ans', days: 1095 }, { label: 'Depuis début', days: 99999 }
+  ];
+  const triGrid = document.getElementById('tri-grid');
+  triGrid.innerHTML = horizons.map(h => {
+    const triVal = triAtHorizon(h.days);
+    const color = triVal === null ? 'var(--muted2)' : triVal >= 0 ? 'var(--positive)' : 'var(--negative)';
+    return `<div class="tri-card">
+      <div class="tri-horizon">${h.label}</div>
+      <div class="tri-value" style="color:${color}">${triVal !== null ? (triVal >= 0 ? '+' : '') + triVal.toFixed(2) + '%' : '—'}</div>
+      <div class="tri-desc">TRI annualisé</div>
+    </div>`;
+  }).join('');
+
+  // Performance par actif
+  const perfBody = document.getElementById('perf-body');
+  perfBody.innerHTML = state.investissements.map(inv => {
+    const rate = inv.devise !== 'EUR' ? (state.rates[inv.devise] || 1) : 1;
+    const valeur = inv.qty * inv.prixActuel * rate;
+    const investi = inv.qty * inv.prixAchat;
+    const pnl = valeur - investi;
+    const pnlP = investi > 0 ? (pnl / investi * 100) : 0;
+    // TRI par position
+    let triStr = '—';
+    if (inv.dateAchat) {
+      const days = daysBetween(inv.dateAchat, today);
+      if (days > 0 && pnlP !== 0) {
+        const tri = (Math.pow(valeur / investi, 365/days) - 1) * 100;
+        triStr = (tri >= 0 ? '+' : '') + tri.toFixed(2) + '%';
+      }
+    }
+    const pnlColor = pnl >= 0 ? 'var(--positive)' : 'var(--negative)';
+    return `<tr>
+      <td><strong>${inv.nom}</strong></td>
+      <td style="color:var(--muted2)">${inv.type}</td>
+      <td class="right mono">${fmt(investi, 0)}</td>
+      <td class="right mono">${fmt(valeur, 0)}</td>
+      <td class="right mono" style="color:${pnlColor}">${pnl >= 0 ? '+' : ''}${fmt(pnl, 0)}</td>
+      <td class="right mono" style="color:${pnlColor}">${fmtPct(pnlP)}</td>
+      <td class="right mono" style="color:var(--accent2)">${triStr}</td>
+    </tr>`;
+  }).join('');
+
+  // Date d'achat
+  const dateBody = document.getElementById('date-achat-body');
+  dateBody.innerHTML = state.investissements.map(inv => `
+    <tr>
+      <td>${inv.nom}</td>
+      <td><input type="date" class="field-input" value="${inv.dateAchat||''}" style="width:160px;"
+        onchange="setDateAchat('${inv.id}', this.value)"></td>
+      <td style="color:var(--muted2);font-size:11px;">${inv.dateAchat ? daysBetween(inv.dateAchat, today).toFixed(0)+' jours détenus' : ''}</td>
+    </tr>
+  `).join('');
+}
+function setDateAchat(id, date) {
+  const inv = state.investissements.find(i => i.id === id);
+  if (inv) { inv.dateAchat = date; saveState(); renderTRI(); }
+}
+
+// ══════════════════════════════════════════════
+//  CSV IMPORT — MULTI-BANQUES
+// ══════════════════════════════════════════════
+let pendingCSVTransactions = [];
+
+const CSV_INSTRUCTIONS = {
+  fortuneo:       'Fortuneo → Mes comptes → icône ↓ → Télécharger relevé → CSV',
+  ccf:            'CCF → Mes comptes → Consulter → Télécharger → CSV (séparateur point-virgule)',
+  boursobank:     'BoursoBank → Mes comptes → Télécharger → Format CSV',
+  trade_republic: 'Trade Republic → Activité → ··· → Exporter CSV',
+  linxea:         'Linxea n\'exporte pas nativement en CSV. Ouvre ton relevé PDF, copie le tableau dans Excel/Sheets, exporte en CSV séparateur ";".',
+  louve:          'Louve Invest → Tableau de bord → Exporter → Excel. Ouvre le fichier Excel, "Enregistrer sous" → CSV UTF-8.',
+  generic:        'Format attendu : date;libellé;montant — une ligne par transaction, séparateur point-virgule.'
+};
+
+function updateCSVInstructions() {
+  const fmt = document.getElementById('csv-format').value;
+  document.getElementById('csv-instructions').textContent = CSV_INSTRUCTIONS[fmt] || '';
+}
+
+function populateCSVCompteSelect() {
+  const sel = document.getElementById('csv-compte-dest');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">— Sélectionner —</option>' +
+    state.comptes.map(c => `<option value="${c.id}">${c.nom} (${c.banque})</option>`).join('');
+  updateCSVInstructions();
+}
+
+function importCSV(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    const format = document.getElementById('csv-format').value;
+    const msg = document.getElementById('csv-msg');
+    msg.textContent = '';
+    try {
+      const parsers = {
+        fortuneo:       parseFortuneo,
+        ccf:            parseCCF,
+        boursobank:     parseBoursoBank,
+        trade_republic: parseTradeRepublic,
+        linxea:         parseLinxea,
+        louve:          parseLouve,
+        generic:        parseGeneric
+      };
+      pendingCSVTransactions = (parsers[format] || parseGeneric)(text);
+      showCSVPreview();
+    } catch(err) {
+      msg.style.color = 'var(--negative)';
+      msg.textContent = 'Erreur : ' + err.message;
+    }
+  };
+  reader.readAsText(file, 'UTF-8');
+  input.value = '';
+}
+
+// ── Utilitaires ──
+function parseDateFR(raw) {
+  // dd/mm/yyyy or dd-mm-yyyy → yyyy-mm-dd
+  const m = raw.trim().match(/(\d{2})[\/\-](\d{2})[\/\-](\d{4})/);
+  if (m) return `${m[3]}-${m[2]}-${m[1]}`;
+  // yyyy-mm-dd passthrough
+  const m2 = raw.trim().match(/(\d{4})[\/\-](\d{2})[\/\-](\d{2})/);
+  if (m2) return raw.slice(0,10);
+  return null;
+}
+function parseAmount(raw) {
+  if (!raw) return NaN;
+  return parseFloat(raw.replace(/\s/g,'').replace(',','.').replace(/[^\d.\-]/g,''));
+}
+function splitCSV(line, sep=';') {
+  return line.split(sep).map(c => c.replace(/^"|"$/g,'').trim());
+}
+function skipUntilData(lines, keywords) {
+  // Returns index of first data line after a header containing any keyword
+  for (let i = 0; i < lines.length; i++) {
+    const lower = lines[i].toLowerCase();
+    if (keywords.some(k => lower.includes(k))) return i + 1;
+  }
+  return 0;
+}
+
+// ── Fortuneo ──
+// Format: Date opération;Date valeur;Libellé;Débit;Crédit
+function parseFortuneo(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const start = skipUntilData(lines, ['libellé','libelle','opération','operation']);
+  const txs = [];
+  for (let i = start; i < lines.length; i++) {
+    const cols = splitCSV(lines[i], ';');
+    if (cols.length < 4) continue;
+    const date = parseDateFR(cols[0]);
+    if (!date) continue;
+    const libelle = cols[2] || '';
+    const debit  = parseAmount(cols[3]);
+    const credit = parseAmount(cols[4]);
+    const montant = !isNaN(credit) && credit > 0 ? credit : (!isNaN(debit) && debit > 0 ? -debit : NaN);
+    if (isNaN(montant) || montant === 0) continue;
+    txs.push({ date, desc: libelle, montant, cat: guessCat(libelle, montant) });
+  }
+  if (!txs.length) throw new Error('Aucune transaction Fortuneo trouvée. Vérifiez que le fichier est bien au format CSV Fortuneo.');
+  return txs;
+}
+
+// ── CCF (ex-HSBC France) ──
+// Format: Date;Opération;Débit;Crédit;Solde  (ou variante avec "Montant" unique)
+function parseCCF(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const start = skipUntilData(lines, ['opération','operation','libellé','libelle','débit','debit']);
+  const txs = [];
+  for (let i = start; i < lines.length; i++) {
+    const cols = splitCSV(lines[i], ';');
+    if (cols.length < 3) continue;
+    const date = parseDateFR(cols[0]);
+    if (!date) continue;
+    const libelle = cols[1] || '';
+    // Essai col 2 débit / col 3 crédit
+    let montant;
+    if (cols.length >= 4) {
+      const debit  = parseAmount(cols[2]);
+      const credit = parseAmount(cols[3]);
+      montant = !isNaN(credit) && credit > 0 ? credit : (!isNaN(debit) && debit > 0 ? -debit : NaN);
+    } else {
+      // Colonne montant unique (signé)
+      montant = parseAmount(cols[2]);
+    }
+    if (isNaN(montant) || montant === 0) continue;
+    txs.push({ date, desc: libelle, montant, cat: guessCat(libelle, montant) });
+  }
+  if (!txs.length) throw new Error('Aucune transaction CCF trouvée.');
+  return txs;
+}
+
+// ── BoursoBank / Boursorama ──
+// Format: dateOp;dateVal;label;category;montant  (encodage ISO-8859 possible)
+function parseBoursoBank(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const start = skipUntilData(lines, ['label','libellé','montant','categorie']);
+  const txs = [];
+  for (let i = start; i < lines.length; i++) {
+    const cols = splitCSV(lines[i], ';');
+    if (cols.length < 3) continue;
+    const date = parseDateFR(cols[0]);
+    if (!date) continue;
+    // BoursoBank: col 0=dateOp, col1=dateVal, col2=label, col3=category, col4=montant
+    // Ou plus simple: col0=date, col1=label, col2=montant
+    let libelle, montant;
+    if (cols.length >= 5) {
+      libelle = cols[2];
+      montant = parseAmount(cols[4]);
+    } else {
+      libelle = cols[1];
+      montant = parseAmount(cols[2]);
+    }
+    if (isNaN(montant) || montant === 0) continue;
+    txs.push({ date, desc: libelle, montant, cat: guessCat(libelle, montant) });
+  }
+  if (!txs.length) throw new Error('Aucune transaction BoursoBank trouvée.');
+  return txs;
+}
+
+// ── Trade Republic ──
+// Format: Date;Type;Asset;Shares;Price;Amount;Status
+// On ne garde que les lignes avec un montant (Amount) et statut confirmé
+function parseTradeRepublic(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const start = skipUntilData(lines, ['type','asset','amount','date','status']);
+  const txs = [];
+  for (let i = start; i < lines.length; i++) {
+    const cols = splitCSV(lines[i], ',').length > 2
+      ? splitCSV(lines[i], ',')
+      : splitCSV(lines[i], ';');
+    if (cols.length < 4) continue;
+    const date = parseDateFR(cols[0]) || (cols[0].match(/\d{4}-\d{2}-\d{2}/) ? cols[0].slice(0,10) : null);
+    if (!date) continue;
+    const type    = cols[1] || '';
+    const asset   = cols[2] || '';
+    // Amount est généralement la 6ème colonne (index 5), signé
+    const amountIdx = cols.length >= 6 ? 5 : cols.length - 1;
+    const montant = parseAmount(cols[amountIdx]);
+    if (isNaN(montant) || montant === 0) continue;
+    const desc = [type, asset].filter(Boolean).join(' — ');
+    txs.push({ date, desc, montant, cat: montant > 0 ? 'Investissement' : 'Investissement' });
+  }
+  if (!txs.length) throw new Error('Aucune transaction Trade Republic trouvée. Assurez-vous d\'exporter depuis Activité → Exporter CSV.');
+  return txs;
+}
+
+// ── Linxea ──
+// Linxea n'a pas de format CSV natif standardisé.
+// On attend un CSV généré manuellement depuis le relevé PDF :
+// Date;Opération;Montant net
+function parseLinxea(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const start = skipUntilData(lines, ['opération','operation','montant','date']);
+  const txs = [];
+  for (let i = start; i < lines.length; i++) {
+    const cols = splitCSV(lines[i], ';');
+    if (cols.length < 3) continue;
+    const date = parseDateFR(cols[0]);
+    if (!date) continue;
+    const libelle = cols[1] || '';
+    const montant = parseAmount(cols[2]);
+    if (isNaN(montant) || montant === 0) continue;
+    txs.push({ date, desc: libelle, montant, cat: guessCat(libelle, montant) });
+  }
+  if (!txs.length) throw new Error('Aucune transaction Linxea trouvée. Format attendu : Date;Opération;Montant (depuis export PDF→CSV manuel).');
+  return txs;
+}
+
+// ── Louve Invest ──
+// Export Excel converti en CSV : Date;Libellé;Type;Montant;Statut
+function parseLouve(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const start = skipUntilData(lines, ['libellé','libelle','type','montant','date','statut']);
+  const txs = [];
+  for (let i = start; i < lines.length; i++) {
+    const sep = lines[i].includes(';') ? ';' : ',';
+    const cols = splitCSV(lines[i], sep);
+    if (cols.length < 3) continue;
+    const date = parseDateFR(cols[0]);
+    if (!date) continue;
+    const libelle = cols[1] || '';
+    // Montant peut être col 2, 3 ou 4 selon l'export
+    let montant = NaN;
+    for (let c = 2; c < Math.min(cols.length, 5); c++) {
+      const v = parseAmount(cols[c]);
+      if (!isNaN(v) && v !== 0) { montant = v; break; }
+    }
+    if (isNaN(montant) || montant === 0) continue;
+    // Louve : les revenus locatifs sont positifs, les investissements négatifs
+    const cat = libelle.toLowerCase().includes('loyer') || libelle.toLowerCase().includes('revenu')
+      ? 'Loyer' : 'Investissement';
+    txs.push({ date, desc: libelle, montant, cat });
+  }
+  if (!txs.length) throw new Error('Aucune transaction Louve Invest trouvée. Assurez-vous d\'avoir converti l\'Excel en CSV (séparateur ";").');
+  return txs;
+}
+
+// ── Générique ──
+function parseGeneric(text) {
+  const sep = text.includes(';') ? ';' : ',';
+  const lines = text.split(/\r?\n/).filter(l => l.trim());
+  const txs = [];
+  for (const line of lines) {
+    const cols = splitCSV(line, sep);
+    if (cols.length < 3) continue;
+    const date = parseDateFR(cols[0]);
+    if (!date) continue;
+    const desc = cols[1] || '';
+    const montant = parseAmount(cols[2]);
+    if (isNaN(montant) || montant === 0) continue;
+    txs.push({ date, desc, montant, cat: guessCat(desc, montant) });
+  }
+  if (!txs.length) throw new Error('Aucune transaction trouvée. Format attendu : date;libellé;montant');
+  return txs;
+}
+
+// ── Catégorisation auto ──
+function guessCat(libelle, montant) {
+  const l = libelle.toLowerCase();
+  if (montant > 0) {
+    if (l.includes('salaire') || l.includes('paie') || l.includes('employeur')) return 'Salaire';
+    if (l.includes('loyer') || l.includes('revenu locatif') || l.includes('louve')) return 'Loyer';
+    if (l.includes('dividende') || l.includes('coupon') || l.includes('intérêt')) return 'Investissement';
+    return 'Autre';
+  }
+  if (l.includes('loyer') || l.includes('habitat') || l.includes('foncière')) return 'Loyer';
+  if (l.includes('carrefour') || l.includes('leclerc') || l.includes('lidl') || l.includes('aldi') ||
+      l.includes('monop') || l.includes('franprix') || l.includes('intermarché') || l.includes('auchan')) return 'Alimentation';
+  if (l.includes('sncf') || l.includes('ratp') || l.includes('uber') || l.includes('essence') ||
+      l.includes('total') || l.includes('station') || l.includes('vélib') || l.includes('blablacar')) return 'Transport';
+  if (l.includes('netflix') || l.includes('spotify') || l.includes('amazon') || l.includes('cinema') ||
+      l.includes('fnac') || l.includes('steam')) return 'Loisirs';
+  if (l.includes('pharmacie') || l.includes('médecin') || l.includes('docteur') || l.includes('clinique') ||
+      l.includes('cpam') || l.includes('mutuelle')) return 'Santé';
+  if (l.includes('assurance') || l.includes('macif') || l.includes('maif') || l.includes('allianz')) return 'Autre';
+  if (l.includes('trade republic') || l.includes('linxea') || l.includes('louve') || l.includes('bourse') ||
+      l.includes('cto') || l.includes('pea') || l.includes('assurance vie')) return 'Investissement';
+  return 'Autre';
+}
+
+
+function showCSVPreview() {
+  const preview = document.getElementById('csv-preview');
+  const body = document.getElementById('csv-preview-body');
+  const count = document.getElementById('csv-count');
+  document.getElementById('csv-msg').textContent = '';
+  count.textContent = pendingCSVTransactions.length;
+  body.innerHTML = pendingCSVTransactions.slice(0, 50).map(tx => {
+    const color = tx.montant >= 0 ? 'var(--positive)' : 'var(--negative)';
+    return `<tr>
+      <td class="mono" style="color:var(--muted2)">${tx.date}</td>
+      <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${tx.desc}</td>
+      <td class="right mono" style="color:${color}">${tx.montant >= 0 ? '+' : ''}${fmt(tx.montant, 2)}</td>
+    </tr>`;
+  }).join('');
+  if (pendingCSVTransactions.length > 50) {
+    body.innerHTML += `<tr><td colspan="3" style="color:var(--muted);font-size:11px;text-align:center;padding:8px;">
+      … et ${pendingCSVTransactions.length - 50} autres
+    </td></tr>`;
+  }
+  preview.style.display = 'block';
+}
+
+function confirmCSVImport() {
+  const compteId = document.getElementById('csv-compte-dest').value;
+  if (!compteId) {
+    document.getElementById('csv-msg').style.color = 'var(--negative)';
+    document.getElementById('csv-msg').textContent = 'Sélectionne un compte destination.';
+    return;
+  }
+  const compte = state.comptes.find(c => c.id === compteId);
+
+  // Dédoublonnage : skip si même date+desc+montant existe déjà
+  let added = 0, skipped = 0;
+  for (const tx of pendingCSVTransactions) {
+    const exists = state.transactions.some(
+      t => t.date === tx.date && t.desc === tx.desc && t.montant === tx.montant && t.compteId === compteId
+    );
+    if (exists) { skipped++; continue; }
+    state.transactions.unshift({ id: uid(), ...tx, compteId });
+    if (compte) compte.solde += tx.montant;
+    added++;
+  }
+
+  // Trier par date desc
+  state.transactions.sort((a, b) => b.date.localeCompare(a.date));
+
+  saveState();
+  cancelCSVImport();
+  updateDashboard();
+  renderTransactions();
+  renderComptes();
+
+  const msg = document.getElementById('csv-msg');
+  msg.style.color = 'var(--positive)';
+  msg.textContent = `✓ ${added} transactions importées${skipped > 0 ? `, ${skipped} doublons ignorés` : ''}.`;
+  showNotif(`Import CSV : ${added} transactions ajoutées.`);
+}
+
+function cancelCSVImport() {
+  pendingCSVTransactions = [];
+  document.getElementById('csv-preview').style.display = 'none';
+  document.getElementById('csv-preview-body').innerHTML = '';
+}
+
+
+// ══════════════════════════════════════════════
+//  ALERTES — BULLETINS SCPI & PERSONNALISÉES
+// ══════════════════════════════════════════════
+
+// Calendrier bulletins trimestriels par société de gestion
+// Publication habituelle : ~6-8 semaines après fin de trimestre
+// T1 (jan-mar) → bulletin publié mi-mai | T2 → mi-août | T3 → mi-nov | T4 → mi-fév
+const BULLETIN_SCPI = [
+  {
+    scpi: 'Sofidynamic', gestionnaire: 'Sofidy',
+    isin: 'FR0014009YB2',
+    url: 'https://www.sofidy.com/solutions/sofidynamic/',
+    // [mois_début, mois_fin] de la fenêtre de publication (0-based)
+    fenetres: [[4,5],[7,8],[10,11],[1,2]]   // mai, août, nov, fév
+  },
+  {
+    scpi: 'Iroko Zen', gestionnaire: 'Iroko',
+    isin: 'FR0014003QY1',
+    url: 'https://www.iroko.eu/scpi/iroko-zen/',
+    fenetres: [[4,5],[7,8],[10,11],[1,2]]
+  },
+  {
+    scpi: 'Epsicap Nano', gestionnaire: 'Epsicap REIM',
+    isin: 'FR0014004QS7',
+    url: 'https://www.epsicap.fr/scpi/epsicap-nano/',
+    fenetres: [[4,5],[7,8],[10,11],[1,2]]
+  }
+];
+
+const ALERTE_ICONS = {
+  bulletin: '📋', prix: '💶', dividende: '💰', autre: '🔔'
+};
+const TRIMESTRE_LABELS = ['T1','T2','T3','T4'];
+
+// State: state.alertes = array of custom alert objects
+// State: state.bulletinsDismissed = { 'scpi_T_year': true }
+
+function initAlerteState() {
+  if (!state.alertes) state.alertes = [];
+  if (!state.bulletinsDismissed) state.bulletinsDismissed = {};
+}
+
+// Returns { label, fenetre, daysUntil, daysUntilEnd, key } for the next/current bulletin window
+function getBulletinStatus(scpiEntry) {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth(); // 0-based
+
+  // Check each window for current or upcoming
+  for (let q = 0; q < 4; q++) {
+    const [mStart, mEnd] = scpiEntry.fenetres[q];
+    // Handle year wrap (T4 window = fév = next year)
+    let wYear = year;
+    let wStart = new Date(wYear, mStart, 1);
+    let wEnd   = new Date(wYear, mEnd, 28);
+    // If T4 fenêtre (fév) and we're past it, push to next year
+    if (mStart < 3 && month > 6) {
+      wStart = new Date(year + 1, mStart, 1);
+      wEnd   = new Date(year + 1, mEnd, 28);
+    }
+
+    const key = `${scpiEntry.scpi}_T${q+1}_${wStart.getFullYear()}`;
+    const daysUntil    = Math.ceil((wStart - now) / 86400000);
+    const daysUntilEnd = Math.ceil((wEnd   - now) / 86400000);
+
+    // Window active now
+    if (daysUntil <= 0 && daysUntilEnd >= 0) {
+      return { label: TRIMESTRE_LABELS[q], fenetre: 'En cours', daysUntil: 0, daysUntilEnd, key, active: true, wStart, wEnd };
+    }
+    // Upcoming within 30 days
+    if (daysUntil > 0 && daysUntil <= 30) {
+      return { label: TRIMESTRE_LABELS[q], fenetre: `Dans ${daysUntil}j`, daysUntil, daysUntilEnd, key, active: false, wStart, wEnd };
+    }
+    // Next upcoming (first future window)
+    if (daysUntil > 30) {
+      return { label: TRIMESTRE_LABELS[q], fenetre: wStart.toLocaleDateString('fr-FR',{month:'long',year:'numeric'}), daysUntil, daysUntilEnd, key, active: false, wStart, wEnd };
+    }
+  }
+  return null;
+}
+
+function dismissBulletin(key) {
+  state.bulletinsDismissed[key] = true;
+  saveState();
+  renderAlertes();
+  updateNavBadge();
+}
+
+function undismissBulletin(key) {
+  delete state.bulletinsDismissed[key];
+  saveState();
+  renderAlertes();
+  updateNavBadge();
+}
+
+function addAlerte() {
+  const titre = document.getElementById('al-titre').value.trim();
+  const type  = document.getElementById('al-type').value;
+  const date  = document.getElementById('al-date').value;
+  const note  = document.getElementById('al-note').value.trim();
+  if (!titre || !date) return;
+  state.alertes.push({ id: uid(), titre, type, date, note, done: false });
+  ['al-titre','al-date','al-note'].forEach(id => document.getElementById(id).value='');
+  saveState(); renderAlertes(); updateNavBadge();
+  showNotif('Alerte ajoutée.');
+}
+
+function markAlerteDone(id) {
+  const a = state.alertes.find(x => x.id === id);
+  if (a) { a.done = true; a.doneAt = new Date().toISOString(); }
+  saveState(); renderAlertes(); updateNavBadge();
+}
+
+function deleteAlerte(id) {
+  state.alertes = state.alertes.filter(x => x.id !== id);
+  saveState(); renderAlertes(); updateNavBadge();
+}
+
+function alerteDaysLabel(dateStr) {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const d   = new Date(dateStr);
+  const diff = Math.ceil((d - now) / 86400000);
+  if (diff < 0)  return { label: `Il y a ${-diff}j`, cls: 'done' };
+  if (diff === 0) return { label: 'Aujourd\'hui', cls: 'urgent' };
+  if (diff <= 7)  return { label: `Dans ${diff}j`, cls: 'urgent' };
+  if (diff <= 30) return { label: `Dans ${diff}j`, cls: 'soon' };
+  return { label: `Dans ${diff}j`, cls: 'ok' };
+}
+
+function renderAlertes() {
+  initAlerteState();
+  const now = new Date(); now.setHours(0,0,0,0);
+
+  // ── Bulletin calendar table ──
+  const body = document.getElementById('bulletin-body');
+  if (body) {
+    body.innerHTML = BULLETIN_SCPI.map(scpi => {
+      const status = getBulletinStatus(scpi);
+      const dismissed = status ? !!state.bulletinsDismissed[status.key] : false;
+
+      // Build quarter windows display
+      const quarters = scpi.fenetres.map(([ms, me], qi) => {
+        const label = `${['mai','août','nov','fév'][qi]}`;
+        const isActive = status?.label === TRIMESTRE_LABELS[qi] && status?.active;
+        const isSoon   = status?.label === TRIMESTRE_LABELS[qi] && !status?.active && (status?.daysUntil||999) <= 30;
+        const cls = isActive ? 'bulletin-active' : isSoon ? 'bulletin-window' : 'bulletin-window';
+        const style = isActive ? 'color:var(--warning);font-weight:600;' : isSoon ? 'color:var(--accent2);' : '';
+        return `<td class="bulletin-window" style="${style}">${label}</td>`;
+      }).join('');
+
+      const nextLabel = status
+        ? `<span style="font-size:11px;">${TRIMESTRE_LABELS[['T1','T2','T3','T4'].indexOf(status.label)]} — ${status.fenetre}</span>`
+        : '—';
+
+      let statusHtml;
+      if (!status) {
+        statusHtml = '<span style="color:var(--muted2);font-size:11px;">—</span>';
+      } else if (dismissed) {
+        statusHtml = `<span style="color:var(--muted2);font-size:11px;">✓ Lu</span>
+          <button class="btn-delete" onclick="undismissBulletin('${status.key}')" title="Rouvrir" style="font-size:10px;">↺</button>`;
+      } else if (status.active) {
+        statusHtml = `<span class="alert-days urgent">⚡ Publié maintenant</span>
+          <button class="btn-delete" onclick="dismissBulletin('${status.key}')" title="Marquer comme lu" style="font-size:10px;margin-left:6px;">✓</button>`;
+      } else if (status.daysUntil <= 30) {
+        statusHtml = `<span class="alert-days soon">Bientôt (${status.daysUntil}j)</span>`;
+      } else {
+        statusHtml = `<span style="color:var(--muted2);font-size:11px;">${status.fenetre}</span>`;
+      }
+
+      return `<tr>
+        <td><strong>${scpi.scpi}</strong></td>
+        <td style="color:var(--muted2)">${scpi.gestionnaire}</td>
+        ${quarters}
+        <td>${nextLabel}</td>
+        <td>${statusHtml}</td>
+        <td><a href="${scpi.url}" target="_blank" style="color:var(--accent2);font-size:11px;text-decoration:none;">→ Site</a></td>
+      </tr>`;
+    }).join('');
+  }
+
+  // ── Active custom alerts + active bulletin alerts ──
+  const activesEl = document.getElementById('alertes-actives');
+  const histoEl   = document.getElementById('alertes-historique');
+
+  // Gather bulletin alerts that are active/soon and not dismissed
+  const bulletinAlerts = BULLETIN_SCPI.map(scpi => {
+    const status = getBulletinStatus(scpi);
+    if (!status) return null;
+    if (state.bulletinsDismissed[status.key]) return null;
+    if (!status.active && status.daysUntil > 30) return null;
+    return { isBulletin: true, scpi, status };
+  }).filter(Boolean);
+
+  // Custom alerts — active
+  const customActive = state.alertes.filter(a => !a.done);
+  const customDone   = state.alertes.filter(a =>  a.done);
+
+  // Build active HTML
+  let activeHtml = '';
+
+  bulletinAlerts.forEach(({ scpi, status }) => {
+    const urgent = status.active;
+    const cls = urgent ? 'urgent' : 'soon';
+    const dayLabel = urgent ? '⚡ En cours de publication' : `Dans ${status.daysUntil} jour${status.daysUntil>1?'s':''}`;
+    activeHtml += `<div class="alert-card ${cls}">
+      <div class="alert-icon">📋</div>
+      <div class="alert-body">
+        <div class="alert-title">Bulletin ${status.label} — ${scpi.scpi}</div>
+        <div class="alert-meta">${scpi.gestionnaire} · Fenêtre : ${status.wStart.toLocaleDateString('fr-FR')} → ${status.wEnd.toLocaleDateString('fr-FR')}</div>
+        <div class="alert-meta" style="margin-top:4px;">Pensez à mettre à jour le prix de la part dans Investissements (✎) après lecture du bulletin.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+        <span class="alert-days ${cls}">${dayLabel}</span>
+        <div style="display:flex;gap:6px;">
+          <a href="${scpi.url}" target="_blank" style="font-size:11px;color:var(--accent2);text-decoration:none;">→ Lire</a>
+          <button class="btn-delete" onclick="dismissBulletin('${status.key}')" title="Marquer comme lu" style="color:var(--positive);">✓</button>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  customActive.forEach(a => {
+    const { label, cls } = alerteDaysLabel(a.date);
+    activeHtml += `<div class="alert-card ${cls}">
+      <div class="alert-icon">${ALERTE_ICONS[a.type]||'🔔'}</div>
+      <div class="alert-body">
+        <div class="alert-title">${a.titre}</div>
+        <div class="alert-meta">${a.date} · ${a.type}${a.note ? ' · ' + a.note : ''}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end;">
+        <span class="alert-days ${cls}">${label}</span>
+        <div style="display:flex;gap:6px;">
+          <button class="btn-delete" onclick="markAlerteDone('${a.id}')" style="color:var(--positive);" title="Marquer fait">✓</button>
+          <button class="btn-delete" onclick="deleteAlerte('${a.id}')" title="Supprimer">×</button>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  if (!activeHtml) activeHtml = '<div style="color:var(--muted2);font-size:13px;padding:16px 0;">Aucune alerte active.</div>';
+  if (activesEl) activesEl.innerHTML = activeHtml;
+
+  // History
+  let histoHtml = '';
+  customDone.slice().reverse().forEach(a => {
+    histoHtml += `<div class="alert-card done">
+      <div class="alert-icon">${ALERTE_ICONS[a.type]||'🔔'}</div>
+      <div class="alert-body">
+        <div class="alert-title" style="text-decoration:line-through;">${a.titre}</div>
+        <div class="alert-meta">${a.date} · ${a.type}${a.note ? ' · ' + a.note : ''}</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <span class="alert-days done">✓ Fait</span>
+        <button class="btn-delete" onclick="deleteAlerte('${a.id}')">×</button>
+      </div>
+    </div>`;
+  });
+  if (!histoHtml) histoHtml = '<div style="color:var(--muted);font-size:12px;padding:8px 0;">Aucune alerte traitée.</div>';
+  if (histoEl) histoEl.innerHTML = histoHtml;
+}
+
+function updateNavBadge() {
+  initAlerteState();
+  // Count active alerts: bulletin (active/soon, not dismissed) + custom not done
+  const bulletinCount = BULLETIN_SCPI.filter(scpi => {
+    const status = getBulletinStatus(scpi);
+    if (!status) return false;
+    if (state.bulletinsDismissed[status.key]) return false;
+    return status.active || status.daysUntil <= 30;
+  }).length;
+  const customCount = state.alertes.filter(a => {
+    if (a.done) return false;
+    const diff = Math.ceil((new Date(a.date) - new Date()) / 86400000);
+    return diff <= 7;
+  }).length;
+  const total = bulletinCount + customCount;
+  const badge = document.getElementById('nav-badge');
+  if (!badge) return;
+  if (total > 0) { badge.style.display = 'inline-block'; badge.textContent = total; }
+  else badge.style.display = 'none';
+}
+
+
+function importData(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      state = { ...state, ...imported };
+      saveState(); initApp();
+      showNotif('Données importées avec succès.');
+    } catch { showNotif('Erreur : fichier JSON invalide.'); }
+  };
+  reader.readAsText(file);
+}
+function saveRates() {
+  state.rates.USD = parseFloat(document.getElementById('rate-usd').value) || state.rates.USD;
+  state.rates.GBP = parseFloat(document.getElementById('rate-gbp').value) || state.rates.GBP;
+  state.rates.CHF = parseFloat(document.getElementById('rate-chf').value) || state.rates.CHF;
+  saveState(); updateDashboard();
+  showNotif('Taux de change enregistrés.');
+}
+
+// ══════════════════════════════════════════════
+//  IMPORT EXCEL — 100% LOCAL (SheetJS)
+// ══════════════════════════════════════════════
+
+let xlWorkbook   = null;   // parsed workbook
+let xlSheetData  = {};     // { sheetName: [ [row], ... ] }
+let xlMappings   = {};     // { sheetName: 'comptes'|'transactions'|'investissements'|'ignore' }
+let xlPendingData= {};     // { comptes:[], transactions:[], investissements:[] }
+
+const XL_SECTION_LABELS = {
+  comptes:         'Comptes bancaires',
+  transactions:    'Transactions / Dépenses-Revenus',
+  investissements: 'Investissements / Portefeuille',
+  ignore:          'Ignorer cet onglet'
+};
+
+// Keywords that hint at sheet content
+const XL_HINTS = {
+  comptes:        ['compte','solde','banque','bank','balance'],
+  transactions:   ['transaction','dépense','revenu','flux','mouvement','opération','débit','crédit','montant','date'],
+  investissements:['invest','portef','scpi','etf','action','cto','pea','titre','actif','quantit','prix','cours']
+};
+
+function guessSheetType(name, rows) {
+  const nameLow = name.toLowerCase();
+  // Check name first
+  for (const [type, kws] of Object.entries(XL_HINTS)) {
+    if (kws.some(k => nameLow.includes(k))) return type;
+  }
+  // Check header row
+  if (!rows || rows.length === 0) return 'ignore';
+  const header = (rows[0] || []).map(c => String(c||'').toLowerCase()).join(' ');
+  for (const [type, kws] of Object.entries(XL_HINTS)) {
+    const matches = kws.filter(k => header.includes(k)).length;
+    if (matches >= 2) return type;
+  }
+  return 'ignore';
+}
+
+function loadExcelFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const msg = document.getElementById('xl-msg');
+  msg.style.color = 'var(--muted2)';
+  msg.textContent = 'Lecture en cours…';
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = new Uint8Array(e.target.result);
+      xlWorkbook = XLSX.read(data, { type: 'array', cellDates: true });
+      xlSheetData = {};
+      xlMappings  = {};
+
+      xlWorkbook.SheetNames.forEach(name => {
+        const ws   = xlWorkbook.Sheets[name];
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+        xlSheetData[name] = rows;
+        xlMappings[name]  = guessSheetType(name, rows);
+      });
+
+      msg.style.color = 'var(--positive)';
+      msg.textContent = `✓ ${xlWorkbook.SheetNames.length} onglet(s) détecté(s) dans "${file.name}"`;
+      showXlStep(2);
+      renderSheetMappings();
+    } catch(err) {
+      msg.style.color = 'var(--negative)';
+      msg.textContent = 'Erreur de lecture : ' + err.message;
+    }
+  };
+  reader.readAsArrayBuffer(file);
+  input.value = '';
+}
+
+function showXlStep(n) {
+  [1,2,3].forEach(i => {
+    const el = document.getElementById('xl-step' + i);
+    if (el) el.style.display = i === n ? 'block' : 'none';
+  });
+}
+
+function renderSheetMappings() {
+  const el = document.getElementById('xl-sheet-mappings');
+  if (!el) return;
+  el.innerHTML = xlWorkbook.SheetNames.map(name => {
+    const rows = xlSheetData[name];
+    const preview = rows.slice(0,2).map(r =>
+      r.filter(c => c !== '').slice(0,5).join(' · ')
+    ).filter(Boolean).join(' | ').slice(0, 80);
+    const cur = xlMappings[name];
+    return `<div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border);">
+      <div style="flex:1;">
+        <div style="font-size:13px; font-weight:500;">${name}</div>
+        <div style="font-size:11px; color:var(--muted); margin-top:2px; font-family:'DM Mono',monospace;">${preview || '(vide)'}</div>
+      </div>
+      <select class="field-select" style="width:240px;" onchange="xlMappings['${name}']=this.value">
+        ${Object.entries(XL_SECTION_LABELS).map(([v,l]) =>
+          `<option value="${v}" ${cur===v?'selected':''}>${l}</option>`
+        ).join('')}
+      </select>
+      <span style="font-size:11px; color:var(--muted2);">${rows.length} lignes</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Column detection helpers ──
+function findCol(headers, keywords) {
+  const h = headers.map(c => String(c||'').toLowerCase());
+  for (const kw of keywords) {
+    const idx = h.findIndex(c => c.includes(kw));
+    if (idx >= 0) return idx;
+  }
+  return -1;
+}
+
+function cellVal(row, idx) {
+  if (idx < 0 || idx >= row.length) return '';
+  return row[idx];
+}
+
+function cellDate(val) {
+  if (!val) return null;
+  if (val instanceof Date) return val.toISOString().slice(0,10);
+  const s = String(val);
+  // dd/mm/yyyy
+  const m = s.match(/(\d{2})[\/\-](\d{2})[\/\-](\d{4})/);
+  if (m) return `${m[3]}-${m[2]}-${m[1]}`;
+  // yyyy-mm-dd
+  if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10);
+  // Excel serial date number
+  if (!isNaN(val) && val > 1000) {
+    try {
+      const d = XLSX.SSF.parse_date_code(val);
+      return `${d.y}-${String(d.m).padStart(2,'0')}-${String(d.d).padStart(2,'0')}`;
+    } catch {}
+  }
+  return null;
+}
+
+function cellNum(val) {
+  if (val === null || val === undefined || val === '') return NaN;
+  return parseFloat(String(val).replace(/\s/g,'').replace(',','.'));
+}
+
+// ── Parse each sheet type ──
+function parseXlComptes(rows) {
+  if (rows.length < 2) return [];
+  const headers = rows[0];
+  const iNom    = findCol(headers, ['nom','compte','name','libellé']);
+  const iBanque = findCol(headers, ['banque','bank','établissement','institution']);
+  const iType   = findCol(headers, ['type','nature','catégorie']);
+  const iSolde  = findCol(headers, ['solde','balance','montant','total']);
+  const iEncours= findCol(headers, ['encours','cb','carte','crédit']);
+  const result  = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const nom = String(cellVal(r, iNom) || '').trim();
+    if (!nom) continue;
+    result.push({
+      nom,
+      banque: String(cellVal(r, iBanque) || 'Autre').trim(),
+      type:   String(cellVal(r, iType)   || 'Courant').trim(),
+      solde:  cellNum(cellVal(r, iSolde))  || 0,
+      encours:cellNum(cellVal(r, iEncours))|| 0,
+    });
+  }
+  return result;
+}
+
+function parseXlTransactions(rows) {
+  if (rows.length < 2) return [];
+  const headers = rows[0];
+  const iDate   = findCol(headers, ['date']);
+  const iDesc   = findCol(headers, ['libellé','description','label','opération','desc','motif']);
+  const iCat    = findCol(headers, ['catégorie','categ','cat','type']);
+  const iSouscat= findCol(headers, ['sous','subcategorie','souscat']);
+  const iCompte = findCol(headers, ['compte','account','banque']);
+  const iMontant= findCol(headers, ['montant','amount','valeur','euros','€','débit','crédit','flux']);
+  const iDebit  = findCol(headers, ['débit','debit','sortie','dépense']);
+  const iCredit = findCol(headers, ['crédit','credit','entrée','revenu']);
+  const result  = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const date = cellDate(cellVal(r, iDate));
+    if (!date) continue;
+    const desc = String(cellVal(r, iDesc) || '').trim();
+    if (!desc) continue;
+    // Determine amount
+    let montant = NaN;
+    if (iMontant >= 0) {
+      montant = cellNum(cellVal(r, iMontant));
+    } else if (iCredit >= 0 || iDebit >= 0) {
+      const credit = cellNum(cellVal(r, iCredit)) || 0;
+      const debit  = cellNum(cellVal(r, iDebit))  || 0;
+      montant = credit > 0 ? credit : debit > 0 ? -debit : NaN;
+    }
+    if (isNaN(montant) || montant === 0) continue;
+    result.push({
+      date,
+      desc,
+      cat:     String(cellVal(r, iCat)    || 'Autre').trim(),
+      souscat: String(cellVal(r, iSouscat)|| '').trim(),
+      compte:  String(cellVal(r, iCompte) || '').trim(),
+      montant,
+      typeOp: 'compte'
+    });
+  }
+  return result;
+}
+
+function parseXlInvestissements(rows) {
+  if (rows.length < 2) return [];
+  const headers = rows[0];
+  const iNom    = findCol(headers, ['nom','name','libellé','titre','actif']);
+  const iTicker = findCol(headers, ['ticker','symbole','code','isin']);
+  const iType   = findCol(headers, ['type','nature','classe','catégorie']);
+  const iQty    = findCol(headers, ['quantité','qty','parts','nombre','units','qté']);
+  const iPrix   = findCol(headers, ['achat','prix achat','prx achat','cost','coût','valeur achat','pu']);
+  const iActuel = findCol(headers, ['actuel','courant','current','cours','prix actuel','valeur actuelle','vl']);
+  const iDevise = findCol(headers, ['devise','currency','monnaie']);
+  const iISIN   = findCol(headers, ['isin']);
+  const result  = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const nom = String(cellVal(r, iNom) || '').trim();
+    if (!nom) continue;
+    const qty       = cellNum(cellVal(r, iQty))    || 0;
+    const prixAchat = cellNum(cellVal(r, iPrix))   || 0;
+    const prixActuel= cellNum(cellVal(r, iActuel)) || prixAchat;
+    if (qty <= 0) continue;
+    result.push({
+      nom,
+      ticker: String(cellVal(r, iTicker) || '').trim().toUpperCase(),
+      isin:   String(cellVal(r, iISIN)   || '').trim().toUpperCase(),
+      type:   String(cellVal(r, iType)   || 'Autre').trim(),
+      qty,
+      prixAchat,
+      prixActuel,
+      devise: String(cellVal(r, iDevise) || 'EUR').trim().toUpperCase(),
+      priceSource: 'manual'
+    });
+  }
+  return result;
+}
+
+// ── Preview ──
+function previewExcelImport() {
+  xlPendingData = { comptes: [], transactions: [], investissements: [] };
+
+  xlWorkbook.SheetNames.forEach(name => {
+    const type = xlMappings[name];
+    const rows = xlSheetData[name];
+    if (type === 'comptes')         xlPendingData.comptes         = xlPendingData.comptes.concat(parseXlComptes(rows));
+    if (type === 'transactions')    xlPendingData.transactions    = xlPendingData.transactions.concat(parseXlTransactions(rows));
+    if (type === 'investissements') xlPendingData.investissements = xlPendingData.investissements.concat(parseXlInvestissements(rows));
+  });
+
+  const { comptes, transactions, investissements } = xlPendingData;
+  const total = comptes.length + transactions.length + investissements.length;
+  if (total === 0) {
+    document.getElementById('xl-msg').style.color = 'var(--negative)';
+    document.getElementById('xl-msg').textContent = 'Aucune donnée exploitable détectée. Vérifiez le mapping des onglets.';
+    return;
+  }
+
+  let html = `<div style="font-size:12px; color:var(--muted2); margin-bottom:16px;">
+    Données prêtes à importer — vérifie l'aperçu avant de confirmer.
+  </div>`;
+
+  // Comptes preview
+  if (comptes.length) {
+    html += `<div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted2); margin-bottom:8px;">
+      Comptes (${comptes.length})
+    </div>
+    <table class="data-table" style="margin-bottom:20px;">
+      <thead><tr><th>Nom</th><th>Banque</th><th>Type</th><th class="right">Solde</th><th class="right">Encours CB</th></tr></thead>
+      <tbody>${comptes.slice(0,10).map(c => `<tr>
+        <td>${c.nom}</td><td>${c.banque}</td><td>${c.type}</td>
+        <td class="right mono">${fmt(c.solde,2)}</td>
+        <td class="right mono">${fmt(c.encours,2)}</td>
+      </tr>`).join('')}
+      ${comptes.length>10?`<tr><td colspan="5" style="color:var(--muted);font-size:11px;">… et ${comptes.length-10} autres</td></tr>`:''}
+      </tbody>
+    </table>`;
+  }
+
+  // Transactions preview
+  if (transactions.length) {
+    html += `<div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted2); margin-bottom:8px;">
+      Transactions (${transactions.length})
+    </div>
+    <table class="data-table" style="margin-bottom:20px;">
+      <thead><tr><th>Date</th><th>Libellé</th><th>Catégorie</th><th>Compte</th><th class="right">Montant</th></tr></thead>
+      <tbody>${transactions.slice(0,10).map(t => `<tr>
+        <td class="mono" style="font-size:11px">${t.date}</td>
+        <td>${t.desc}</td><td>${t.cat}</td><td>${t.compte}</td>
+        <td class="right mono" style="color:${t.montant>=0?'var(--positive)':'var(--negative)'}">${t.montant>=0?'+':''}${fmt(t.montant,2)}</td>
+      </tr>`).join('')}
+      ${transactions.length>10?`<tr><td colspan="5" style="color:var(--muted);font-size:11px;">… et ${transactions.length-10} autres</td></tr>`:''}
+      </tbody>
+    </table>`;
+  }
+
+  // Investissements preview
+  if (investissements.length) {
+    html += `<div style="font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted2); margin-bottom:8px;">
+      Investissements (${investissements.length})
+    </div>
+    <table class="data-table" style="margin-bottom:20px;">
+      <thead><tr><th>Nom</th><th>Type</th><th>Ticker/ISIN</th><th class="right">Quantité</th><th class="right">Prix achat</th><th class="right">Prix actuel</th></tr></thead>
+      <tbody>${investissements.slice(0,10).map(i => `<tr>
+        <td>${i.nom}</td><td>${i.type}</td>
+        <td><span class="price-tag">${i.ticker||i.isin||'—'}</span></td>
+        <td class="right mono">${i.qty}</td>
+        <td class="right mono">${fmt(i.prixAchat,2)}</td>
+        <td class="right mono" style="color:var(--accent2)">${fmt(i.prixActuel,2)}</td>
+      </tr>`).join('')}
+      ${investissements.length>10?`<tr><td colspan="6" style="color:var(--muted);font-size:11px;">… et ${investissements.length-10} autres</td></tr>`:''}
+      </tbody>
+    </table>`;
+  }
+
+  document.getElementById('xl-preview-content').innerHTML = html;
+  showXlStep(3);
+}
+
+// ── Confirm import ──
+function confirmExcelImport() {
+  const { comptes, transactions, investissements } = xlPendingData;
+  let addedC = 0, addedT = 0, addedI = 0;
+  let skippedT = 0;
+
+  // Import comptes (skip duplicates by name+banque)
+  comptes.forEach(c => {
+    const exists = state.comptes.some(x => x.nom.toLowerCase() === c.nom.toLowerCase() && x.banque.toLowerCase() === c.banque.toLowerCase());
+    if (exists) return;
+    state.comptes.push({
+      id: uid(), ...c,
+      color: COMPTE_COLORS[state.comptes.length % COMPTE_COLORS.length]
+    });
+    addedC++;
+  });
+
+  // Import transactions (deduplicate by date+desc+montant)
+  transactions.forEach(t => {
+    // Try to match compte by name
+    const compte = state.comptes.find(c =>
+      c.nom.toLowerCase().includes((t.compte||'').toLowerCase()) ||
+      (t.compte||'').toLowerCase().includes(c.nom.toLowerCase())
+    );
+    const compteId = compte?.id || (state.comptes[0]?.id || '');
+    const exists = state.transactions.some(x =>
+      x.date === t.date && x.desc === t.desc && x.montant === t.montant && x.compteId === compteId
+    );
+    if (exists) { skippedT++; return; }
+    state.transactions.push({ id: uid(), compteId, typeOp: t.typeOp || 'compte', ...t });
+    addedT++;
+  });
+
+  // Sort transactions by date desc
+  state.transactions.sort((a,b) => b.date.localeCompare(a.date));
+
+  // Import investissements (skip duplicates by nom)
+  investissements.forEach(i => {
+    const exists = state.investissements.some(x => x.nom.toLowerCase() === i.nom.toLowerCase());
+    if (exists) return;
+    state.investissements.push({ id: uid(), dateAchat: null, lastPriceUpdate: null, ...i });
+    addedI++;
+  });
+
+  saveState();
+  renderDashboard();
+  renderComptes();
+  renderTransactions();
+  renderInvestissements();
+  updateNavBadge();
+
+  const msg = document.getElementById('xl-msg');
+  msg.style.color = 'var(--positive)';
+  msg.textContent = `✓ Import réussi : ${addedC} compte(s), ${addedT} transaction(s)${skippedT?' ('+skippedT+' doublons ignorés)':''}, ${addedI} investissement(s)`;
+
+  // Trigger price refresh for newly imported investments
+  if (addedI > 0) setTimeout(refreshPrices, 500);
+
+  showXlStep(1);
+  xlWorkbook = null; xlSheetData = {}; xlMappings = {}; xlPendingData = {};
+  showNotif(`Import Excel : ${addedC + addedT + addedI} éléments importés.`);
+}
+
+function resetExcelImport() {
+  xlWorkbook = null; xlSheetData = {}; xlMappings = {}; xlPendingData = {};
+  document.getElementById('xl-msg').textContent = '';
+  showXlStep(1);
+}
+
+
+function initApp() {
+  const now = new Date();
+  document.getElementById('dashboard-date').textContent =
+    now.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  const lastUpdate = localStorage.getItem('finvault_lastupdate');
+  if (lastUpdate) document.getElementById('last-update-time').textContent = 'Cours : ' + lastUpdate;
+  document.getElementById('tx-date').value = now.toISOString().slice(0,10);
+  renderDashboard();
+  renderComptes();
+  renderTransactions();
+  renderInvestissements();
+  initAlerteState();
+  updateNavBadge();
+  updateSaveBanner();
+  // Auto-refresh prices on load
+  setTimeout(refreshPrices, 1000);
+  // Re-check save banner every hour
+  setInterval(updateSaveBanner, 60 * 60 * 1000);
+}
+
+loadState();
+</script>
+</body>
+</html>
