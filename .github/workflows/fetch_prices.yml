@@ -1,0 +1,30 @@
+name: Fetch Prices
+
+on:
+  schedule:
+    - cron: '0 17 * * 1-5'   # 18h Paris (17h UTC) du lundi au vendredi
+  workflow_dispatch:           # bouton manuel dans GitHub Actions
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch prices from Yahoo Finance
+        run: python scripts/fetch_prices.py
+
+      - name: Commit prices.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/prices.json
+          git diff --cached --quiet || git commit -m "chore: update prices $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
