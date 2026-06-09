@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Fetch prices from Yahoo Finance
-        run: python scripts/fetch_prices.py
+        run: python Scripts/fetch_prices.py
 
       - name: Commit prices.json
         run: |
