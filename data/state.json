@@ -73223,35 +73223,6 @@
       "_prixActuelOverride": 169.39999389648438
     },
     {
-      "id": "mqge5jfi2batyhuf1pw",
-      "nom": "CARDIF RETRAITE",
-      "enveloppe": "PERO BNPP",
-      "type": "Obligation",
-      "ticker": "CARDIF RETRAITE",
-      "isin": "",
-      "qty": 56.9,
-      "prixAchat": 1,
-      "devise": "EUR",
-      "prixActuel": 1,
-      "prixUnitaire": 1,
-      "dateValeur": "2026-06-16",
-      "dateAchat": "2024-02-27",
-      "priceSource": "manual",
-      "prixHistoriques": {},
-      "achats": [
-        {
-          "date": "2024-02-27",
-          "qty": 28.45,
-          "prixAchat": 1
-        },
-        {
-          "date": "2024-03-27",
-          "qty": 28.45,
-          "prixAchat": 1
-        }
-      ]
-    },
-    {
       "id": "mqge6om8qz7o9fbqf5",
       "nom": "MULTIPAR ACTIONS PME ETI ISR FCPE -RE-",
       "enveloppe": "PERO BNPP",
