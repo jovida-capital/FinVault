@@ -2,8 +2,15 @@ name: Fetch Prices
 
 on:
   schedule:
-    - cron: '0 17 * * 1-5'   # 18h Paris (17h UTC) du lundi au vendredi
-  workflow_dispatch:           # bouton manuel dans GitHub Actions
+    # Le cron GitHub est toujours exprimé en UTC et ne suit pas l'heure d'été.
+    # Deux déclenchements pour viser 5h à Paris toute l'année :
+    #   03:00 UTC = 05:00 Paris en été  (UTC+2)
+    #   04:00 UTC = 05:00 Paris en hiver (UTC+1)
+    # Le second passage de la journée ne fait que reconfirmer les mêmes cours :
+    # le script est idempotent et la clôture officielle prime sur le cours provisoire.
+    - cron: '0 3 * * 1-5'
+    - cron: '0 4 * * 1-5'
+  workflow_dispatch:           # bouton manuel dans l'onglet Actions
 
 permissions:
   contents: write
