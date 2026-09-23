@@ -8,8 +8,8 @@ on:
     #   04:00 UTC = 05:00 Paris en hiver (UTC+1)
     # A cette heure la cloture de la veille est consolidee chez Yahoo.
     # Le second passage ne fait que reconfirmer les memes clotures.
-    - cron: '0 3 * * 1-5'
-    - cron: '0 4 * * 1-5'
+    - cron: '0 21 * * 1-5'
+    - cron: '0 22 * * 1-5'
   workflow_dispatch:           # bouton manuel dans l'onglet Actions
 
 permissions:
