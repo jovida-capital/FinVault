@@ -25,7 +25,7 @@ def fetch_json(url, retries=3):
             resp = urlopen(req, timeout=15)
             return json.loads(resp.read())
         except (HTTPError, URLError) as e:
-            print(f"  Retry {i+1}/{retries}: {e}")
+            print(f" Retry {i+1}/{retries}: {e}")
             time.sleep(2)
     return None
 
@@ -65,10 +65,10 @@ def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None)
     if len(variations) >= 20:
         variations.sort()
         mediane = variations[len(variations) // 2]
-        seuil = max(seuil, min(6 * mediane, 0.35))   # plafonne pour rester utile
+        seuil = max(seuil, min(6 * mediane, 0.35)) # plafonne pour rester utile
 
     corriges = []
-    ref = None                       # derniere valeur consideree comme saine
+    ref = None # derniere valeur consideree comme saine
 
     for pos, d in enumerate(dates):
         v = history[d]
@@ -79,7 +79,7 @@ def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None)
             continue
 
         if abs(v - ref) / ref <= seuil:
-            ref = v                  # evolution plausible : devient la reference
+            ref = v # evolution plausible : devient la reference
             continue
 
         # Ecart important : anomalie isolee ou vrai mouvement de marche ?
@@ -97,17 +97,17 @@ def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None)
                 if abs(v - reference_incoherente) / max(reference_incoherente, 1e-9) <= 0.02:
                     anomalie = True
         else:
-            anomalie = True          # dernier point : pas de confirmation possible
+            anomalie = True # dernier point : pas de confirmation possible
 
         if anomalie:
             history[d] = ref
             corriges.append((d, v, ref))
         else:
-            ref = v                  # mouvement reel : on suit le nouveau niveau
+            ref = v # mouvement reel : on suit le nouveau niveau
 
     if corriges:
         detail = ', '.join(f"{d} : {v} -> {r}" for d, v, r in corriges)
-        print(f"\n    CORRECTION {ticker} : {len(corriges)} point(s) aberrant(s) — {detail}", end='')
+        print(f"\n CORRECTION {ticker} : {len(corriges)} point(s) aberrant(s) — {detail}", end='')
     return history, corriges
 
 def _lire_series(data, gmtoffset, diviser_par_cent, decalage_fin_semaine=0):
@@ -148,8 +148,8 @@ def fetch_yahoo(ticker):
 
     try:
         result = data['chart']['result'][0]
-        meta   = result['meta']
-        price  = meta.get('regularMarketPrice') or meta.get('chartPreviousClose')
+        meta = result['meta']
+        price = meta.get('regularMarketPrice') or meta.get('chartPreviousClose')
         if not price or price <= 0:
             return None
 
@@ -159,7 +159,7 @@ def fetch_yahoo(ticker):
         # normalisation en GBP, sans quoi le test devient toujours faux et
         # l'historique reste en pence alors que le cours passe en livres.
         currency = (meta.get('currency') or 'EUR').upper()
-        en_pence = (currency == 'GBX')      # a capturer AVANT la normalisation
+        en_pence = (currency == 'GBX') # a capturer AVANT la normalisation
         if currency == 'GBX':
             price = price / 100
             currency = 'GBP'
@@ -175,7 +175,7 @@ def fetch_yahoo(ticker):
 
         if len(history) < 10:
             # Repli hebdomadaire, recalé sur le vendredi (dernier jour ouvre).
-            print(f"\n    REPLI {ticker} : serie quotidienne trop courte "
+            print(f"\n REPLI {ticker} : serie quotidienne trop courte "
                   f"({len(history)} pts) — bascule sur l'hebdomadaire", end='')
             for hote in ('query1', 'query2'):
                 dw = fetch_json(f"https://{hote}.finance.yahoo.com/v8/finance/chart/"
@@ -183,31 +183,44 @@ def fetch_yahoo(ticker):
                 if dw:
                     hebdo = _lire_series(dw, gmtoffset, en_pence,
                                          decalage_fin_semaine=4)
-                    hebdo.update(history)      # le quotidien reste prioritaire
+                    hebdo.update(history) # le quotidien reste prioritaire
                     history = hebdo
                     source_hist = 'hebdomadaire recale'
                     break
 
         if not history:
-            print(f"\n    ATTENTION {ticker} : aucune cloture historique recuperee", end='')
+            print(f"\n ATTENTION {ticker} : aucune cloture historique recuperee", end='')
 
-        # ── DIAGNOSTIC TEMPORAIRE ──────────────────────────────────────
-        # Affiche les 3 derniers points bruts Yahoo (timestamp, cloture)
-        # et la date calculee en regard, pour verifier que le decalage
-        # timestamp + gmtoffset ne fait pas glisser la derniere seance
-        # reelle sur la date du jour (collision de cle qui ecraserait la
-        # cloture de la veille par le cours intrajournalier du jour).
-        # A retirer une fois le probleme des dates manquantes elucide.
-        try:
-            result_dbg = data['chart']['result'][0]
-            ts_bruts = (result_dbg.get('timestamp') or [])[-3:]
-            closes_bruts = (result_dbg.get('indicators', {}).get('quote') or [{}])[0].get('close', [])[-3:]
-            dates_calc = sorted(history)[-3:]
-            print(f"\n    DEBUG {ticker} : gmtoffset={gmtoffset} "
-                  f"ts_bruts={ts_bruts} closes_bruts={[round(c, 4) if c else c for c in closes_bruts]} "
-                  f"-> dates_calculees(3 dernieres cles de history)={dates_calc}", end='')
-        except Exception as e:
-            print(f"\n    DEBUG {ticker} : erreur diagnostic ({e})", end='')
+        # ── Comble le jour le plus recent si sa cloture manque cote API ──
+        #
+        # L'API chart peut renvoyer close=null pour la derniere seance alors
+        # qu'elle est deja consolidee ailleurs chez Yahoo (le site public
+        # l'affiche via un flux distinct, deja a jour). meta.chartPreviousClose
+        # porte cette meme valeur consolidee : on l'utilise pour combler
+        # uniquement le dernier jour ouvre manquant, jamais plus, et seulement
+        # si elle reste proche de la derniere cloture connue (meme logique de
+        # garde-fou que l'assainissement) — pour ne pas rejouer le bug
+        # WSRI.PA (quote sur une autre place/devise que la cloture).
+        prev_close_meta = meta.get('chartPreviousClose')
+        if history and prev_close_meta and prev_close_meta > 0:
+            aujourdhui_local = (_utcnow() + timedelta(seconds=gmtoffset or 0)).date()
+            cible = aujourdhui_local - timedelta(days=1)
+            while cible.weekday() >= 5:
+                cible -= timedelta(days=1)
+            cible_str = cible.strftime('%Y-%m-%d')
+            if cible_str not in history:
+                val = prev_close_meta / 100 if en_pence else prev_close_meta
+                ref = history[max(history)]
+                if ref <= 0 or abs(val - ref) / ref <= 0.12:
+                    history[cible_str] = round(val, 4)
+                    print(f"\n COMBLE {ticker} : {cible_str} absent de l'historique "
+                          f"(cloture non encore publiee par l'API chart) — "
+                          f"chartPreviousClose {round(val, 4)} utilise a la place", end='')
+                else:
+                    print(f"\n ATTENTION {ticker} : {cible_str} absent, "
+                          f"chartPreviousClose {round(val, 4)} trop eloigne de la "
+                          f"derniere cloture {ref} — laisse manquant plutot que faux",
+                          end='')
 
         # ── Prix retenu : la DERNIERE CLOTURE de la serie, jamais le quote ──
         #
@@ -227,13 +240,13 @@ def fetch_yahoo(ticker):
             derniere_cloture = history[max(history)]
             if derniere_cloture > 0:
                 ecart_quote = (price - derniere_cloture) / derniere_cloture
-                price = derniere_cloture          # la cloture fait foi
+                price = derniere_cloture # la cloture fait foi
                 if abs(ecart_quote) > 0.05:
-                    print(f"\n    INFO {ticker} : quote {round(quote_brut, 4)} ecarte "
+                    print(f"\n INFO {ticker} : quote {round(quote_brut, 4)} ecarte "
                           f"({ecart_quote * 100:+.1f} %) au profit de la cloture "
                           f"{derniere_cloture}", end='')
         else:
-            print(f"\n    ATTENTION {ticker} : aucune cloture — repli sur le quote "
+            print(f"\n ATTENTION {ticker} : aucune cloture — repli sur le quote "
                   f"{round(price, 4)}", end='')
 
         name = meta.get('longName') or meta.get('shortName') or ticker
@@ -248,7 +261,7 @@ def fetch_yahoo(ticker):
             'updated': _utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
         }
     except (KeyError, IndexError, TypeError) as e:
-        print(f"  Parse error: {e}")
+        print(f" Parse error: {e}")
         return None
 
 def main():
@@ -290,14 +303,14 @@ def main():
     # Fetch prices
     prices = {}
     for i, (ticker, nom) in enumerate(tickers.items()):
-        print(f"  [{i+1}/{len(tickers)}] {ticker} ({nom[:40]})...", end=' ', flush=True)
+        print(f" [{i+1}/{len(tickers)}] {ticker} ({nom[:40]})...", end=' ', flush=True)
         result = fetch_yahoo(ticker)
         if result:
             # Self-building history: merge with previous history if Yahoo gave none/little
             prev_hist = prev_prices.get(ticker, {}).get('history', {})
             if prev_hist:
                 merged = dict(prev_hist)
-                merged.update(result['history'])  # new data wins on overlapping dates
+                merged.update(result['history']) # new data wins on overlapping dates
                 # Purge des dates de week-end heritees. Elles proviennent des
                 # anciennes bougies hebdomadaires, datees au dimanche par un
                 # defaut de fuseau : la nouvelle serie quotidienne ne les
@@ -312,7 +325,7 @@ def main():
                     for d in parasites:
                         del merged[d]
                     if parasites:
-                        print(f"\n    PURGE {ticker} : {len(parasites)} date(s) de "
+                        print(f"\n PURGE {ticker} : {len(parasites)} date(s) de "
                               f"week-end heritees supprimees", end='')
                 result['history'] = merged
             # Le cours instantané ne sert que de valeur d'attente :
@@ -340,7 +353,7 @@ def main():
                 print(f"✗ Yahoo failed, kept previous ({conserve['price']})")
             else:
                 print("✗ no data")
-        time.sleep(1.5)  # be polite
+        time.sleep(1.5) # be polite
 
     # Tri chronologique systematique de l'historique de chaque ticker.
     # dict.update() (fusions ci-dessus, et l'hebdo -> quotidien dans
@@ -379,7 +392,7 @@ def main():
         h = info.get('history', {})
         manquants = [j for j in ouvres if j not in h]
         etat = 'complet' if not manquants else 'manque ' + ', '.join(manquants)
-        print(f"  {ticker:<14} {etat}")
+        print(f" {ticker:<14} {etat}")
 
 if __name__ == '__main__':
     main()
