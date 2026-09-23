@@ -32,7 +32,7 @@ jobs:
           python-version: '3.12'
 
       - name: Fetch prices from Yahoo Finance
-        run: python Scripts/fetch_prices.py
+        run: python Script/fetch_prices.py
 
       - name: Commit prices.json
         run: |
