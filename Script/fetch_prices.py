@@ -191,6 +191,24 @@ def fetch_yahoo(ticker):
         if not history:
             print(f"\n    ATTENTION {ticker} : aucune cloture historique recuperee", end='')
 
+        # ── DIAGNOSTIC TEMPORAIRE ──────────────────────────────────────
+        # Affiche les 3 derniers points bruts Yahoo (timestamp, cloture)
+        # et la date calculee en regard, pour verifier que le decalage
+        # timestamp + gmtoffset ne fait pas glisser la derniere seance
+        # reelle sur la date du jour (collision de cle qui ecraserait la
+        # cloture de la veille par le cours intrajournalier du jour).
+        # A retirer une fois le probleme des dates manquantes elucide.
+        try:
+            result_dbg = data['chart']['result'][0]
+            ts_bruts = (result_dbg.get('timestamp') or [])[-3:]
+            closes_bruts = (result_dbg.get('indicators', {}).get('quote') or [{}])[0].get('close', [])[-3:]
+            dates_calc = sorted(history)[-3:]
+            print(f"\n    DEBUG {ticker} : gmtoffset={gmtoffset} "
+                  f"ts_bruts={ts_bruts} closes_bruts={[round(c, 4) if c else c for c in closes_bruts]} "
+                  f"-> dates_calculees(3 dernieres cles de history)={dates_calc}", end='')
+        except Exception as e:
+            print(f"\n    DEBUG {ticker} : erreur diagnostic ({e})", end='')
+
         # ── Prix retenu : la DERNIERE CLOTURE de la serie, jamais le quote ──
         #
         # regularMarketPrice donne le cours "courant". Or le script s'execute
@@ -323,6 +341,20 @@ def main():
             else:
                 print("✗ no data")
         time.sleep(1.5)  # be polite
+
+    # Tri chronologique systematique de l'historique de chaque ticker.
+    # dict.update() (fusions ci-dessus, et l'hebdo -> quotidien dans
+    # fetch_yahoo) ne reordonne jamais les cles deja presentes : un
+    # historique construit par fusions successives peut donc se retrouver
+    # dans un ordre non chronologique dans le JSON, meme si les valeurs
+    # elles-memes sont correctes. Inoffensif pour ce script (qui compare
+    # des dates, pas un ordre d'iteration), mais potentiellement trompeur
+    # pour tout consommateur (FinVault) qui parcourrait l'historique en
+    # supposant qu'il est deja trie.
+    for ticker in prices:
+        h = prices[ticker].get('history')
+        if h:
+            prices[ticker]['history'] = dict(sorted(h.items()))
 
     # Write prices.json
     import os
