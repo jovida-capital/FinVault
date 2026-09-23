@@ -1,0 +1,58 @@
+name: Fetch Prices
+
+on:
+  schedule:
+    # Cron GitHub toujours exprime en UTC, sans heure d'ete.
+    # Deux declenchements pour viser 5 h a Paris toute l'annee :
+    #   03:00 UTC = 05:00 Paris en ete   (UTC+2)
+    #   04:00 UTC = 05:00 Paris en hiver (UTC+1)
+    # A cette heure la cloture de la veille est consolidee chez Yahoo.
+    # Le second passage ne fait que reconfirmer les memes clotures.
+    - cron: '0 3 * * 1-5'
+    - cron: '0 4 * * 1-5'
+  workflow_dispatch:           # bouton manuel dans l'onglet Actions
+
+permissions:
+  contents: write
+
+# Empeche deux executions simultanees : sans cela, le second push est rejete
+# (non-fast-forward) et prices.json reste fige sur d'anciennes valeurs.
+concurrency:
+  group: fetch-prices
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Fetch prices from Yahoo Finance
+        run: python Scripts/fetch_prices.py
+
+      - name: Commit prices.json
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/prices.json
+          if git diff --cached --quiet; then
+            echo "Aucun changement de cours — rien a committer."
+            exit 0
+          fi
+          git commit -m "chore: mise a jour des cours $(date -u '+%Y-%m-%d %H:%M UTC')"
+          # Rejoue le commit par-dessus d'eventuels changements distants
+          # plutot que d'echouer et de laisser prices.json inchange.
+          for essai in 1 2 3; do
+            if git push; then
+              echo "Push reussi (tentative $essai)."
+              exit 0
+            fi
+            echo "Push rejete, resynchronisation puis nouvelle tentative..."
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || exit 1
+          done
+          echo "::error::Push impossible apres 3 tentatives — prices.json non publie."
+          exit 1
