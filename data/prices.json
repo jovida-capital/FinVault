@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-23T10:06:31Z",
+  "updated": "2026-09-23T10:22:59Z",
   "prices": {
     "SUSW.L": {
-      "price": 14.045,
-      "quote_brut": 14.045,
+      "price": 14.05,
+      "quote_brut": 14.05,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "iShares MSCI World SRI UCITS ETF EUR (Acc)",
@@ -513,10 +513,10 @@
         "2026-09-17": 13.805,
         "2026-09-18": 13.75,
         "2026-09-21": 13.91,
-        "2026-09-23": 14.045
+        "2026-09-23": 14.05
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:21Z"
+      "updated": "2026-09-23T10:21:51Z"
     },
     "EMSRI.PA": {
       "price": 73.29,
@@ -1036,11 +1036,11 @@
         "2026-09-23": 73.29
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:36Z"
+      "updated": "2026-09-23T10:22:07Z"
     },
     "ANTIN.PA": {
-      "price": 7.43,
-      "quote_brut": 7.43,
+      "price": 7.44,
+      "quote_brut": 7.44,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Antin Infrastructure Partners S.A.",
@@ -1554,14 +1554,14 @@
         "2026-09-17": 7.4,
         "2026-09-18": 7.35,
         "2026-09-21": 7.39,
-        "2026-09-23": 7.43
+        "2026-09-23": 7.44
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:51Z"
+      "updated": "2026-09-23T10:22:22Z"
     },
     "PANX.PA": {
-      "price": 85.39,
-      "quote_brut": 85.39,
+      "price": 85.35,
+      "quote_brut": 85.35,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Amundi PEA US Tech Screened UCITS ETF - Acc",
@@ -2075,14 +2075,14 @@
         "2026-09-17": 81.52,
         "2026-09-18": 81.66,
         "2026-09-21": 83.7,
-        "2026-09-23": 85.39
+        "2026-09-23": 85.35
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:53Z"
+      "updated": "2026-09-23T10:22:23Z"
     },
     "CACC.PA": {
-      "price": 41.365,
-      "quote_brut": 41.365,
+      "price": 41.38,
+      "quote_brut": 41.38,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Amundi CAC 40 UCITS ETF Acc",
@@ -2596,10 +2596,10 @@
         "2026-09-17": 41.57,
         "2026-09-18": 41.0,
         "2026-09-21": 41.4,
-        "2026-09-23": 41.365
+        "2026-09-23": 41.38
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:54Z"
+      "updated": "2026-09-23T10:22:25Z"
     },
     "C50U.PA": {
       "price": 194.84,
@@ -3120,11 +3120,11 @@
         "2026-09-23": 194.84
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:56Z"
+      "updated": "2026-09-23T10:22:27Z"
     },
     "PTPXE.PA": {
-      "price": 39.97,
-      "quote_brut": 39.97,
+      "price": 40.0,
+      "quote_brut": 40.0,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Amundi PEA Japon (TOPIX) UCITS ETF EUR Acc",
@@ -3638,15 +3638,15 @@
         "2026-09-17": 40.115,
         "2026-09-18": 39.55,
         "2026-09-21": 39.805,
-        "2026-09-23": 39.97
+        "2026-09-23": 40.0
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:58Z"
+      "updated": "2026-09-23T10:22:28Z"
     },
     "BTC-EUR": {
-      "price": 75256.4219,
-      "quote_brut": 75256.42,
-      "ecart_quote_pct": -0.0,
+      "price": 75165.8281,
+      "quote_brut": 75165.83,
+      "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Bitcoin EUR",
       "history": {
@@ -4380,15 +4380,15 @@
         "2026-09-20": 70688.4375,
         "2026-09-21": 75546.1484,
         "2026-09-22": 75273.7266,
-        "2026-09-23": 75256.4219
+        "2026-09-23": 75165.8281
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:05:59Z"
+      "updated": "2026-09-23T10:22:30Z"
     },
     "ETH-EUR": {
-      "price": 2395.76,
-      "quote_brut": 2395.76,
-      "ecart_quote_pct": 0.0,
+      "price": 2393.3201,
+      "quote_brut": 2393.32,
+      "ecart_quote_pct": -0.0,
       "currency": "EUR",
       "name": "Ethereum EUR",
       "history": {
@@ -5122,10 +5122,10 @@
         "2026-09-20": 2302.4817,
         "2026-09-21": 2421.991,
         "2026-09-22": 2404.4961,
-        "2026-09-23": 2395.76
+        "2026-09-23": 2393.3201
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:01Z"
+      "updated": "2026-09-23T10:22:31Z"
     },
     "WSRI.PA": {
       "price": 119.66,
@@ -5645,7 +5645,7 @@
         "2026-09-21": 119.66
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:16Z"
+      "updated": "2026-09-23T10:22:47Z"
     },
     "0P0000VQ4Q.F": {
       "price": 129.3356,
@@ -6142,12 +6142,12 @@
         "2026-09-21": 129.3356
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:18Z"
+      "updated": "2026-09-23T10:22:48Z"
     },
     "0P0000YSR9.F": {
-      "price": 118.03,
+      "price": 110.46,
       "quote_brut": 118.03,
-      "ecart_quote_pct": 0.0,
+      "ecart_quote_pct": 6.85,
       "currency": "EUR",
       "name": "BNP Paribas Glb HY Bd Cl Cap",
       "history": {
@@ -6620,10 +6620,11 @@
         "2026-09-16": 117.87,
         "2026-09-17": 118.09,
         "2026-09-18": 117.84,
-        "2026-09-21": 118.03
+        "2026-09-21": 118.03,
+        "2026-09-22": 110.46
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:19Z"
+      "updated": "2026-09-23T10:22:50Z"
     },
     "YF90.MU": {
       "price": 195.19,
@@ -6632,16 +6633,17 @@
       "currency": "EUR",
       "name": "Candriam SRI - Candriam SRI Equity Emerging Markets",
       "history": {
+        "2026-09-22": 192.428,
         "2026-09-23": 195.19,
         "2026-09-27": 195.19
       },
       "source_hist": "hebdomadaire recale",
-      "updated": "2026-09-23T10:06:23Z"
+      "updated": "2026-09-23T10:22:51Z"
     },
     "0P0000V074.F": {
-      "price": 164.26,
+      "price": 167.49,
       "quote_brut": 164.26,
-      "ecart_quote_pct": 0.0,
+      "ecart_quote_pct": -1.93,
       "currency": "EUR",
       "name": "BlueBay Inv Grd Euro Aggt Bd R EUR",
       "history": {
@@ -7125,23 +7127,25 @@
         "2026-09-16": 163.96,
         "2026-09-17": 164.22,
         "2026-09-18": 163.37,
-        "2026-09-21": 164.26
+        "2026-09-21": 164.26,
+        "2026-09-22": 167.49
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:25Z"
+      "updated": "2026-09-23T10:22:53Z"
     },
     "WYZ5.F": {
-      "price": 37.334,
-      "quote_brut": 37.334,
+      "price": 37.303,
+      "quote_brut": 37.303,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Comgest Growth plc - Comgest Growth Europe",
       "history": {
-        "2026-09-23": 37.334,
-        "2026-09-27": 37.334
+        "2026-09-22": 37.476,
+        "2026-09-23": 37.303,
+        "2026-09-27": 37.303
       },
       "source_hist": "hebdomadaire recale",
-      "updated": "2026-09-23T10:06:26Z"
+      "updated": "2026-09-23T10:22:55Z"
     },
     "0P0000YSWB.F": {
       "price": 958.98,
@@ -7627,12 +7631,12 @@
         "2026-09-21": 958.98
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:28Z"
+      "updated": "2026-09-23T10:22:56Z"
     },
     "0P0001CGQ0.F": {
-      "price": 2.6758,
+      "price": 2.3616,
       "quote_brut": 2.6758,
-      "ecart_quote_pct": 0.0,
+      "ecart_quote_pct": 13.3,
       "currency": "EUR",
       "name": "Multipar Actions PME ETI ISR Classique",
       "history": {
@@ -8105,10 +8109,11 @@
         "2026-09-15": 2.6465,
         "2026-09-16": 2.6779,
         "2026-09-17": 2.6858,
-        "2026-09-18": 2.6758
+        "2026-09-18": 2.6758,
+        "2026-09-22": 2.3616
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-23T10:06:30Z"
+      "updated": "2026-09-23T10:22:58Z"
     }
   }
 }
