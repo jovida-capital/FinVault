@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25T23:40:48Z",
+  "updated": "2026-09-26T00:28:54Z",
   "prices": {
     "SUSW.L": {
       "price": 13.91,
@@ -518,7 +518,7 @@
         "2026-09-24": 13.91
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:39:40Z"
+      "updated": "2026-09-26T00:27:46Z"
     },
     "EMSRI.PA": {
       "price": 72.26,
@@ -1040,7 +1040,7 @@
         "2026-09-24": 72.26
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:39:55Z"
+      "updated": "2026-09-26T00:28:01Z"
     },
     "ANTIN.PA": {
       "price": 7.3,
@@ -1563,7 +1563,7 @@
         "2026-09-24": 7.3
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:11Z"
+      "updated": "2026-09-26T00:28:16Z"
     },
     "PANX.PA": {
       "price": 84.44,
@@ -2086,7 +2086,7 @@
         "2026-09-24": 84.44
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:12Z"
+      "updated": "2026-09-26T00:28:18Z"
     },
     "CACC.PA": {
       "price": 41.135,
@@ -2609,7 +2609,7 @@
         "2026-09-24": 41.135
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:14Z"
+      "updated": "2026-09-26T00:28:20Z"
     },
     "C50U.PA": {
       "price": 191.78,
@@ -3132,7 +3132,7 @@
         "2026-09-24": 191.78
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:16Z"
+      "updated": "2026-09-26T00:28:21Z"
     },
     "PTPXE.PA": {
       "price": 39.215,
@@ -3655,12 +3655,12 @@
         "2026-09-24": 39.215
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:17Z"
+      "updated": "2026-09-26T00:28:23Z"
     },
     "BTC-EUR": {
-      "price": 73816.7188,
-      "quote_brut": 73816.72,
-      "ecart_quote_pct": 0.0,
+      "price": 73748.8438,
+      "quote_brut": 73748.84,
+      "ecart_quote_pct": -0.0,
       "currency": "EUR",
       "name": "Bitcoin EUR",
       "history": {
@@ -4396,15 +4396,16 @@
         "2026-09-22": 75273.7266,
         "2026-09-23": 74138.9062,
         "2026-09-24": 74188.9375,
-        "2026-09-25": 73816.7188
+        "2026-09-25": 73816.7188,
+        "2026-09-26": 73748.8438
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:19Z"
+      "updated": "2026-09-26T00:28:24Z"
     },
     "ETH-EUR": {
-      "price": 2364.04,
-      "quote_brut": 2364.04,
-      "ecart_quote_pct": 0.0,
+      "price": 2359.0701,
+      "quote_brut": 2359.07,
+      "ecart_quote_pct": -0.0,
       "currency": "EUR",
       "name": "Ethereum EUR",
       "history": {
@@ -5140,10 +5141,11 @@
         "2026-09-22": 2404.4961,
         "2026-09-23": 2358.7705,
         "2026-09-24": 2362.7668,
-        "2026-09-25": 2364.04
+        "2026-09-25": 2355.0215,
+        "2026-09-26": 2359.0701
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:20Z"
+      "updated": "2026-09-26T00:28:26Z"
     },
     "WSRI.PA": {
       "price": 119.68,
@@ -5666,12 +5668,12 @@
         "2026-09-24": 119.68
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:36Z"
+      "updated": "2026-09-26T00:28:41Z"
     },
     "0P0000VQ4Q.F": {
-      "price": 128.8123,
+      "price": 129.239,
       "quote_brut": 129.239,
-      "ecart_quote_pct": 0.33,
+      "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Avenir Actions Monde I",
       "history": {
@@ -6166,7 +6168,7 @@
         "2026-09-24": 128.8123
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:37Z"
+      "updated": "2026-09-26T00:28:43Z"
     },
     "0P0000YSR9.F": {
       "price": 110.45,
@@ -6651,7 +6653,7 @@
         "2026-09-25": 110.45
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:39Z"
+      "updated": "2026-09-26T00:28:44Z"
     },
     "YF90.MU": {
       "price": 195.19,
@@ -6668,7 +6670,7 @@
         "2026-09-29": 195.19
       },
       "source_hist": "hebdomadaire recale",
-      "updated": "2026-09-25T23:40:41Z"
+      "updated": "2026-09-26T00:28:46Z"
     },
     "0P0000V074.F": {
       "price": 167.39,
@@ -7164,7 +7166,7 @@
         "2026-09-25": 167.39
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:42Z"
+      "updated": "2026-09-26T00:28:48Z"
     },
     "WYZ5.F": {
       "price": 37.506,
@@ -7181,12 +7183,12 @@
         "2026-09-29": 37.506
       },
       "source_hist": "hebdomadaire recale",
-      "updated": "2026-09-25T23:40:44Z"
+      "updated": "2026-09-26T00:28:49Z"
     },
     "0P0000YSWB.F": {
-      "price": 965.04,
+      "price": 958.79,
       "quote_brut": 958.79,
-      "ecart_quote_pct": -0.65,
+      "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "BNP Paribas US Growth Classic EUR R",
       "history": {
@@ -7670,7 +7672,7 @@
         "2026-09-24": 965.04
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:45Z"
+      "updated": "2026-09-26T00:28:51Z"
     },
     "0P0001CGQ0.F": {
       "price": 2.694,
@@ -8154,7 +8156,7 @@
         "2026-09-23": 2.694
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-25T23:40:47Z"
+      "updated": "2026-09-26T00:28:52Z"
     }
   }
 }
