@@ -30,7 +30,8 @@ def fetch_json(url, retries=3):
     return None
 
 
-def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None):
+def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None,
+                         quote_reference=None):
     """Corrige les points aberrants herites des runs precedents.
 
     Un cours provisoire injecte par erreur (quote d'une autre cotation, seance
@@ -65,10 +66,16 @@ def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None)
     if len(variations) >= 20:
         variations.sort()
         mediane = variations[len(variations) // 2]
-        seuil = max(seuil, min(6 * mediane, 0.35)) # plafonne pour rester utile
+        # Plancher a 5 %, pas 12 % : avec "max(seuil, ...)", le seuil ne
+        # pouvait monter au-dessus du defaut mais jamais descendre en
+        # dessous, meme pour un instrument calme. Constate sur CACC.PA
+        # (ETF, volatilite quotidienne ~0.5-1 %) : un ecart de 9.2 % passait
+        # sous le plancher de 12 % et n'etait jamais signale.
+        seuil = min(max(6 * mediane, 0.05), 0.35)
 
     corriges = []
     ref = None # derniere valeur consideree comme saine
+    dernier_idx = len(dates) - 1
 
     for pos, d in enumerate(dates):
         v = history[d]
@@ -78,26 +85,51 @@ def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None)
             ref = v
             continue
 
+        if pos == dernier_idx:
+            # Dernier point de la serie : par definition, aucun point suivant
+            # n'existe encore pour confirmer ou infirmer le mouvement — la
+            # branche "suivants" ci-dessous ne s'applique jamais a lui.
+            # Le laisser passer sous le seuil adaptatif habituel (jusqu'a
+            # 35 % sur un instrument volatil) est trop permissif : c'est
+            # precisement le cas reel constate sur CACC.PA, ou un ecart de
+            # 9 % (sous le plancher de 12 %) est passe inaperçu. On applique
+            # donc un seuil resserre (6 %), sauf corroboration explicite par
+            # le quote du jour (cours en direct, recupere separement de la
+            # serie de clotures) lorsqu'il est fourni.
+            ecart_ref = abs(v - ref) / ref if ref > 0 else 0
+            if ecart_ref <= 0.06:
+                ref = v
+                continue
+            anomalie = True
+            if quote_reference and quote_reference > 0:
+                quote_suit_nouveau = abs(quote_reference - v) / v <= 0.06
+                quote_suit_ancien = abs(quote_reference - ref) / ref <= 0.06
+                if quote_suit_nouveau and not quote_suit_ancien:
+                    anomalie = False # le quote du jour confirme le mouvement
+            if anomalie:
+                history[d] = ref
+                corriges.append((d, v, ref))
+            else:
+                ref = v
+            continue
+
         if abs(v - ref) / ref <= seuil:
             ref = v # evolution plausible : devient la reference
             continue
 
         # Ecart important : anomalie isolee ou vrai mouvement de marche ?
         suivants = [history[x] for x in dates[pos+1:pos+4] if history.get(x, 0) > 0]
-        if suivants:
-            # La serie revient-elle vers l'ancien niveau, ou suit-elle le nouveau ?
-            proche_ancien = sum(1 for x in suivants if abs(x - ref) / ref <= seuil)
-            proche_nouveau = sum(1 for x in suivants if abs(x - v) / v <= seuil)
-            anomalie = proche_ancien > proche_nouveau
-            # Cas ambigu : plusieurs points consecutifs au meme niveau decale
-            # peuvent etre un vrai decrochage OU une serie de cours provisoires
-            # issus d'une autre cotation. Si ce niveau correspond au quote juge
-            # incoherent pour ce ticker, on tranche pour l'anomalie.
-            if not anomalie and reference_incoherente:
-                if abs(v - reference_incoherente) / max(reference_incoherente, 1e-9) <= 0.02:
-                    anomalie = True
-        else:
-            anomalie = True # dernier point : pas de confirmation possible
+        # La serie revient-elle vers l'ancien niveau, ou suit-elle le nouveau ?
+        proche_ancien = sum(1 for x in suivants if abs(x - ref) / ref <= seuil)
+        proche_nouveau = sum(1 for x in suivants if abs(x - v) / v <= seuil)
+        anomalie = proche_ancien > proche_nouveau
+        # Cas ambigu : plusieurs points consecutifs au meme niveau decale
+        # peuvent etre un vrai decrochage OU une serie de cours provisoires
+        # issus d'une autre cotation. Si ce niveau correspond au quote juge
+        # incoherent pour ce ticker, on tranche pour l'anomalie.
+        if not anomalie and reference_incoherente:
+            if abs(v - reference_incoherente) / max(reference_incoherente, 1e-9) <= 0.02:
+                anomalie = True
 
         if anomalie:
             history[d] = ref
@@ -191,36 +223,17 @@ def fetch_yahoo(ticker):
         if not history:
             print(f"\n ATTENTION {ticker} : aucune cloture historique recuperee", end='')
 
-        # ── Comble le jour le plus recent si sa cloture manque cote API ──
-        #
-        # L'API chart peut renvoyer close=null pour la derniere seance alors
-        # qu'elle est deja consolidee ailleurs chez Yahoo (le site public
-        # l'affiche via un flux distinct, deja a jour). meta.chartPreviousClose
-        # porte cette meme valeur consolidee : on l'utilise pour combler
-        # uniquement le dernier jour ouvre manquant, jamais plus, et seulement
-        # si elle reste proche de la derniere cloture connue (meme logique de
-        # garde-fou que l'assainissement) — pour ne pas rejouer le bug
-        # WSRI.PA (quote sur une autre place/devise que la cloture).
-        prev_close_meta = meta.get('chartPreviousClose')
-        if history and prev_close_meta and prev_close_meta > 0:
-            aujourdhui_local = (_utcnow() + timedelta(seconds=gmtoffset or 0)).date()
-            cible = aujourdhui_local - timedelta(days=1)
-            while cible.weekday() >= 5:
-                cible -= timedelta(days=1)
-            cible_str = cible.strftime('%Y-%m-%d')
-            if cible_str not in history:
-                val = prev_close_meta / 100 if en_pence else prev_close_meta
-                ref = history[max(history)]
-                if ref <= 0 or abs(val - ref) / ref <= 0.12:
-                    history[cible_str] = round(val, 4)
-                    print(f"\n COMBLE {ticker} : {cible_str} absent de l'historique "
-                          f"(cloture non encore publiee par l'API chart) — "
-                          f"chartPreviousClose {round(val, 4)} utilise a la place", end='')
-                else:
-                    print(f"\n ATTENTION {ticker} : {cible_str} absent, "
-                          f"chartPreviousClose {round(val, 4)} trop eloigne de la "
-                          f"derniere cloture {ref} — laisse manquant plutot que faux",
-                          end='')
+        # NB : pas de comblement du dernier jour manquant via un champ meta
+        # (chartPreviousClose ou regularMarketPrice). Verifie sur donnees
+        # reelles (run du 23/09) : chartPreviousClose porte la meme
+        # contamination que le quote pour une bonne partie des tickers .PA
+        # (ex. WSRI.PA : chartPreviousClose 96.122 ~= quote 96.507, tous deux
+        # tres eloignes de la vraie cloture 119.66 — cotation sur une autre
+        # place/devise). Aucun champ meta n'est donc une source fiable pour
+        # deviner une cloture absente. Un trou reste un trou : il se comble
+        # tout seul, sans risque, au prochain run ou l'API chart publiera
+        # enfin la vraie cloture (fusion automatique avec l'historique
+        # precedent, cf. plus bas dans main()).
 
         # ── Prix retenu : la DERNIERE CLOTURE de la serie, jamais le quote ──
         #
@@ -334,9 +347,22 @@ def main():
             # Aucun cours instantane n'y est injecte : c'etait la source des
             # seances fantomes et des valeurs provisoires corrigees le lendemain.
             # Nettoyage des valeurs parasites heritees des executions anterieures.
-            result['history'], _ = assainir_historique(
+            result['history'], corriges = assainir_historique(
                 result['history'], ticker,
-                reference_incoherente=result.get('quote_brut'))
+                reference_incoherente=result.get('quote_brut'),
+                quote_reference=result.get('quote_brut'))
+            # Le prix est recalcule APRES nettoyage, jamais avant : sinon une
+            # cloture aberrante corrigee dans l'historique reste quand meme
+            # celle utilisee comme "price" (constate sur CACC.PA — la
+            # correction ne servait a rien puisque le prix etait deja fige
+            # plus haut, dans fetch_yahoo(), avant cet assainissement).
+            if result['history']:
+                nouvelle_cloture = result['history'][max(result['history'])]
+                if nouvelle_cloture > 0 and nouvelle_cloture != result['price']:
+                    print(f"\n RECALCUL {ticker} : prix {result['price']} -> "
+                          f"{nouvelle_cloture} (cloture mise a jour apres "
+                          f"assainissement)", end='')
+                    result['price'] = round(nouvelle_cloture, 4)
             prices[ticker] = result
             print(f"✓ {result['price']} {result['currency']} ({len(result['history'])} pts)")
         else:
@@ -348,7 +374,11 @@ def main():
                 if conserve.get('history'):
                     conserve['history'], _ = assainir_historique(
                         dict(conserve['history']), ticker,
-                        reference_incoherente=conserve.get('quote_brut'))
+                        reference_incoherente=conserve.get('quote_brut'),
+                        quote_reference=conserve.get('quote_brut'))
+                    nouvelle_cloture = conserve['history'][max(conserve['history'])]
+                    if nouvelle_cloture > 0:
+                        conserve['price'] = round(nouvelle_cloture, 4)
                 prices[ticker] = conserve
                 print(f"✗ Yahoo failed, kept previous ({conserve['price']})")
             else:
