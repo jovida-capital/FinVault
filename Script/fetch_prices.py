@@ -30,6 +30,38 @@ def fetch_json(url, retries=3):
     return None
 
 
+def fetch_rates():
+    """Recupere les taux de change (devise -> EUR) depuis Yahoo Finance.
+
+    Publies dans prices.json pour que FinVault n'ait plus a se fier a une
+    valeur statique (state.rates cote client, jamais mise a jour toute
+    seule) : la conversion des positions en devise etrangere (ex. C50U.PA
+    en USD) suit alors le vrai cours, pas un taux fige au moment du
+    developpement.
+    """
+    paires = {'USD': 'USDEUR=X', 'GBP': 'GBPEUR=X', 'CHF': 'CHFEUR=X'}
+    rates = {}
+    for devise, ticker in paires.items():
+        data = None
+        for hote in ('query1', 'query2'):
+            data = fetch_json(f"https://{hote}.finance.yahoo.com/v8/finance/chart/"
+                              f"{ticker}?interval=1d&range=5d")
+            if data:
+                break
+        try:
+            meta = data['chart']['result'][0]['meta']
+            taux = meta.get('regularMarketPrice') or meta.get('chartPreviousClose')
+            if taux and taux > 0:
+                rates[devise] = round(taux, 6)
+                print(f" Taux {devise}->EUR : {round(taux, 4)}")
+            else:
+                print(f" Taux {devise}->EUR : pas de valeur recuperee")
+        except (KeyError, IndexError, TypeError):
+            print(f" Taux {devise}->EUR : echec de recuperation")
+        time.sleep(1)
+    return rates
+
+
 def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None,
                          quote_reference=None):
     """Corrige les points aberrants herites des runs precedents.
@@ -101,14 +133,24 @@ def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None,
                 ref = v
                 continue
             anomalie = True
+            valeur_corrigee = ref
             if quote_reference and quote_reference > 0:
                 quote_suit_nouveau = abs(quote_reference - v) / v <= 0.06
                 quote_suit_ancien = abs(quote_reference - ref) / ref <= 0.06
                 if quote_suit_nouveau and not quote_suit_ancien:
                     anomalie = False # le quote du jour confirme le mouvement
+                elif quote_suit_ancien:
+                    # Le quote du jour, plus recent que la reference de la
+                    # veille, est une meilleure estimation de la vraie
+                    # cloture que de simplement repeter cette reference
+                    # (constate sur CACC.PA : reference 41.12 vieille de 3
+                    # jours, quote du jour 41.1 — bien plus proche de la
+                    # vraie cloture 41.10 affichee par Yahoo que 41.12).
+                    valeur_corrigee = quote_reference
             if anomalie:
-                history[d] = ref
-                corriges.append((d, v, ref))
+                history[d] = round(valeur_corrigee, 4)
+                corriges.append((d, v, valeur_corrigee))
+                ref = valeur_corrigee
             else:
                 ref = v
             continue
@@ -195,10 +237,17 @@ def fetch_yahoo(ticker):
         if currency == 'GBX':
             price = price / 100
             currency = 'GBP'
-        # Les ETF europeens (.PA, .AS, .DE, .MI) sont libelles en EUR meme
-        # lorsque Yahoo annonce USD dans ses metadonnees.
-        if currency == 'USD' and any(ticker.upper().endswith(s)
-                                     for s in ('.PA', '.AS', '.DE', '.MI')):
+        # La plupart des ETF europeens (.PA, .AS, .DE, .MI) sont libelles en
+        # EUR meme lorsque Yahoo annonce USD dans ses metadonnees (cotation
+        # croisee, cas WSRI.PA). Mais certains sont de VRAIES parts USD
+        # cotees sur une place europeenne (ex. C50U.PA, "...UCITS ETF USD
+        # Acc" — Boursorama le confirme en cotant nativement en USD) : le
+        # nom du fonds le dit explicitement, donc on ne force pas l'EUR
+        # dans ce cas, sous peine de fausser la valorisation dans l'autre
+        # sens.
+        nom_fonds = (meta.get('longName') or meta.get('shortName') or '').upper()
+        if currency == 'USD' and 'USD' not in nom_fonds and any(
+                ticker.upper().endswith(s) for s in ('.PA', '.AS', '.DE', '.MI')):
             currency = 'EUR'
 
         # ── Historique quotidien sur 2 ans : source unique et correctement datee
@@ -296,6 +345,7 @@ def main():
     # Load PREVIOUS prices.json to preserve accumulated history
     # (self-building history for tickers with no chart data on Yahoo)
     prev_prices = {}
+    prev_data = {}
     try:
         with open('data/prices.json') as f:
             prev_data = json.load(f)
@@ -312,6 +362,11 @@ def main():
             tickers[ticker] = inv.get('nom', ticker)
 
     print(f"Found {len(tickers)} tickers: {', '.join(tickers.keys())}")
+
+    # Taux de change (devise -> EUR), publies pour que FinVault n'ait plus a
+    # se fier a une valeur statique cote client.
+    print("Fetching exchange rates...")
+    rates = fetch_rates()
 
     # Fetch prices
     prices = {}
@@ -399,12 +454,21 @@ def main():
         if h:
             prices[ticker]['history'] = dict(sorted(h.items()))
 
+    # Un taux manque (echec Yahoo pour cette devise precise) : on garde le
+    # dernier taux connu plutot que de le faire disparaitre de prices.json.
+    prev_rates = prev_data.get('rates', {})
+    for devise, taux in prev_rates.items():
+        if devise not in rates:
+            rates[devise] = taux
+            print(f" Taux {devise}->EUR : echec, conserve le precedent ({taux})")
+
     # Write prices.json
     import os
     os.makedirs('data', exist_ok=True)
     with open('data/prices.json', 'w') as f:
         json.dump({
             'updated': _utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+            'rates': rates,
             'prices': prices
         }, f, indent=2)
 
