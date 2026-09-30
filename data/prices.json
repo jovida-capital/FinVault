@@ -1,14 +1,14 @@
 {
-  "updated": "2026-09-30T13:14:56Z",
+  "updated": "2026-09-30T13:26:31Z",
   "rates": {
     "USD": 0.8799,
-    "GBP": 1.1689,
-    "CHF": 1.0547
+    "GBP": 1.1692,
+    "CHF": 1.0553
   },
   "prices": {
     "SUSW.L": {
-      "price": 14.055,
-      "quote_brut": 14.055,
+      "price": 14.075,
+      "quote_brut": 14.075,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "iShares MSCI World SRI UCITS ETF EUR (Acc)",
@@ -524,14 +524,14 @@
         "2026-09-25": 13.96,
         "2026-09-28": 13.95,
         "2026-09-29": 14.05,
-        "2026-09-30": 14.055
+        "2026-09-30": 14.075
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:13:45Z"
+      "updated": "2026-09-30T13:25:23Z"
     },
     "EMSRI.PA": {
-      "price": 73.05,
-      "quote_brut": 73.05,
+      "price": 73.0,
+      "quote_brut": 73.0,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Amundi MSCI Emerging Markets SRI Climate Paris Aligned - UCITS ETF DR (C)",
@@ -1050,14 +1050,14 @@
         "2026-09-25": 72.63,
         "2026-09-28": 72.41,
         "2026-09-29": 72.83,
-        "2026-09-30": 73.05
+        "2026-09-30": 73.0
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:01Z"
+      "updated": "2026-09-30T13:25:38Z"
     },
     "ANTIN.PA": {
-      "price": 7.35,
-      "quote_brut": 7.35,
+      "price": 7.37,
+      "quote_brut": 7.37,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Antin Infrastructure Partners S.A.",
@@ -1577,14 +1577,14 @@
         "2026-09-25": 7.35,
         "2026-09-28": 7.35,
         "2026-09-29": 7.26,
-        "2026-09-30": 7.35
+        "2026-09-30": 7.37
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:17Z"
+      "updated": "2026-09-30T13:25:53Z"
     },
     "PANX.PA": {
-      "price": 85.05,
-      "quote_brut": 85.05,
+      "price": 85.15,
+      "quote_brut": 85.15,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Amundi PEA US Tech Screened UCITS ETF - Acc",
@@ -2104,10 +2104,10 @@
         "2026-09-25": 85.18,
         "2026-09-28": 84.84,
         "2026-09-29": 85.13,
-        "2026-09-30": 85.05
+        "2026-09-30": 85.15
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:18Z"
+      "updated": "2026-09-30T13:25:55Z"
     },
     "CACC.PA": {
       "price": 40.74,
@@ -2634,7 +2634,7 @@
         "2026-09-30": 40.74
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:20Z"
+      "updated": "2026-09-30T13:25:57Z"
     },
     "C50U.PA": {
       "price": 193.7,
@@ -3161,11 +3161,11 @@
         "2026-09-30": 193.7
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:22Z"
+      "updated": "2026-09-30T13:25:58Z"
     },
     "PTPXE.PA": {
-      "price": 40.56,
-      "quote_brut": 40.56,
+      "price": 40.575,
+      "quote_brut": 40.575,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Amundi PEA Japon (TOPIX) UCITS ETF EUR Acc",
@@ -3685,14 +3685,14 @@
         "2026-09-25": 40.03,
         "2026-09-28": 39.755,
         "2026-09-29": 39.73,
-        "2026-09-30": 40.56
+        "2026-09-30": 40.575
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:23Z"
+      "updated": "2026-09-30T13:26:00Z"
     },
     "BTC-EUR": {
-      "price": 75137.7969,
-      "quote_brut": 75137.8,
+      "price": 75047.2891,
+      "quote_brut": 75047.29,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Bitcoin EUR",
@@ -4434,14 +4434,14 @@
         "2026-09-27": 74228.8594,
         "2026-09-28": 73435.6172,
         "2026-09-29": 73737.5938,
-        "2026-09-30": 75137.7969
+        "2026-09-30": 75047.2891
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:25Z"
+      "updated": "2026-09-30T13:26:01Z"
     },
     "ETH-EUR": {
-      "price": 2405.0,
-      "quote_brut": 2405.0,
+      "price": 2396.3,
+      "quote_brut": 2396.3,
       "ecart_quote_pct": 0.0,
       "currency": "EUR",
       "name": "Ethereum EUR",
@@ -5183,10 +5183,10 @@
         "2026-09-27": 2361.4971,
         "2026-09-28": 2364.5256,
         "2026-09-29": 2360.3123,
-        "2026-09-30": 2405.0
+        "2026-09-30": 2396.3
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:27Z"
+      "updated": "2026-09-30T13:26:03Z"
     },
     "WSRI.PA": {
       "price": 120.21,
@@ -5195,6 +5195,7 @@
       "currency": "EUR",
       "name": "Amundi MSCI World SRI Climate Net Zero Ambition PAB UCITS ETF EUR Acc",
       "history": {
+        "2024-01-26": 96.507,
         "2024-09-23": 96.122,
         "2024-09-24": 96.415,
         "2024-09-25": 96.539,
@@ -5711,7 +5712,7 @@
         "2026-09-28": 120.21
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:43Z"
+      "updated": "2026-09-30T13:26:19Z"
     },
     "0P0000VQ4Q.F": {
       "price": 128.9367,
@@ -6213,7 +6214,7 @@
         "2026-09-28": 128.9367
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:44Z"
+      "updated": "2026-09-30T13:26:20Z"
     },
     "0P0000YSR9.F": {
       "price": 116.77,
@@ -6699,7 +6700,7 @@
         "2026-09-28": 116.77
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:46Z"
+      "updated": "2026-09-30T13:26:22Z"
     },
     "YF90.MU": {
       "price": 192.904,
@@ -6720,7 +6721,7 @@
         "2026-10-04": 192.904
       },
       "source_hist": "hebdomadaire recale",
-      "updated": "2026-09-30T13:14:48Z"
+      "updated": "2026-09-30T13:26:23Z"
     },
     "0P0000V074.F": {
       "price": 161.79,
@@ -7217,7 +7218,7 @@
         "2026-09-28": 161.79
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:49Z"
+      "updated": "2026-09-30T13:26:25Z"
     },
     "WYZ5.F": {
       "price": 37.635,
@@ -7238,7 +7239,7 @@
         "2026-10-04": 37.635
       },
       "source_hist": "hebdomadaire recale",
-      "updated": "2026-09-30T13:14:51Z"
+      "updated": "2026-09-30T13:26:27Z"
     },
     "0P0000YSWB.F": {
       "price": 959.14,
@@ -7729,7 +7730,7 @@
         "2026-09-28": 959.14
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:53Z"
+      "updated": "2026-09-30T13:26:28Z"
     },
     "0P0001CGQ0.F": {
       "price": 2.65,
@@ -8216,7 +8217,7 @@
         "2026-09-28": 2.65
       },
       "source_hist": "quotidien",
-      "updated": "2026-09-30T13:14:54Z"
+      "updated": "2026-09-30T13:26:30Z"
     }
   }
 }
