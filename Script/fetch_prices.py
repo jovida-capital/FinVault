@@ -62,128 +62,6 @@ def fetch_rates():
     return rates
 
 
-def assainir_historique(history, ticker, seuil=0.12, reference_incoherente=None,
-                         quote_reference=None):
-    """Corrige les points aberrants herites des runs precedents.
-
-    Un cours provisoire injecte par erreur (quote d'une autre cotation, seance
-    fantome) reste fige dans prices.json tant que Yahoo ne renvoie pas a nouveau
-    cette date.
-
-    Detection : on parcourt la serie dans l'ordre et on compare chaque point a
-    la derniere valeur jugee saine. Un ecart superieur au seuil n'est retenu
-    comme anomalie que si la serie REVIENT ensuite au niveau anterieur : un
-    decrochage durable ou une tendance reguliere sont ainsi preserves, alors
-    qu'un pic isole est identifie. Le dernier point, qui n'a pas de suite, est
-    juge sur le seul ecart avec la valeur precedente.
-
-    La valeur fautive est REMPLACEE par la derniere cloture saine, et non
-    supprimee : supprimer laisserait un trou, et la lecture d'une date
-    remonterait silencieusement a la seance precedente.
-    """
-    dates = sorted(history)
-    if len(dates) < 3:
-        return history, []
-
-    # Seuil adapte a la volatilite propre de l'instrument. Un ETF varie de
-    # moins de 1 % par seance, une crypto peut bouger de 10 % : appliquer le
-    # meme seuil fixe aplatirait de vrais mouvements sur les actifs volatils.
-    variations = []
-    for i in range(1, len(dates)):
-        a, b = history[dates[i-1]], history[dates[i]]
-        if a > 0:
-            variations.append(abs(b - a) / a)
-    # Il faut assez de seances pour estimer une volatilite : sur une serie
-    # courte, la mediane serait elle-meme tiree par l'anomalie a detecter.
-    if len(variations) >= 20:
-        variations.sort()
-        mediane = variations[len(variations) // 2]
-        # Plancher a 5 %, pas 12 % : avec "max(seuil, ...)", le seuil ne
-        # pouvait monter au-dessus du defaut mais jamais descendre en
-        # dessous, meme pour un instrument calme. Constate sur CACC.PA
-        # (ETF, volatilite quotidienne ~0.5-1 %) : un ecart de 9.2 % passait
-        # sous le plancher de 12 % et n'etait jamais signale.
-        seuil = min(max(6 * mediane, 0.05), 0.35)
-
-    corriges = []
-    ref = None # derniere valeur consideree comme saine
-    dernier_idx = len(dates) - 1
-
-    for pos, d in enumerate(dates):
-        v = history[d]
-        if not v > 0:
-            continue
-        if ref is None:
-            ref = v
-            continue
-
-        if pos == dernier_idx:
-            # Dernier point de la serie : par definition, aucun point suivant
-            # n'existe encore pour confirmer ou infirmer le mouvement — la
-            # branche "suivants" ci-dessous ne s'applique jamais a lui.
-            # Le laisser passer sous le seuil adaptatif habituel (jusqu'a
-            # 35 % sur un instrument volatil) est trop permissif : c'est
-            # precisement le cas reel constate sur CACC.PA, ou un ecart de
-            # 9 % (sous le plancher de 12 %) est passe inaperçu. On applique
-            # donc un seuil resserre (6 %), sauf corroboration explicite par
-            # le quote du jour (cours en direct, recupere separement de la
-            # serie de clotures) lorsqu'il est fourni.
-            ecart_ref = abs(v - ref) / ref if ref > 0 else 0
-            if ecart_ref <= 0.06:
-                ref = v
-                continue
-            anomalie = True
-            valeur_corrigee = ref
-            if quote_reference and quote_reference > 0:
-                quote_suit_nouveau = abs(quote_reference - v) / v <= 0.06
-                quote_suit_ancien = abs(quote_reference - ref) / ref <= 0.06
-                if quote_suit_nouveau and not quote_suit_ancien:
-                    anomalie = False # le quote du jour confirme le mouvement
-                elif quote_suit_ancien:
-                    # Le quote du jour, plus recent que la reference de la
-                    # veille, est une meilleure estimation de la vraie
-                    # cloture que de simplement repeter cette reference
-                    # (constate sur CACC.PA : reference 41.12 vieille de 3
-                    # jours, quote du jour 41.1 — bien plus proche de la
-                    # vraie cloture 41.10 affichee par Yahoo que 41.12).
-                    valeur_corrigee = quote_reference
-            if anomalie:
-                history[d] = round(valeur_corrigee, 4)
-                corriges.append((d, v, valeur_corrigee))
-                ref = valeur_corrigee
-            else:
-                ref = v
-            continue
-
-        if abs(v - ref) / ref <= seuil:
-            ref = v # evolution plausible : devient la reference
-            continue
-
-        # Ecart important : anomalie isolee ou vrai mouvement de marche ?
-        suivants = [history[x] for x in dates[pos+1:pos+4] if history.get(x, 0) > 0]
-        # La serie revient-elle vers l'ancien niveau, ou suit-elle le nouveau ?
-        proche_ancien = sum(1 for x in suivants if abs(x - ref) / ref <= seuil)
-        proche_nouveau = sum(1 for x in suivants if abs(x - v) / v <= seuil)
-        anomalie = proche_ancien > proche_nouveau
-        # Cas ambigu : plusieurs points consecutifs au meme niveau decale
-        # peuvent etre un vrai decrochage OU une serie de cours provisoires
-        # issus d'une autre cotation. Si ce niveau correspond au quote juge
-        # incoherent pour ce ticker, on tranche pour l'anomalie.
-        if not anomalie and reference_incoherente:
-            if abs(v - reference_incoherente) / max(reference_incoherente, 1e-9) <= 0.02:
-                anomalie = True
-
-        if anomalie:
-            history[d] = ref
-            corriges.append((d, v, ref))
-        else:
-            ref = v # mouvement reel : on suit le nouveau niveau
-
-    if corriges:
-        detail = ', '.join(f"{d} : {v} -> {r}" for d, v, r in corriges)
-        print(f"\n CORRECTION {ticker} : {len(corriges)} point(s) aberrant(s) — {detail}", end='')
-    return history, corriges
-
 def _lire_series(data, gmtoffset, diviser_par_cent, decalage_fin_semaine=0):
     """Extrait {date: cloture} d'une reponse chart Yahoo."""
     serie = {}
@@ -398,42 +276,20 @@ def main():
                 result['history'] = merged
             # Le cours instantané ne sert que de valeur d'attente :
             # si Yahoo publie déjà une clôture pour aujourd'hui, elle fait foi.
-            # L'historique ne contient plus que des clotures officielles.
-            # Aucun cours instantane n'y est injecte : c'etait la source des
-            # seances fantomes et des valeurs provisoires corrigees le lendemain.
-            # Nettoyage des valeurs parasites heritees des executions anterieures.
-            result['history'], corriges = assainir_historique(
-                result['history'], ticker,
-                reference_incoherente=result.get('quote_brut'),
-                quote_reference=result.get('quote_brut'))
-            # Le prix est recalcule APRES nettoyage, jamais avant : sinon une
-            # cloture aberrante corrigee dans l'historique reste quand meme
-            # celle utilisee comme "price" (constate sur CACC.PA — la
-            # correction ne servait a rien puisque le prix etait deja fige
-            # plus haut, dans fetch_yahoo(), avant cet assainissement).
+            # L'historique n'est plus retouche : la cloture publiee par Yahoo
+            # est prise telle quelle, sans seuil ni correction automatique.
+            # Le prix retenu est toujours la derniere cloture de l'historique
+            # (deja fixe dans fetch_yahoo(), avant meme la fusion ci-dessus).
             if result['history']:
-                nouvelle_cloture = result['history'][max(result['history'])]
-                if nouvelle_cloture > 0 and nouvelle_cloture != result['price']:
-                    print(f"\n RECALCUL {ticker} : prix {result['price']} -> "
-                          f"{nouvelle_cloture} (cloture mise a jour apres "
-                          f"assainissement)", end='')
-                    result['price'] = round(nouvelle_cloture, 4)
+                derniere = result['history'][max(result['history'])]
+                if derniere > 0:
+                    result['price'] = round(derniere, 4)
             prices[ticker] = result
             print(f"✓ {result['price']} {result['currency']} ({len(result['history'])} pts)")
         else:
             # Yahoo failed entirely — keep previous data if we have it (stale but not lost).
-            # L'historique conserve passe malgre tout par l'assainissement :
-            # sans cela une valeur polluee y resterait figee indefiniment.
             if ticker in prev_prices:
                 conserve = dict(prev_prices[ticker])
-                if conserve.get('history'):
-                    conserve['history'], _ = assainir_historique(
-                        dict(conserve['history']), ticker,
-                        reference_incoherente=conserve.get('quote_brut'),
-                        quote_reference=conserve.get('quote_brut'))
-                    nouvelle_cloture = conserve['history'][max(conserve['history'])]
-                    if nouvelle_cloture > 0:
-                        conserve['price'] = round(nouvelle_cloture, 4)
                 prices[ticker] = conserve
                 print(f"✗ Yahoo failed, kept previous ({conserve['price']})")
             else:
