@@ -150,30 +150,30 @@ def fetch_yahoo(ticker):
         if not history:
             print(f"\n ATTENTION {ticker} : aucune cloture historique recuperee", end='')
 
-        # NB : pas de comblement du dernier jour manquant via un champ meta
-        # (chartPreviousClose ou regularMarketPrice). Verifie sur donnees
-        # reelles (run du 23/09) : chartPreviousClose porte la meme
-        # contamination que le quote pour une bonne partie des tickers .PA
-        # (ex. WSRI.PA : chartPreviousClose 96.122 ~= quote 96.507, tous deux
-        # tres eloignes de la vraie cloture 119.66 — cotation sur une autre
-        # place/devise). Aucun champ meta n'est donc une source fiable pour
-        # deviner une cloture absente. Un trou reste un trou : il se comble
-        # tout seul, sans risque, au prochain run ou l'API chart publiera
-        # enfin la vraie cloture (fusion automatique avec l'historique
-        # precedent, cf. plus bas dans main()).
+        # ── Comblement du dernier jour via le quote (page sommaire Yahoo) ──
+        # Le tableau des clotures quotidiennes de Yahoo publie la cloture
+        # officielle avec un delai (parfois jusqu'au lendemain). A l'heure ou
+        # tourne ce script (23h Paris, marche ferme), regularMarketPrice est
+        # deja la cloture du jour — c'est exactement la valeur "Dernière
+        # clôture" affichee sur la page sommaire de Yahoo Finance. On l'utilise
+        # pour combler la date du jour quand le tableau historique ne l'a pas
+        # encore, plutot que d'attendre un run ulterieur. regularMarketTime
+        # donne la date exacte a laquelle rattacher cette valeur (pas de
+        # supposition sur "aujourd'hui" : marche ferme, jour ferie, etc.).
+        regular_time = meta.get('regularMarketTime')
+        if regular_time and meta.get('regularMarketPrice'):
+            date_quote = _from_ts(regular_time + (gmtoffset or 0)).strftime('%Y-%m-%d')
+            if date_quote not in history:
+                valeur_quote = meta['regularMarketPrice']
+                if en_pence:
+                    valeur_quote = valeur_quote / 100
+                history[date_quote] = round(valeur_quote, 4)
+                print(f"\n COMBLE {ticker} : {date_quote} absente du tableau "
+                      f"historique — cloture prise sur le quote "
+                      f"({round(valeur_quote, 4)})", end='')
 
-        # ── Prix retenu : la DERNIERE CLOTURE de la serie, jamais le quote ──
-        #
-        # regularMarketPrice donne le cours "courant". Or le script s'execute
-        # avant l'ouverture des marches europeens : a cette heure, pour un
-        # instrument cote sur plusieurs places, ce champ peut porter la valeur
-        # d'une autre cotation. Constate sur WSRI.PA : quote 96.507 contre une
-        # cloture de 115.175, soit exactement le rapport EUR/USD — deux
-        # valorisations du meme fonds dans deux devises.
-        #
-        # La serie de clotures, elle, est le fixing officiel de la place : une
-        # seule source, non ambigue. Elle fait donc foi. Le quote n'est conserve
-        # qu'a titre indicatif, et n'entre plus jamais dans l'historique.
+        # ── Prix retenu : la DERNIERE CLOTURE de la serie (tableau historique
+        # complete par le quote ci-dessus le cas echeant) ──
         quote_brut = price
         ecart_quote = None
         if history:
